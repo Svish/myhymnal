@@ -1,0 +1,81 @@
+
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=password],
+input[type=number],
+input[type=tel],
+input[type=date],
+input[type=time],
+input[type=search],
+select,
+textarea
+{
+	padding: 3px;
+	vertical-align: middle;
+
+	background: @input-background;
+	color: @input-color;
+	border: @input-border;
+
+}
+textarea
+{
+	resize: vertical;
+	overflow: auto;
+}
+
+input::-webkit-input-placeholder,
+select::-webkit-input-placeholder
+{
+	color: @input-placeholder-color;
+}
+input::-moz-placeholder,
+select::-moz-placeholder
+{
+	color: @input-placeholder-color;
+}
+input:-moz-placeholder,
+select:-moz-placeholder
+{
+	color: @input-placeholder-color;
+}
+input:-ms-input-placeholder,
+select:-ms-input-placeholder
+{
+	color: @input-placeholder-color;
+}
+
+
+/*input[type=file],
+button
+{
+	vertical-align: middle;
+}
+select
+{
+	width: 257px;
+}
+input:required,
+select:required,
+textarea:required
+{
+	border: 1px solid #888;
+}
+input:required + label::after,
+select:required + label::after,
+textarea:required + label::after
+{
+	content: " *"; color: #f93
+}
+input:invalid + label::after,
+select:invalid + label::after,
+textarea:invalid + label::after
+{
+}
+input:valid + label::after,
+select:valid + label::after,
+textarea:valid + label::after
+{
+}*/
+

@@ -1,0 +1,75 @@
+.song 
+{
+	pre
+	{
+		-webkit-columns: 600px;
+		-moz-columns: 600px;
+		columns: 600px;
+		-webkit-column-gap: 2em;
+		-moz-column-gap: 2em;
+		column-gap: 2em;
+
+		line-height: 1em;
+
+		span:empty
+		{
+			background: lighten(@background-color, 24%);
+			display: inline-block;
+		    height: 1px;
+		    line-height: 1px;
+		    margin: 1.5em .5em;
+		    width: 40%;
+		}
+
+		span.c
+		{
+			color: @link-color;
+		}
+	}
+
+	.author
+	{
+		color: mix(@footer-text-color, @link-color, 80%);
+	}
+
+
+	.transpose-keys
+	{
+		margin-bottom: 1.5em;
+		opacity: .5;
+		.transition(opacity, .3s, ease-out);
+
+		&:hover
+		{
+			opacity: 1;
+		}
+
+		a
+		{
+			display: inline-block;
+			padding: .3em 1em;
+			margin: 0 .5em .5em 0;
+			font-size: small;
+			text-align: center;
+			text-decoration: none;
+			outline: none;
+
+			&:link,
+			&:visited
+			{ 
+				color: #ccc;
+				background: #444;
+			}
+			&:hover,
+			&:active
+			{
+				background: #777;
+				color: #fff;
+			}
+			&.selected
+			{
+				background: #b36b00;
+			}
+		}
+	}
+}

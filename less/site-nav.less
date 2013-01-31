@@ -1,0 +1,56 @@
+#site-nav
+{
+	position: relative;
+	padding: .5em;
+	background: lighten(@background-color, 10%);
+	border-bottom: 1px solid lighten(@background-color, 30%);
+
+	h1,
+	form
+	{
+		margin: 0;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	h1
+	{
+		margin-right: .5em;
+		a
+		{
+			&:link,
+			&:visited
+			{
+				color: lighten(@background-color, 50%);
+			}
+			&:hover,
+			&:active
+			{
+				color: lighten(@background-color, 90%);
+				text-decoration: none;
+			}
+		}
+	}
+
+	#search
+	{
+		position: absolute;
+		right: .5em;
+
+		input
+		{
+			width: 150px;
+			padding: 5px;
+			padding-right: 2.5em;
+			font-size: 1.1em;
+			.radius(10px);
+			.transition(all, .3s, ease-out);
+		}
+
+		&:hover input,
+		input:focus
+		{
+			width: 400px;
+		}
+	}
+}
