@@ -11,4 +11,5 @@ RewriteBase /
 # Pretty Urls
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule .* index.php/$0 [L]
+#RewriteRule .* index.php/$0 [L]
+RewriteRule .* index.php?toro_uri=/$0 [PT,L,QSA]
