@@ -6,8 +6,8 @@ AddDefaultCharset UTF-8
 
 # Environment
 SetEnv ENV production
-SetEnv BASE /songs/
-RewriteBase /songs/
+SetEnv BASE /myhymnal/
+RewriteBase /myhymnal/
 
 # Pretty Urls
 RewriteCond %{REQUEST_FILENAME} !-f
