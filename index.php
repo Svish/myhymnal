@@ -18,7 +18,6 @@ ToroHook::add("404", function() {
 
 # Go!
 Toro::serve(array(
-    "/" => "Controller_Browse", // Controller_Home
+    "/" => "Controller_Browse",
     "/song/:number" => "Controller_Song",
-    "/browse" => "Controller_Browse",
 ));
