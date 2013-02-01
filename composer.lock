@@ -1,5 +1,5 @@
 {
-    "hash": "dc4b65395fbb2f72e31f6892303998e1",
+    "hash": "8b1b22a97936d2dbd0b0994805db4689",
     "packages": [
         {
             "name": "leafo/lessphp",
@@ -84,36 +84,23 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/anandkunal/ToroPHP",
-                "reference": "689720f0b7f6dd5afb6f6c6fdf4e24286df186d6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/anandkunal/ToroPHP/archive/689720f0b7f6dd5afb6f6c6fdf4e24286df186d6.zip",
-                "reference": "689720f0b7f6dd5afb6f6c6fdf4e24286df186d6",
-                "shasum": ""
+                "url": "git://github.com/Svish/ToroPHP.git",
+                "reference": "4ab1a3607def70b2f7491f2b703ef0e0f224ecee"
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-12-28 08:06:50",
+            "time": "2013-01-31 23:06:35",
             "type": "library",
             "autoload": {
                 "files": [
                     "src/Toro.php"
                 ]
             },
-            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
-                {
-                    "name": "Martin Bean",
-                    "email": "martin@martinbean.co.uk",
-                    "homepage": "http://www.martinbean.co.uk",
-                    "role": "Developer"
-                },
                 {
                     "name": "Kunal Anand",
                     "email": "kunal.r.anand@gmail.com",
@@ -127,8 +114,18 @@
                     "role": "Contributor"
                 },
                 {
+                    "name": "Martin Bean",
+                    "email": "martin@martinbean.co.uk",
+                    "homepage": "http://www.martinbean.co.uk",
+                    "role": "Developer"
+                },
+                {
                     "name": "Robbie Coleman",
                     "homepage": "http://robbie.robnrob.com",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "John Kurkowski",
                     "role": "Contributor"
                 },
                 {
@@ -140,10 +137,6 @@
                     "name": "Jason Mooberry",
                     "homepage": "http://jasonmooberry.com/",
                     "role": "Developer"
-                },
-                {
-                    "name": "John Kurkowski",
-                    "role": "Contributor"
                 }
             ],
             "description": "Toro is a PHP router for developing RESTful web applications and APIs.",

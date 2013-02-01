@@ -9,7 +9,6 @@ class Toro
         $request_method = strtolower($_SERVER['REQUEST_METHOD']);
         if($path_info === NULL)
             $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (isset($_SERVER['ORIG_PATH_INFO']) ? $_SERVER['ORIG_PATH_INFO'] : '/');
-
         $discovered_handler = null;
         $regex_matches = array();
 
