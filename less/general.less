@@ -27,11 +27,14 @@ a
 {
 	.transition(all, .3s, ease-out);
 
-	&:link,
-	&:visited
+	&:link
 	{
 		color: desaturate(@link-color, 40%);
 		text-decoration: none;
+	}
+	&:visited
+	{
+		color: desaturate(@link-color, 70%);
 	}
 	&:hover,
 	&:active
