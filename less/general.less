@@ -57,23 +57,20 @@ mark
 	text-shadow: 0 0 2px lighten(fadeout(#f90, 30%), 40%);
 }
 
-header
-{
-	h1
-	{
-		color: desaturate(@link-color, 70%);
-
-	}
-}
 
 #content
 {
 	padding: 1em 1.5em;
 	.linear-background(top, darken(@background-color, 30%) 0, @background-color 10px);
 
-	h1:first-child
+
+	h1
 	{
-		margin-top: 0;
+		color: lighten(desaturate(@link-color, 70%), 20%);
+		&:first-child
+		{
+			margin-top: 0;
+		}
 	}
 
 	a

@@ -1,21 +1,21 @@
-<h1>{{#term}}Search: <i>{{.}}</i>{{/term}}{{^term}}Every song{{/term}}</h1>
+<article class="search-result">
+	<h1>{{#term}}Search: <i>{{.}}</i>{{/term}}{{^term}}Every song{{/term}}</h1>
 
-<ul id="search-result">
-{{#songs}}
-	<li><a href="song/{{id}}">{{title}}</a>
-{{/songs}}
-</ul>
+	<ul class="result-list">
+	{{#songs}}
+		<li><a href="song/{{id}}">{{title}}</a>
+	{{/songs}}
+	</ul>
+</article>
 
 <script>
 
 	$(function()
 	{
-			var term = '{{term}}';
-			var html = $('#search-result')
-				.html()
-				.replace(/\[([^\]]+)\]/g, '<mark>$1</mark>');
-
-			$('#search-result').html(html);
+		var $e = $('.result-list');
+		var term = '{{term}}';
+		var html = $e.html().replace(/\[([^\]]+)\]/g, '<mark>$1</mark>');
+		$e.html(html);
 	});
 
 </script>
