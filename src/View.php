@@ -17,8 +17,6 @@ abstract class View extends DynObj
 		);
 
 		call_user_func_array(array($this, 'init'), func_get_args());
-
-
 	}
 
 	public function init() {}
