@@ -14,4 +14,5 @@ $(function()
 function searchSelect(event, s)
 {
 	window.location = Site.base_url + 'song/' + s.item.value;
+	return false;
 }
