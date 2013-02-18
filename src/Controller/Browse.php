@@ -4,7 +4,18 @@ class Controller_Browse
 {
 	function get()
 	{
-		echo new View_BrowseSongs;
+
+		$term = isset($_GET['term']) ? $_GET['term'] : NULL;
+		$songs = Model_Song::get_list($term);
+
+		// Redirect if only one hit
+		if(count($songs) == 1)
+		{
+			header('Location: '.WEBROOT.'song/'.$songs[0]->id);
+			exit;
+		}
+
+		echo new View_BrowseSongs($songs, $term);
 	}
 
 	function get_xhr()

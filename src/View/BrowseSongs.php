@@ -2,11 +2,11 @@
 
 class View_BrowseSongs extends View
 {
-	public function init()
+	public function init(array $songs = array(), $term = NULL)
 	{
 		$this->title = 'Songs';
-		$this->term = isset($_GET['term']) ? $_GET['term'] : NULL;
-		$this->songs = Model_Song::get_list($this->term);
+		$this->term = $term;
+		$this->songs = $songs;
 
 		if($this->term !== NULL)
 			foreach($this->songs as $song)
