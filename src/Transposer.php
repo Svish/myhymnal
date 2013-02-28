@@ -1,14 +1,10 @@
 <?php
 
-
 class Transposer
 {
 	public static function transpose($song, $original_key, $key = NULL)
 	{
-		$song = Song::factory($song, $original_key);
-		$song->transpose($key);
-		return self::get_keys($key ? $key : $original_key).PHP_EOL
-			. $song;
+		return new Transposer_Song($song);
 	}
 
 
@@ -23,27 +19,14 @@ class Transposer
 		return '<div class="transpose-keys">'.$keys.'</div>';
 	}
 }
-
-class Song
+class Transposer_Song
 {
 	private $verses = array();
-	private $key;
 
-	private function __construct($song, $key)
+	public function __construct($song)
 	{
-		$this->key = $key;
 		foreach(preg_split('/(?:\r\n){2,}/', $song) as $verse)
-			$this->verses[] = Verse::factory($verse);
-	}
-
-	public function factory($song, $key)
-	{
-		return new Song($song, $key);
-	}
-
-	public function transpose($key)
-	{
-		// TODO
+			$this->verses[] = new Transposer_Verse($verse);
 	}
 
 	public function __toString()
@@ -51,57 +34,31 @@ class Song
 		return '<div class="song">'.implode('', $this->verses).'</div>';
 	}
 }
-
-class Verse
+class Transposer_Verse
 {
 	private $lines = array();
-	private function __construct($verse)
+	public function __construct($verse)
 	{
 		foreach(preg_split('%\r\n%', $verse) as $line)
-			$this->lines[] = Line::factory($line);
+			try
+			{
+				$this->lines[] = new Transposer_KeyLine($line);
+			}
+			catch(Exception $e)
+			{
+				$this->lines[] = new Transposer_TextLine($line);
+			}
 	}
 	public function factory($verse)
 	{
-		return new Verse($verse);
+		return new Transposer_Verse($verse);
 	}
 	public function __toString()
 	{
 		return '<pre class="verse">'.implode(PHP_EOL,$this->lines).'</pre>';
 	}
 }
-
-class Line
-{
-	public function factory($line)
-	{
-		if(KeyLine::is_keys($line))
-			return new KeyLine($line);
-		return new TextLine($line);
-	}
-}
-class KeyLine
-{
-	private static $key_pattern = '%(/?[A-H][b#]?(2|5|6|7|9|11|13|6/9|7-5|7-9|7#5|7#9|7\+5|7\+9|7b5|7b9|7sus2|7sus4|add2|add4|add9|aug|dim|dim7|m/maj7|m6|m7|m7b5|m9|m11|m13|maj7|maj9|maj11|maj13|mb5|m|sus4|sus2|sus)*+)%';
-	private $text;
-	public function __construct($text)
-	{
-		$this->text = $text;
-	}
-	public function __toString()
-	{
-		$text = preg_replace(self::$key_pattern, '<span class=\'c\'>$1</span>', $this->text);
-		return $text;
-	}
-
-	public static function is_keys($line)
-	{
-		foreach(preg_split('%\s++%', $line) as $token)
-			if( ! preg_match(self::$key_pattern, $token) AND ! empty($token))
-				return false;
-		return true;
-	}
-}
-class TextLine
+class Transposer_TextLine
 {
 	private $text;
 	public function __construct($text)
@@ -111,5 +68,48 @@ class TextLine
 	public function __toString()
 	{
 		return $this->text;
+	}
+}
+class Transposer_KeyLine
+{
+	public function __construct($text)
+	{
+		preg_match_all(Transposer_Key::$pattern, $text, $this->keys, PREG_SET_ORDER);
+
+		$len = mb_strlen($text);
+		foreach($this->keys as &$k)
+		{
+			$len -= mb_strlen($k[0]);
+			$k = new Transposer_Key($k);
+		}
+
+		if($len > 0)
+			throw new Exception('Not a key line: '.$text);
+	}
+	public function __toString()
+	{
+		return implode('', $this->keys);
+	}
+}
+class Transposer_Key
+{
+	public static $pattern = '%(\s*+)(\/?[A-H][b\#]?)((?:2|5|6|7|9|11|13|6\/9|7\-5|7\-9|7\#5|7\#9|7\+5|7\+9|7b5|7b9|7sus2|7sus4|add2|add4|add9|aug|dim|dim7|m\/maj7|m6|m7|m7b5|m9|m11|m13|maj7|maj9|maj11|maj13|mb5|m|sus4|sus2|sus)*)(\s*+)%';
+
+	private $length;
+	private $pre;
+	private $chord;
+	private $fluff;
+
+	public function __construct(array $parts)
+	{
+		$this->length = mb_strlen($parts[0]);
+		$this->pre = $parts[1];
+		$this->chord = $parts[2];
+		$this->fluff = $parts[3];
+	}
+
+	public function __toString()
+	{
+		return '<span class="c">'.str_pad($this->pre.$this->chord.$this->fluff, $this->length).'</span>';
 	}
 }
