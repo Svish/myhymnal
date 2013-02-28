@@ -2,7 +2,7 @@
 <article class="song">
 	<h1>{{title}}</h1>
 
-	<pre{{#key}} data-key="{{.}}"{{/key}}>{{text}}</pre>
+	{{{text_html}}}
 
 	<footer style="display:none">
 		<p>Written by <span class="author">Mary E. Byrne</span> &amp; <span class="author">Eleanor Hull</span>
@@ -13,6 +13,7 @@
 <script type="text/javascript" src="_/jquery.transposer/jquery.transposer.js"></script>
 <script type="text/javascript">
 	$(function() {
+		return;
 		$(".song pre[data-key]").transpose();
 		
 		var widest = 0;

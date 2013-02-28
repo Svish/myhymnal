@@ -1,24 +1,23 @@
 .song 
 {
-	pre
+	counter-reset: verse;
+	.verse
 	{
-		-webkit-columns: 600px;
-		-moz-columns: 600px;
-		columns: 600px;
-		-webkit-column-gap: 2em;
-		-moz-column-gap: 2em;
-		column-gap: 2em;
-
-		span:empty
+		display: inline-block;
+		margin-right: 1.5em;
+		vertical-align: top;
+		position: realtive;
+		
+		&:before
 		{
-			background: lighten(@background-color, 24%);
-			display: inline-block;
-		    height: 1px;
-		    line-height: 1px;
-		    margin: 1.5em .5em;
-		    width: 40%;
+			counter-increment: verse;
+			content: counter(verse);
+			display: block;
+			color: lighten(@background-color, 15%);
+			font-size: 1.3em;
+			font-weight: bold;
+			font-style: italic;
 		}
-
 		span.c
 		{
 			color: @link-color;
