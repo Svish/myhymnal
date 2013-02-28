@@ -9,29 +9,4 @@
 	</footer>
 	
 </article>
-
-<script type="text/javascript" src="_/jquery.transposer/jquery.transposer.js"></script>
-<script type="text/javascript">
-	$(function() {
-		return;
-		$(".song pre[data-key]").transpose();
-		
-		var widest = 0;
-		$('.song pre span')
-			.each(function()
-				{
-					if($(this).width() > widest)
-						widest = $(this).width();
-				});
-
-		console.info(widest);
-		$('.song pre')
-			.css({
-				'-webkit-column-width': widest,
-				'-moz-column-width': widest,
-				'column-width': widest
-			});
-
-	});
-</script>
 {{/song}}
