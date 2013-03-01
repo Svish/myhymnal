@@ -7,7 +7,6 @@ class Transposer
 		return new Transposer_Song($song);
 	}
 
-
 	public static function get_keys($selected)
 	{
 		$keys = '';
@@ -19,16 +18,16 @@ class Transposer
 		return '<div class="transpose-keys">'.$keys.'</div>';
 	}
 }
+
 class Transposer_Song
 {
 	private $verses = array();
-
 	public function __construct($song)
 	{
+		// Split song into verses
 		foreach(preg_split('/(?:\r\n){2,}/', $song) as $verse)
 			$this->verses[] = new Transposer_Verse($verse);
 	}
-
 	public function __toString()
 	{
 		return '<div class="song">'.implode('', $this->verses).'</div>';
@@ -39,43 +38,32 @@ class Transposer_Verse
 	private $lines = array();
 	public function __construct($verse)
 	{
+		// Split verse into lines
 		foreach(preg_split('%\r\n%', $verse) as $line)
 			try
 			{
+				// Try create a key line
 				$this->lines[] = new Transposer_KeyLine($line);
 			}
 			catch(Exception $e)
 			{
-				$this->lines[] = new Transposer_TextLine($line);
+				// Otherwise it's just a regular text line
+				$this->lines[] = $line;
 			}
-	}
-	public function factory($verse)
-	{
-		return new Transposer_Verse($verse);
 	}
 	public function __toString()
 	{
 		return '<pre class="verse">'.implode(PHP_EOL,$this->lines).'</pre>';
 	}
 }
-class Transposer_TextLine
-{
-	private $text;
-	public function __construct($text)
-	{
-		$this->text = $text;
-	}
-	public function __toString()
-	{
-		return $this->text;
-	}
-}
 class Transposer_KeyLine
 {
 	public function __construct($text)
 	{
+		// Find all chords
 		preg_match_all(Transposer_Key::$pattern, $text, $this->keys, PREG_SET_ORDER);
 
+		// Create chords and count combined length found chords
 		$len = mb_strlen($text);
 		foreach($this->keys as &$k)
 		{
@@ -83,6 +71,7 @@ class Transposer_KeyLine
 			$k = new Transposer_Key($k);
 		}
 
+		// If there were tokens not recognized as chords we assume this is not a key line
 		if($len > 0)
 			throw new Exception('Not a key line: '.$text);
 	}
@@ -95,21 +84,20 @@ class Transposer_Key
 {
 	public static $pattern = '%(\s*+)(\/?[A-H][b\#]?)((?:2|5|6|7|9|11|13|6\/9|7\-5|7\-9|7\#5|7\#9|7\+5|7\+9|7b5|7b9|7sus2|7sus4|add2|add4|add9|aug|dim|dim7|m\/maj7|m6|m7|m7b5|m9|m11|m13|maj7|maj9|maj11|maj13|mb5|m|sus4|sus2|sus)*)(\s*+)%';
 
-	private $length;
+	private $text;
 	private $pre;
 	private $chord;
 	private $fluff;
-
 	public function __construct(array $parts)
 	{
-		$this->length = mb_strlen($parts[0]);
-		$this->pre = $parts[1];
-		$this->chord = $parts[2];
-		$this->fluff = $parts[3];
+		list($this->text, 
+			$this->pre, 
+			$this->chord, 
+			$this->fluff) = $parts;
 	}
-
 	public function __toString()
 	{
-		return '<span class="c">'.str_pad($this->pre.$this->chord.$this->fluff, $this->length).'</span>';
+		$l = mb_strlen($this->text.'<span class="c">'.'</span>');
+		return str_pad($this->pre.'<span class="c">'.$this->chord.$this->fluff.'</span>', $l);
 	}
 }
