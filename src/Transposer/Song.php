@@ -101,10 +101,4 @@ class Transposer_Chord
 		$r = $this->pre.'<span class="c">'.$this->chord.$this->fluff.'</span>';
 		return str_pad($r, mb_strlen($old, 'UTF-8') + (strlen($r)-mb_strlen($r, 'UTF-8')));
 	}
-
-	private static function mb_str_pad($input, $pad_length, $pad_string=' ', $pad_type=STR_PAD_RIGHT)
-	{
-		$diff = strlen($input) - mb_strlen($input, 'UTF-8');
-		return str_pad($input, $pad_length+$diff, $pad_string, $pad_type);
-	}
 }
