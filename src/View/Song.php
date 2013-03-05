@@ -14,6 +14,6 @@ class View_Song extends View
 			$this->keys = Transposer::get_keys('song/'.$this->song->id.'/', $key);
 		}
 		else
-			$this->keys = Transposer::get_keys('song/'.$this->song->id.'/');
+			$this->keys = Transposer::get_keys('song/'.$this->song->id.'/', $this->song->key);
 	}
 }
