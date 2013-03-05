@@ -3,20 +3,24 @@
     "packages": [
         {
             "name": "leafo/lessphp",
-            "version": "v0.3.8",
+            "version": "v0.3.9",
             "source": {
                 "type": "git",
-                "url": "http://github.com/leafo/lessphp",
-                "reference": "v0.3.8"
+                "url": "https://github.com/leafo/lessphp.git",
+                "reference": "v0.3.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/leafo/lessphp/zipball/v0.3.8",
-                "reference": "v0.3.8",
+                "url": "https://api.github.com/repos/leafo/lessphp/zipball/v0.3.9",
+                "reference": "v0.3.9",
                 "shasum": ""
             },
-            "time": "2012-08-18 19:16:09",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "lessc.inc.php"
@@ -35,7 +39,8 @@
                 }
             ],
             "description": "lessphp is a compiler for LESS written in PHP.",
-            "homepage": "http://leafo.net/lessphp/"
+            "homepage": "http://leafo.net/lessphp/",
+            "time": "2013-03-02 16:13:31"
         },
         {
             "name": "mustache/mustache",
@@ -54,7 +59,6 @@
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "2013-01-12 07:18:03",
             "type": "library",
             "autoload": {
                 "psr-0": {
@@ -75,9 +79,10 @@
             "description": "A Mustache implementation in PHP.",
             "homepage": "https://github.com/bobthecow/mustache.php",
             "keywords": [
-                "templating",
-                "mustache"
-            ]
+                "mustache",
+                "templating"
+            ],
+            "time": "2013-01-12 07:18:03"
         },
         {
             "name": "torophp/torophp",
@@ -85,12 +90,11 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/Svish/ToroPHP.git",
-                "reference": "4ab1a3607def70b2f7491f2b703ef0e0f224ecee"
+                "reference": "cf91902ba62319746855ec36940ac8463c43f135"
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2013-01-31 23:06:35",
             "type": "library",
             "autoload": {
                 "files": [
@@ -145,15 +149,24 @@
                 "framework",
                 "php",
                 "router"
-            ]
+            ],
+            "time": "2013-03-05 20:34:55"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],
     "minimum-stability": "stable",
     "stability-flags": {
         "torophp/torophp": 20
-    }
+    },
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
 }
