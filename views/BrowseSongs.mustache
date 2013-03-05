@@ -1,10 +1,14 @@
-<article class="search-result">
-	<h1>{{#term}}Search: <i>{{.}}</i>{{/term}}{{^term}}Every song{{/term}}</h1>
+<article class="song-list">
+	{{#term}}<h1>Search: <i>{{.}}</i></h1>{{/term}}
 
 	<ul class="result-list">
 	{{#songs}}
 		<li><a href="song/{{id}}">{{title}}</a>
 	{{/songs}}
+	{{^songs}}
+		<li>No matches...
+	{{/songs}}
+	
 	</ul>
 </article>
 
