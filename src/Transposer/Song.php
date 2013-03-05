@@ -27,7 +27,7 @@ class Transposer_Song
 	}
 	public function __toString()
 	{
-		return '<div class="song">'.implode('', $this->verses).'</div>';
+		return '<div class="lyrics">'.implode('', $this->verses).'</div>';
 	}
 }
 class Transposer_Verse
