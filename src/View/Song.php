@@ -7,10 +7,7 @@ class View_Song extends View
 		$this->song = Model_Song::get($id);
 		$this->title = $this->song->title;
 		$this->text_html = new Transposer_Song($this->song->text, $this->song->key);
-		
-		if($key !== NULL)
-			$key = preg_replace('♯', '#', $key);
-		
+
 		if($key !== NULL)
 		{
 			$this->text_html->transpose($key);

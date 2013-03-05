@@ -4,43 +4,43 @@ class Transposer
 {
 	public static $SCALES = array
 		(
-			'A' => array('A','B','C#','D','E','F#','G#'),
-			'A#' => array('A#','B#','D','D#','E#','G','A'), //*
-			'Bb' => array('Bb','C','D','Eb','F','G','A'),
-			'B' => array('B','C#','D#','E','F#','G#','A#'),
-			'Cb' => array('Cb','Db','Eb','Fb','Gb','Ab','Bb'),
-			'B#' => array('B#','D','E','E#','G','A','B'), //*
+			'A' => array('A','B','C♯','D','E','F♯','G♯'),
+			'A♯' => array('A♯','B♯','D','D♯','E♯','G','A'), //*
+			'B♭' => array('B♭','C','D','E♭','F','G','A'),
+			'B' => array('B','C♯','D♯','E','F♯','G♯','A♯'),
+			'C♭' => array('C♭','D♭','E♭','F♭','G♭','A♭','B♭'),
+			'B♯' => array('B♯','D','E','E♯','G','A','B'), //*
 			'C' => array('C','D','E','F','G','A','B'),
-			'C#' => array('C#','D#','E#','F#','G#','A#','B#'),
-			'Db' => array('Db','Eb','F','Gb','Ab','Bb','C'),
-			'D' => array('D','E','F#','G','A','B','C#'),
-			'D#' => array('D#','E#','G','G#','A#','C','D'), //*
-			'Eb' => array('Eb','F','G','Ab','Bb','C','D'),
-			'E' => array('E','F#','G#','A','B','C#','D#'), //*
-			'E#' => array('E#','G','A','A#','B#','D','E'), //*
-			'Fb' => array('Fb','Gb','Ab','A','Cb','Db','Eb'), //*
-			'F' => array('F','G','A','Bb','C','D','E'),
-			'F#' => array('F#','G#','A#','B','C#','D#','E#'),
-			'Gb' => array('Gb','Ab','Bb','Cb','Db','Eb','F'),
-			'G' => array('G','A','B','C','D','E','F#'),
-			'G#' => array('G#','A#','B#','C#','D#','E#','G'), //*
-			'Ab' => array('Ab','Bb','C','Db','Eb','F','G'),
+			'C♯' => array('C♯','D♯','E♯','F♯','G♯','A♯','B♯'),
+			'D♭' => array('D♭','E♭','F','G♭','A♭','B♭','C'),
+			'D' => array('D','E','F♯','G','A','B','C♯'),
+			'D♯' => array('D♯','E♯','G','G♯','A♯','C','D'), //*
+			'E♭' => array('E♭','F','G','A♭','B♭','C','D'),
+			'E' => array('E','F♯','G♯','A','B','C♯','D♯'), //*
+			'E♯' => array('E♯','G','A','A♯','B♯','D','E'), //*
+			'F♭' => array('F♭','G♭','A♭','A','C♭','D♭','E♭'), //*
+			'F' => array('F','G','A','B♭','C','D','E'),
+			'F♯' => array('F♯','G♯','A♯','B','C♯','D♯','E♯'),
+			'G♭' => array('G♭','A♭','B♭','C♭','D♭','E♭','F'),
+			'G' => array('G','A','B','C','D','E','F♯'),
+			'G♯' => array('G♯','A♯','B♯','C♯','D♯','E♯','G'), //*
+			'A♭' => array('A♭','B♭','C','D♭','E♭','F','G'),
 		);
 
 	public static $CHORDS = array
 		(
 			array('A'),
-			array('A#', 'Bb'),
-			array('B', 'Cb'),
-			array('B#', 'C'),
-			array('C#', 'Db'),
+			array('A♯', 'B♭'),
+			array('B', 'C♭'),
+			array('B♯', 'C'),
+			array('C♯', 'D♭'),
 			array('D'),
-			array('D#', 'Eb'),
-			array('E', 'Fb'),
-			array('E#', 'F'),
-			array('F#', 'Gb'),
+			array('D♯', 'E♭'),
+			array('E', 'F♭'),
+			array('E♯', 'F'),
+			array('F♯', 'G♭'),
 			array('G'),
-			array('G#', 'Ab'),
+			array('G♯', 'A♭'),
 		);
 
 

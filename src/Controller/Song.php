@@ -2,8 +2,8 @@
 
 class Controller_Song
 {
-	function get($id)
+	function get($id, $key = NULL)
 	{
-		echo new View_Song($id);
+		echo new View_Song($id, $key);
 	}
 }

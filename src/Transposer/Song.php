@@ -90,8 +90,10 @@ class Transposer_Chord
 	{
 		list($this->text, 
 			$this->pre, 
-			$this->chord, 
+			$this->chord,
 			$this->fluff) = $parts;
+
+		$this->chord = preg_replace('%b%', '♭', preg_replace('%#%', '♯', $this->chord));
 	}
 	public function __toString()
 	{
