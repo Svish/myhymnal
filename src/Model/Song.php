@@ -27,9 +27,4 @@ class Model_Song extends Model
 		$query->execute();
 		return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
 	}
-
-	public function transpose($key = NULL)
-	{
-		return Transposer::transpose($this->text, $this->key, $key);
-	}
 }
