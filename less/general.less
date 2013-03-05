@@ -63,14 +63,14 @@ mark
 	padding: 1em 1.5em;
 	.linear-background(top, darken(@background-color, 30%) 0, @background-color 10px);
 
-
 	h1
 	{
 		color: lighten(desaturate(@link-color, 70%), 20%);
-		&:first-child
-		{
-			margin-top: 0;
-		}
+		
+	}
+	article>*:first-child
+	{
+		margin-top: 0;
 	}
 }
 
@@ -81,6 +81,10 @@ mark
 	li
 	{
 		list-style-type: none;
+	}
+	.result-list
+	{
+		padding-left: 0;
 	}
 }
 
