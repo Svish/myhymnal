@@ -20,5 +20,5 @@ ToroHook::add("404", function() {
 Toro::serve(array(
     "/" => "Controller_Browse",
     "/song/:number" => "Controller_Song",
-    "/song/:number/([A-G][♯b]?)" => "Controller_Song",
+    "/song/:number/([A-G][♯♭]?)" => "Controller_Song",
 ), isset($_GET['toro_uri']) ? $_GET['toro_uri'] : NULL);
