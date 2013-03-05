@@ -11,3 +11,9 @@
 {
 	border-radius: @radius;
 }
+.drop-shadow(@x, @y, @radius, @color)
+{
+	-moz-box-shadow: @x @y @radius @color;
+	-webkit-box-shadow: @x @y @radius @color;
+	box-shadow: @x @y @radius @color;
+}
