@@ -1,6 +1,51 @@
 {
-    "hash": "8b1b22a97936d2dbd0b0994805db4689",
+    "hash": "3c16293b768ae888491a88d7e1232cb7",
     "packages": [
+        {
+            "name": "geekality/transposer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Svish/Transposer.git",
+                "reference": "cbf22c4d802f3feec43d41df82f9cd6bc314b3a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Svish/Transposer/zipball/cbf22c4d802f3feec43d41df82f9cd6bc314b3a9",
+                "reference": "cbf22c4d802f3feec43d41df82f9cd6bc314b3a9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Geekality": "src/"
+                }
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "CC-BY"
+            ],
+            "authors": [
+                {
+                    "name": "Torleif Berger",
+                    "email": "torleif@outlook.com",
+                    "homepage": "http://www.geekality.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Plain text song parser and chord transposer",
+            "homepage": "https://github.com/Svish/Transposer",
+            "keywords": [
+                "chords",
+                "key",
+                "music",
+                "transpose"
+            ],
+            "time": "2013-03-06 22:53:24"
+        },
         {
             "name": "leafo/lessphp",
             "version": "v0.3.9",
@@ -161,7 +206,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "torophp/torophp": 20
+        "torophp/torophp": 20,
+        "geekality/transposer": 20
     },
     "platform": [
 

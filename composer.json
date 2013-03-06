@@ -4,7 +4,8 @@
 	{
 		"mustache/mustache": "2.1.*",
 		"torophp/torophp": "dev-master",
-		"leafo/lessphp": "0.3.*"
+		"leafo/lessphp": "0.3.*",
+		"geekality/transposer": "dev-master"
 	},
 	
 	"autoload":
