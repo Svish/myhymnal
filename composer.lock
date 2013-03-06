@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/Transposer.git",
-                "reference": "cbf22c4d802f3feec43d41df82f9cd6bc314b3a9"
+                "reference": "v1.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/Transposer/zipball/cbf22c4d802f3feec43d41df82f9cd6bc314b3a9",
-                "reference": "cbf22c4d802f3feec43d41df82f9cd6bc314b3a9",
+                "url": "https://api.github.com/repos/Svish/Transposer/zipball/v1.0.1",
+                "reference": "v1.0.1",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,7 @@
                 "music",
                 "transpose"
             ],
-            "time": "2013-03-06 22:53:24"
+            "time": "2013-03-06 23:00:35"
         },
         {
             "name": "leafo/lessphp",
