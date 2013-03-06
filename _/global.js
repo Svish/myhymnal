@@ -10,7 +10,7 @@ $(function()
 			position: {my: 'right top', at: 'right bottom', collision: 'fit'}
 		});
 
-	$('a', '.song .transpose-keys')
+	$('a', '.song .keys')
 		.click(keyChange);
 
 	$(document)
@@ -30,7 +30,7 @@ function keyChange()
 
 function keyChanged(data)
 {
-	$('a', '.song .transpose-keys')
+	$('a', '.song .keys')
 		.each(function(){
 			if($(this).text() == data.key)
 				$(this).addClass('key');

@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * Builds a map for transposing chords between two different keys.
+ */
 class Transposer
 {
+	/**
+	 * Scales belonging to each key.
+	 */
 	public static $SCALES = array
 		(
 			'A' => array('A','B','C♯','D','E','F♯','G♯'),
@@ -27,6 +33,9 @@ class Transposer
 			'A♭' => array('A♭','B♭','C','D♭','E♭','F','G'),
 		);
 
+	/**
+	 * Chords in order, grouped by value.
+	 */
 	public static $CHORDS = array
 		(
 			array('A'),
@@ -46,130 +55,107 @@ class Transposer
 
 	private $map;
 
+	/**
+	 * Creates a new Transposer.
+	 *
+	 * @param original Key to transpose from.
+	 * @param target Key to transpose to.
+	 * @throws Exception If any of the keys are not known.
+	 */
 	public function __construct($original, $target)
 	{
 		if( ! array_key_exists($original, self::$SCALES))
-			throw new Exception('Unknown chord: '.$original);
+			throw new Exception('Unknown key: '.$original);
 
 		if( ! array_key_exists($target, self::$SCALES))
-			throw new Exception('Unknown chord: '.$target);
+			throw new Exception('Unknown key: '.$target);
 
-		// Get the chords
+		// Make a copy of the chords starting with the original
 		$old = self::$CHORDS;
-
-		// Original first
 		while( ! in_array($original, $old[0]))
-			array_push($old, array_shift($old));	
+			array_push($old, array_shift($old));
 
-		// Distance from original to target
-		$delta = self::find($target, $old);
-
-		// Copy with target first
+		// Make a copy of the chords starting with the target
 		$new = $old;
-		$delta;
-		while(--$delta >= 0)
+		while( ! in_array($target, $new[0]))
 			array_push($new, array_shift($new));
 
-		// Clean scales
-		$this->old = array();
-		$this->new = array();
-
-		$ns = self::$SCALES[$target];
-
-		foreach(array_keys($old) as $key)
+		// For each chord group
+		foreach(array_keys($old) as $chord)
 		{
-			$left = $old[$key];
-			$right = $new[$key];
-			$right_c = array_intersect($right, $ns);
+			$left = $old[$chord];
+			$right = $new[$chord];
 
-			// Only one option
+			// If single option on the right side
 			if(count($right) == 1)
 			{
+				// Use that for all chords on left
 				foreach($left as $x)
-				{
 					$this->map[$x] = $right[0];
-				}
+
 				continue;
 			}
 
-			// Only one option after clean
+			// If single option after removing those not in target scale
+			$right_c = array_intersect($right, self::$SCALES[$target]);
 			if(count($right_c) == 1)
 			{
+				// Use that for all chords on left
 				$right_c = array_pop($right_c);
 				foreach($left as $x)
-				{
 					$this->map[$x] = $right_c;
-				}
+
 				continue;
 			}
 
-			// Two options, two src
+			// If two options on both sides
 			if(count($left) == 2 AND count($right) == 2)
 			{
+				// Match first with first and second with second
 				foreach(array_keys($left) as $x)
-				{
 					$this->map[$left[$x]] = $right[$x];
-				}
+
 				continue;
 			}
 
-			// Two options, one src
+			// If two options and only one on the left
 			if(count($left) == 1 AND count($right) == 2)
 			{
+				// Calculate distance between original and target chord
 				$diff = ord($target) - ord($original);
 				if($diff < 0)
 					$diff += 7;
+
+				// Pick right chord with same distance to left chord
 				$d0 = ord($right[0]) - ord($left[0]);
 				if($d0 < 0)
 					$d0 += 7;
 				$d1 = ord($right[1]) - ord($left[0]);
 				if($d1 < 0)
 					$d1 += 7;
-
 				$this->map[$left[0]] = $d0 == $diff ? $right[0] : $right[1];
 
 				continue;
 			}
 
+			// If we get here, we have an unhandled case.
+			// Which we really shouldn't have...
 			throw new Exception("Unhandled case.");
 		}
 	}
 
+	/**
+	 * Transposes a chord from the old key to the new key.
+	 * @param chord A chord in the old key.
+	 * @return The chord in the new key.
+	 */
 	public function transpose($chord)
 	{
 		return $this->map[$chord];
 	}
 
-	private static function find($c, array $a)
-	{
-		reset($a);
-		$n = 0;
-		do
-		{
-			if(in_array($c, current($a)))
-				return $n;
-			$n++;
-		}
-		while(next($a) !== FALSE);
-		return FALSE;
-	}
-
 	public function __toString()
 	{
 		return print_r($this->map, true);
-	}
-
-
-	public static function get_keys($url, $key = NULL)
-	{
-		$keys = '';
-		foreach(array_keys(self::$SCALES) as $k)
-			$keys .= sprintf('<a href="%s"%s>%s</a>',
-				$url.urlencode($k),
-				$k == $key ? ' class="key"' : '',
-				$k
-				);
-
-		return '<div class="transpose-keys">'.$keys.'</div>';
 	}
 }

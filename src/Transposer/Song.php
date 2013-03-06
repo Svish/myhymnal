@@ -1,9 +1,20 @@
 <?php
 
+/**
+ * Parses a song into verses, lines and chords which can then be 
+ * transposed and converted to a string of HTML.
+ */
 class Transposer_Song
 {
 	private $verses = array();
 	private $key;
+
+	/**
+	 * Parses the song lyrics.
+	 *
+	 * @param song The chords and lyrics of the song as plain text.
+	 * @param key The original key of the song.
+	 */
 	public function __construct($song, $key)
 	{
 		if( ! array_key_exists($key, Transposer::$SCALES))
@@ -16,20 +27,56 @@ class Transposer_Song
 			$this->verses[] = new Transposer_Verse($verse);
 	}
 
+	/**
+	 * Transposes the song.
+	 *
+	 * @param key The new key of the song.
+	 */
 	public function transpose($key)
 	{
+		if($key === NULL OR $key == $this->key)
+			return;
+		
 		$t = new Transposer($this->key, $key);
+		$this->key = $key;
+
 		foreach($this->verses as $verse)
 			foreach($verse->lines as $line)
 				if( ! is_string($line))
 					foreach($line->chords as $chord)
 						$chord->chord = $t->transpose($chord->chord);
 	}
+
+	/**
+	 * Returns a simple key selector.
+	 *
+	 * @param url URL prefix for key links. For example 'song/5/' or 'song.php?key='
+	 * @return HTML
+	 */
+	public function get_key_selector($url)
+	{
+		$keys = '';
+		foreach(array_keys(Transposer::$SCALES) as $k)
+			$keys .= sprintf('<a href="%s"%s>%s</a>',
+				$url.urlencode($k),
+				$k == $this->key ? ' class="key"' : '',
+				$k
+				);
+
+		return '<div class="keys">'.$keys.'</div>'.PHP_EOL;
+	}
+
+	/**
+	 * Returns HTML for a simple key selector.
+	 *
+	 * @param url URL prefix for key links. For example 'song/5/' or 'song.php?key='
+	 */
 	public function __toString()
 	{
-		return '<div class="lyrics">'.implode('', $this->verses).'</div>';
+		return '<div class="lyrics">'.PHP_EOL.implode('', $this->verses).'</div>'.PHP_EOL;
 	}
 }
+
 class Transposer_Verse
 {
 	public $lines = array();
@@ -50,9 +97,13 @@ class Transposer_Verse
 	}
 	public function __toString()
 	{
-		return '<pre class="verse">'.implode(PHP_EOL,$this->lines).'</pre>';
+		return '<pre class="verse">'.implode(PHP_EOL,$this->lines).'</pre>'.PHP_EOL;
 	}
 }
+
+/**
+ * Parses a line into chords (if possible).
+ */
 class Transposer_ChordLine
 {
 	public $chords;
@@ -61,7 +112,7 @@ class Transposer_ChordLine
 		// Find all chords
 		preg_match_all(Transposer_Chord::$pattern, $text, $this->chords, PREG_SET_ORDER);
 
-		// Create chords and count combined length found chords
+		// Create chords and count combined length of found chords
 		$len = mb_strlen($text);
 		foreach($this->chords as &$k)
 		{
@@ -69,9 +120,9 @@ class Transposer_ChordLine
 			$k = new Transposer_Chord($k);
 		}
 
-		// If there were tokens not recognized as chords we assume this is not a key line
+		// Assume this is not a chord line unless all text was eaten
 		if($len > 0)
-			throw new Exception('Not a key line: '.$text);
+			throw new Exception('Not a chord line: '.$text);
 	}
 	public function __toString()
 	{

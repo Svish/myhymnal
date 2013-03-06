@@ -11,9 +11,9 @@ class View_Song extends View
 		if($key !== NULL)
 		{
 			$this->text_html->transpose($key);
-			$this->keys = Transposer::get_keys('song/'.$this->song->id.'/', $key);
+			$this->keys = $this->text_html->get_key_selector('song/'.$this->song->id.'/');
 		}
 		else
-			$this->keys = Transposer::get_keys('song/'.$this->song->id.'/', $this->song->key);
+			$this->keys = $this->text_html->get_key_selector('song/'.$this->song->id.'/');
 	}
 }
