@@ -10,7 +10,7 @@ class Controller_Song
 	function get_xhr($id, $key = NULL)
 	{
 		$song = Model_Song::get($id);
-		$html = new Transposer_Song($song->text, $song->key);
+		$html = Transposer::parse($song->text, $song->key);
 
 		if($key !== NULL)
 			$html->transpose($key);
