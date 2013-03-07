@@ -58,6 +58,127 @@ mark
 }
 
 
+input[type=text],
+input[type=email],
+input[type=url],
+input[type=password],
+input[type=number],
+input[type=tel],
+input[type=date],
+input[type=time],
+input[type=search],
+select,
+textarea
+{
+	padding: 3px;
+	vertical-align: middle;
+
+	background: @input-background;
+	color: @input-color;
+	border: @input-border;
+
+}
+textarea
+{
+	resize: vertical;
+	overflow: auto;
+}
+
+input::-webkit-input-placeholder,
+select::-webkit-input-placeholder
+{
+	color: @input-placeholder-color;
+}
+input::-moz-placeholder,
+select::-moz-placeholder
+{
+	color: @input-placeholder-color;
+}
+input:-moz-placeholder,
+select:-moz-placeholder
+{
+	color: @input-placeholder-color;
+}
+input:-ms-input-placeholder,
+select:-ms-input-placeholder
+{
+	color: @input-placeholder-color;
+}
+
+
+
+footer
+{
+	font-size: x-small;
+	color: @footer-text-color;
+}
+
+
+#site-nav
+{
+	position: relative;
+	padding: .5em;
+	background: lighten(@background-color, 10%);
+	border-bottom: 1px solid lighten(@background-color, 30%);
+	.drop-shadow(0, 0, 15px, #000);
+
+	h1,
+	form,
+	img
+	{
+		margin: 0;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	h1
+	{
+		margin-right: .5em;
+		a
+		{
+			&:link,
+			&:visited
+			{
+				color: lighten(@background-color, 50%);
+			}
+			&:hover,
+			&:active
+			{
+				color: lighten(@background-color, 90%);
+				text-decoration: none;
+			}
+		}
+	}
+
+	#activity-indicator
+	{
+		opacity: 0;
+	}
+
+	#search
+	{
+		position: absolute;
+		right: .5em;
+
+		input
+		{
+			width: 150px;
+			padding: 5px;
+			padding-right: 2.5em;
+			font-size: 1.1em;
+			.radius(3px);
+			.transition(all, .3s, ease-out);
+		}
+
+		&:hover input,
+		input:focus
+		{
+			width: 300px;
+		}
+	}
+}
+
+
 #content
 {
 	padding: 1em 1.5em;
@@ -86,10 +207,4 @@ mark
 	{
 		padding-left: 0;
 	}
-}
-
-footer
-{
-	font-size: x-small;
-	color: @footer-text-color;
 }
