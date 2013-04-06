@@ -4,7 +4,7 @@ input,
 textarea,
 select
 {
-	font:100%/1.3 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
+	font:120%/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
 }
 pre,
 code
@@ -20,7 +20,6 @@ body
 	color: @text-color;
 	margin: 0;
 	padding: 0;
-	height: 100%;
 }
 
 a
@@ -115,20 +114,24 @@ footer
 }
 
 
-#site-nav
+#header
 {
-	padding: 7px;
-	overflow: hidden;
+	padding: 17px;
 
 	background: lighten(@background-color, 10%);
 	border-bottom: 1px solid lighten(@background-color, 30%);
 	.drop-shadow(0, 0, 15px, #000);
 
+	font-size: 90%;
+	line-height: 1.2em;
+
 	h1,
+	nav,
 	form,
 	img,
 	ul,
-	li
+	li,
+	input
 	{
 		margin: 0;
 		padding: 0;
@@ -141,9 +144,9 @@ footer
 		&:link,
 		&:visited
 		{
-			color: lighten(@background-color, 50%);
+			color: lighten(@background-color, 40%);
 			font-weight: bold;
-			padding: .2em .5em;
+			padding: 4px 9px;
 		}
 		&:hover,
 		&:active
@@ -153,31 +156,36 @@ footer
 			background-color: lighten(@background-color, 20%);
 		}
 	}
-
-	ul
+	h1
 	{
-		li
+		a:link,
+		a:visited
 		{
-			margin-right: 1em;
+			color: lighten(@background-color, 60%);
+		}
+		a:hover,
+		a:active
+		{
+			color: lighten(@background-color, 90%);
 		}
 	}
 
-	#activity-indicator
+	h1,
+	ul li
 	{
-		opacity: 0;
+		margin-right: 1em;
 	}
 
 	#search
 	{
 		float: right;
-		right: .5em;
-
+		margin-top: -3px;
 		input
 		{
 			width: 200px;
-			padding: 5px;
+			padding: 3px 7px;
+			font-size: 90%;
 			.radius(3px);
-			.transition(all, .3s, ease-out);
 		}
 	}
 }
@@ -190,10 +198,6 @@ footer
 	h1
 	{
 		color: lighten(desaturate(@link-color, 70%), 20%);
-	}
-	article>*:first-child
-	{
-		margin-top: 0;
 	}
 
 	table
@@ -226,8 +230,6 @@ footer
 
 	ul
 	{
-		font-size: 120%;
-		line-height: 1.6em;
 		li
 		{
 			list-style-type: none;

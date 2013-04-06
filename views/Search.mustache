@@ -6,7 +6,7 @@
 
 	$(function()
 	{
-		var $e = $('ul', '.search-list');
+		var $e = $('ul', '#content');
 		var term = '{{term}}';
 		var html = $e.html().replace(/\[([^\]]+)\]/g, '<mark>$1</mark>');
 		$e.html(html);
