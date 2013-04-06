@@ -11,7 +11,7 @@ class Model_Book extends Model
 			return;
 
 		$songs = Model_Song::find_in_book($this->id);
-		if($songs !== FALSE)
+		if($songs)
 			$this->songs = array('list' => $songs);
 	}
 

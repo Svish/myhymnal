@@ -8,11 +8,11 @@ class Model_Song extends Model
 			return;
 
 		$books = Model_Book::find_with_song($this->id);
-		if($books !== FALSE)
+		if($books)
 			$this->books = array('list' => $books);
 
 		$examples = Model_Example::find_for_song($this->id);
-		if($examples !== FALSE)
+		if($examples)
 			$this->examples = array('list' => $examples);
 	}
 
