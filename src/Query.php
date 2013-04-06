@@ -32,9 +32,9 @@ class Query
 		return $this;
 	}
 
-	public function fetch($class_name)
+	public function fetch($class_name, $ctor_arguments = NULL)
 	{
-		return $this->s->fetchObject($class_name);
+		return $this->s->fetchObject($class_name, $ctor_arguments);
 	}
 
 	public function fetchAll($fetch_argument = NULL, $ctor_arguments = NULL, $fetch_style = PDO::FETCH_CLASS)

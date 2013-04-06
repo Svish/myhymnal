@@ -14,6 +14,14 @@ class Model_Song extends Model
 		$examples = Model_Example::find_for_song($this->id);
 		if($examples)
 			$this->examples = array('list' => $examples);
+
+		$next = self::get_next($this->title);
+		if($next)
+			$this->next = $next;
+
+		$prev = self::get_prev($this->title);
+		if($prev)
+			$this->prev = $prev;
 	}
 
 
@@ -25,6 +33,29 @@ class Model_Song extends Model
 			->bindParam(':id', $id, PDO::PARAM_INT)
 			->execute()
 			->fetch(__CLASS__);
+	}
+
+	public static function get_next($title)
+	{
+		return DB::query('SELECT id, title 
+							FROM song
+							WHERE title>:title
+							ORDER BY title
+							LIMIT 1')
+			->bindParam(':title', $title)
+			->execute()
+			->fetch(__CLASS__, array(FALSE));
+	}
+	public static function get_prev($title)
+	{
+		return DB::query('SELECT id, title 
+							FROM song
+							WHERE title<:title
+							ORDER BY title
+							LIMIT 1')
+			->bindParam(':title', $title)
+			->execute()
+			->fetch(__CLASS__, array(FALSE));
 	}
 
 	public static function find_all()

@@ -1,12 +1,22 @@
 {{#song}}
 <article class="song">
-	<h1>{{title}}</h1>
+	<header>
+		<h1>{{title}}</h1>
+	</header>
 
 	{{{keys}}}
 
 	{{{text_html}}}
 
 	<footer>
+		<section>
+			<h1>Browse</h1>
+			<ul>
+				{{#next}}<li><a href="song/{{id}}" title="{{title}}">Next</a>{{/next}}
+				{{#prev}}<li><a href="song/{{id}}" title="{{title}}">Previous</a>{{/prev}}
+			</ul>
+		</section>
+
 		{{#books}}
 		<section>
 			<h1>Found in</h1>
@@ -17,6 +27,7 @@
 			</ul>
 		</section>
 		{{/books}}
+
 		{{#examples}}
 		<section>
 			<h1>Examples</h1>
