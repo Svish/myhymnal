@@ -21,20 +21,32 @@ abstract class View extends DynObj
 
 	public function init() {}
 
-	public function render($object = NULL, $template = NULL)
+	public static function factory($view)
 	{
-		// Choose template
-		if($template === NULL)
-		{
-			$template = implode(DIRECTORY_SEPARATOR, array_splice(explode('_', get_class($object)), 1));
-		}
+		$class = 'View_'.$view;
+		return new $class();
+	}
 
-		// Render
-		$this->_engine->setHelpers(include DOCROOT.'config.php');
-		$this->_engine->setPartials(array(
-			'content' => $this->_engine->render($template, $object),
-			));
-		return $this->_engine->render($this->_layout, $object);
+	public function render($layout = TRUE, $template = NULL)
+	{
+		// Default template if none given
+		if($template === NULL)
+			$template = implode(DIRECTORY_SEPARATOR, array_splice(explode('_', get_class($this)), 1));
+
+		// Render with layout
+		if($layout)
+		{
+			$this->_engine->setHelpers(include DOCROOT.'config.php');
+			$this->_engine->setPartials(array(
+				'content' => $this->_engine->render($template, $this),
+				));
+			return $this->_engine->render($this->_layout, $this);
+		}
+		// Plain render
+		else
+		{
+			return $this->_engine->render($template, $this);
+		}
 	}
 
 
@@ -49,7 +61,7 @@ abstract class View extends DynObj
 				DOCROOT.'_'.DIRECTORY_SEPARATOR.'styles.css');
 
 			// Render
-			return $this->render($this);
+			return $this->render();
 		}
 		catch(Exception $e)
 		{
