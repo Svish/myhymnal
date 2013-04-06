@@ -4,7 +4,7 @@ $(function()
 	$('input', '#search')
 		.autocomplete({
 			delay: 50,
-			source: Site.base_url,
+			source: $('#search').attr('action'),
 			select: searchSelect,
 			focus: searchFocus,
 			position: {my: 'right top', at: 'right bottom', collision: 'fit'}
