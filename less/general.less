@@ -9,6 +9,7 @@ select
 pre,
 code
 {
+	margin-top: 0;
 	font:110%/1.3 'Inconsolata', monospace;
 }
 
@@ -21,6 +22,11 @@ body
 	margin: 0;
 	padding: 0;
 }
+
+h1 { font-size: xx-large }
+h2 { font-size: x-large }
+h3 { font-size: large }
+h4 { font-size: medium }
 
 a
 {
@@ -190,12 +196,19 @@ footer
 	}
 }
 
+h1:first-child,
+article:first-child
+{
+	margin-top: 0;
+}
 
 #content
 {
 	padding: 1em 1.5em;
 
-	h1
+	h1,
+	h2,
+	h3,
 	{
 		color: lighten(desaturate(@link-color, 70%), 20%);
 	}
