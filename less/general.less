@@ -117,8 +117,9 @@ footer
 
 #site-nav
 {
-	position: relative;
-	padding: .5em;
+	padding: 7px;
+	overflow: hidden;
+
 	background: lighten(@background-color, 10%);
 	border-bottom: 1px solid lighten(@background-color, 30%);
 	.drop-shadow(0, 0, 15px, #000);
@@ -130,6 +131,7 @@ footer
 	li
 	{
 		margin: 0;
+		padding: 0;
 		display: inline-block;
 		vertical-align: middle;
 	}
@@ -140,18 +142,16 @@ footer
 		&:visited
 		{
 			color: lighten(@background-color, 50%);
+			font-weight: bold;
+			padding: .2em .5em;
 		}
 		&:hover,
 		&:active
 		{
 			color: lighten(@background-color, 90%);
 			text-decoration: none;
+			background-color: lighten(@background-color, 20%);
 		}
-	}
-
-	h1
-	{
-		margin-right: 1em;
 	}
 
 	ul
@@ -169,23 +169,15 @@ footer
 
 	#search
 	{
-		position: absolute;
+		float: right;
 		right: .5em;
 
 		input
 		{
-			width: 150px;
+			width: 200px;
 			padding: 5px;
-			padding-right: 2.5em;
-			font-size: 1.1em;
 			.radius(3px);
 			.transition(all, .3s, ease-out);
-		}
-
-		&:hover input,
-		input:focus
-		{
-			width: 300px;
 		}
 	}
 }
