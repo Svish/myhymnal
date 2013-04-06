@@ -1,7 +1,11 @@
 <header>
 	<nav id="site-nav" role="navigation">
 		<h1><a href=".">{{site.title}}</a></h1>
-		<form id="search" role="search" action="." method="get">
+		<ul>
+			<li><a href="books">Books</a>
+			<li><a href="songs">Songs</a>
+		</ul>
+		<form id="search" role="search" action="search" method="get">
 			<img src="_/ajax.gif" id="activity-indicator" />
 			<input type="search" name="term" placeholder="Search..." tabindex="1" />
 		</form>

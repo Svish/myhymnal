@@ -125,29 +125,40 @@ footer
 
 	h1,
 	form,
-	img
+	img,
+	ul,
+	li
 	{
 		margin: 0;
 		display: inline-block;
 		vertical-align: middle;
 	}
 
+	a
+	{
+		&:link,
+		&:visited
+		{
+			color: lighten(@background-color, 50%);
+		}
+		&:hover,
+		&:active
+		{
+			color: lighten(@background-color, 90%);
+			text-decoration: none;
+		}
+	}
+
 	h1
 	{
-		margin-right: .5em;
-		a
+		margin-right: 1em;
+	}
+
+	ul
+	{
+		li
 		{
-			&:link,
-			&:visited
-			{
-				color: lighten(@background-color, 50%);
-			}
-			&:hover,
-			&:active
-			{
-				color: lighten(@background-color, 90%);
-				text-decoration: none;
-			}
+			margin-right: 1em;
 		}
 	}
 
@@ -192,18 +203,54 @@ footer
 	{
 		margin-top: 0;
 	}
+
+	table
+	{
+		border-collapse: collapse;
+		empty-cells: hide;
+
+		thead th,
+		tbody th
+		{
+			background: lighten(@background-color, 10%);
+		}
+		tr
+		{
+			background: lighten(@background-color, 5%);
+		}
+		th,
+		td
+		{
+			text-align: left;
+			vertical-align: top;
+			padding: .5em .75em;
+			border: 1px solid darken(@background-color, 5%);
+		}
+		th
+		{
+			text-align: right;
+		}
+	}
+
+	ul
+	{
+		font-size: 120%;
+		line-height: 1.6em;
+		li
+		{
+			list-style-type: none;
+		}
+	}
 }
 
-.song-list
+.home-block
 {
-	font-size: 120%;
-	line-height: 1.6em;
-	li
-	{
-		list-style-type: none;
-	}
-	.result-list
-	{
-		padding-left: 0;
-	}
+	display:inline-block;
+	margin-right: 2em;
+	vertical-align: top;
+}
+
+.book-song-count
+{
+	color: darken(@text-color, 50%);
 }

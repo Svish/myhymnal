@@ -1,12 +1,12 @@
 <?php
 
-class Controller_Browse
+class Controller_Search
 {
 	function get()
 	{
 
 		$term = isset($_GET['term']) ? $_GET['term'] : NULL;
-		$songs = Model_Song::get_list($term);
+		$songs = Model_Song::search($term);
 
 		// Redirect if only one hit
 		if(count($songs) == 1)
@@ -15,7 +15,7 @@ class Controller_Browse
 			exit;
 		}
 
-		echo new View_BrowseSongs($songs, $term);
+		echo new View_Search($songs, $term);
 	}
 
 	function get_xhr()
@@ -23,7 +23,7 @@ class Controller_Browse
 		if( ! isset($_GET['term']) || $_GET['term'] === '')
 			return;
 
-		$list = Model_Song::get_list($_GET['term']);
+		$list = Model_Song::search($_GET['term']);
 
 		foreach($list as &$song)
 			$song = array('label' => $song->title, 'value' => $song->id);

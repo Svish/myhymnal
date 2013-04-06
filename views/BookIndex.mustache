@@ -1,0 +1,13 @@
+
+<h1>Books</h1>
+
+<ul>
+
+{{#books}}
+	<li><a href="book/{{id}}">{{name}}</a> <span class="book-song-count">({{count}})</span>
+{{/books}}
+{{^books}}
+	<li>No books...
+{{/books}}
+
+</ul>

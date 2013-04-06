@@ -12,13 +12,16 @@ date_default_timezone_set('Europe/Oslo');
 require 'vendor/autoload.php';
 
 # Hooks
-ToroHook::add("404", function() {
-    echo "Not found";
+ToroHook::add('404', function() {
+    echo 'Not found';
 });
 
 # Go!
 Toro::serve(array(
-    "/" => "Controller_Browse",
-    "/song/:number" => "Controller_Song",
-    "/song/:number/([A-G][♯♭]?)" => "Controller_Song",
+    '/' => 'Controller_Home',
+    '/books' => 'Controller_BookIndex',
+    '/book/:number' => 'Controller_Book',
+    '/songs' => 'Controller_SongIndex',
+    '/song/:number(?:/([A-G][♯♭]?))?' => 'Controller_Song',
+    '/search' => 'Controller_Search',
 ), isset($_GET['toro_uri']) ? $_GET['toro_uri'] : NULL);

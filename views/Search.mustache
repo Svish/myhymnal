@@ -1,0 +1,15 @@
+{{#term}}<h1>Search: <i>{{.}}</i></h1>{{/term}}
+
+{{>songs}}
+
+<script>
+
+	$(function()
+	{
+		var $e = $('ul', '.search-list');
+		var term = '{{term}}';
+		var html = $e.html().replace(/\[([^\]]+)\]/g, '<mark>$1</mark>');
+		$e.html(html);
+	});
+
+</script>

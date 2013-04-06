@@ -1,0 +1,21 @@
+
+{{#book}}
+<article class="book">
+	<h1>{{name}}</h1>
+
+	<table class="song-list">
+		{{#songs}}
+		<tr>
+			<th>{{number}}
+			<td><a href="song/{{id}}">{{title}}</a>
+		</tr>
+		{{/songs}}
+		{{^songs}}
+		<tr>
+			<td colspan="2">No songs...
+		</tr>
+		{{/songs}}
+	</table>
+
+</article>
+{{/book}}
