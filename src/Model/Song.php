@@ -2,38 +2,82 @@
 
 class Model_Song extends Model
 {
-	public static function get($id)
+	public function __get($var)
 	{
-		$query = DB::instance()->prepare('SELECT * FROM song WHERE id=:id');
-		$query->bindParam(':id', $id, PDO::PARAM_INT);
-		$query->execute();
-		return $query->fetchObject(__CLASS__);
+		switch($var)
+		{
+			case 'books':
+				if( ! parent::__isset('books'))
+					$this->books = Model_Book::find_with_song($this->id);
+				return parent::__get('books');
+
+			case 'examples':
+				if( ! parent::__isset('examples'))
+					$this->examples = Model_Example::find_for_song($this->id);
+				return parent::__get('examples');
+
+			default:
+				return parent::__get($var);
+		}
 	}
 
-	public static function get_list($term = NULL)
+	public function __isset($var)
 	{
-		$query = DB::instance()->prepare('SELECT id, title 
-											FROM song 
-											WHERE text IS NOT NULL
-											ORDER BY title');
-		$query->execute();
-		return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+		switch($var)
+		{
+			case 'books':
+			case 'examples':
+				return TRUE;
+
+			default:
+				return parent::__isset($var);
+		}
+	}
+
+	public static function get($id)
+	{
+		return DB::query('SELECT * 
+							FROM song 
+							WHERE id=:id')
+			->bindParam(':id', $id, PDO::PARAM_INT)
+			->execute()
+			->fetch(__CLASS__);
+	}
+
+	public static function find_all()
+	{
+		return DB::query('SELECT id, title 
+							FROM song 
+							WHERE text IS NOT NULL
+							ORDER BY title')
+			->execute()
+			->fetchAll(__CLASS__);
+	}
+
+	public static function find_in_book($book_id)
+	{
+		return DB::query('SELECT song.id, song.title, song_book.number
+							FROM song_book
+							INNER JOIN song ON song_book.song_id = song.id
+							WHERE song_book.book_id = :id
+							ORDER BY song_book.number')
+			->bindValue(':id', $book_id, PDO::PARAM_INT)
+			->execute()
+			->fetchAll('Model_Song');
 	}
 
 	public static function search($term)
 	{
-		$query = DB::instance()->prepare('SELECT id, title 
-											FROM song 
-											WHERE text IS NOT NULL
-											  AND title LIKE ? 
-											ORDER BY 
-												CASE WHEN title LIKE ? THEN 1 ELSE 2 END, 
-												title');
-
-		$query->bindValue(1, '%'.$term.'%', PDO::PARAM_STR);
-		$query->bindValue(2, $term.'%', PDO::PARAM_STR);
-
-		$query->execute();
-		return $query->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+		return DB::query('SELECT id, title 
+							FROM song 
+							WHERE text IS NOT NULL
+							  AND title LIKE ? 
+							ORDER BY 
+								CASE WHEN title LIKE ? THEN 1 ELSE 2 END, 
+								title')
+			->bindValue(1, '%'.$term.'%')
+			->bindValue(2, $term.'%')
+			->execute()
+			->fetchAll(__CLASS__);
 	}
 }

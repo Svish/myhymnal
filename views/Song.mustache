@@ -6,5 +6,38 @@
 
 	{{{text_html}}}
 
+	<footer>
+		<section>
+			<h1>Found in</h1>
+			<ul>
+				{{#books}}
+					<li><a href="book/{{id}}">{{name}}</a> {{number}}
+				{{/books}}
+			</ul>
+		</section>
+		<section>
+			<h1>Examples</h1>
+			<ul>
+				{{#examples}}
+					<li><a class="spotify-link" href="{{url}}" data-spotify-uri="{{track.href}}">{{artists}}</a>
+				{{/examples}}
+			</ul>
+	</footer>
+
 </article>
+
+<script id="spotify-template" type="text/html">
+	<div class="spotify-player">
+		<button>Close</button><br>
+		<iframe 
+			src="//embed.spotify.com/?uri=:uri" 
+			width="300" 
+			height="80" 
+			frameborder="0" 
+			allowtransparency="true"></iframe>
+	</div>
+</script>
+<script src="_/song.js"></script>
+		
+
 {{/song}}

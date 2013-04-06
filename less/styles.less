@@ -7,7 +7,8 @@
 
 @input-background: lighten(@background-color, 20%);
 @input-color: #eee;
-@input-border: 1px solid darken(@input-background, 20%);
+@input-border-color: darken(@input-background, 20%);
+@input-border: 1px solid @input-border-color;
 @input-placeholder-color: darken(@input-color, 30%);
 
 @import "mixins";
