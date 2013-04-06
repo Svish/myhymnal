@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * A simple PDOStatement wrapper for method chaining 
+ * and streamlining of common defaults.
+ */
 class Query
 {
 	private $s;
