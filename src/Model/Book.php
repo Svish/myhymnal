@@ -5,32 +5,15 @@
  */
 class Model_Book extends Model
 {
-	public function __get($var)
+	public function __construct($load_foreign = TRUE)
 	{
-		switch($var)
-		{
-			case 'songs':
-				if( ! parent::__isset('songs'))
-					$this->songs = Model_Song::find_in_book($this->id);
-				return parent::__get('songs');
+		if( ! $load_foreign)
+			return;
 
-			default:
-				return parent::__get($var);
-		}
+		$songs = Model_Song::find_in_book($this->id);
+		if($songs !== FALSE)
+			$this->songs = array('list' => $songs);
 	}
-
-	public function __isset($var)
-	{
-		switch($var)
-		{
-			case 'songs':
-				return TRUE;
-
-			default:
-				return parent::__isset($var);
-		}
-	}
-
 
 	public static function get($id)
 	{
@@ -51,7 +34,7 @@ class Model_Book extends Model
 							GROUP BY id
 							ORDER BY name')
 			->execute()
-			->fetchAll(__CLASS__);
+			->fetchAll(__CLASS__, array(FALSE));
 	}
 
 	public static function find_with_song($song_id)
@@ -63,6 +46,6 @@ class Model_Book extends Model
 							ORDER BY book.name')
 			->bindValue(':id', $song_id, PDO::PARAM_INT)
 			->execute()
-			->fetchAll('Model_Song');
+			->fetchAll(__CLASS__, array(FALSE));
 	}
 }

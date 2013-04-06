@@ -7,21 +7,26 @@
 	{{{text_html}}}
 
 	<footer>
+		{{#books}}
 		<section>
 			<h1>Found in</h1>
 			<ul>
-				{{#books}}
-					<li><a href="book/{{id}}">{{name}}</a> {{number}}
-				{{/books}}
+				{{#list}}
+					<li>{{number}} <a href="book/{{id}}">{{name}}</a>
+				{{/list}}
 			</ul>
 		</section>
+		{{/books}}
+		{{#examples}}
 		<section>
 			<h1>Examples</h1>
 			<ul>
-				{{#examples}}
+				{{#list}}
 					<li><a class="spotify-link" href="{{url}}" data-spotify-uri="{{track.href}}">{{artists}}</a>
-				{{/examples}}
+				{{/list}}
 			</ul>
+		</section>
+		{{/examples}}
 	</footer>
 
 </article>

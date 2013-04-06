@@ -3,19 +3,16 @@
 <article class="book">
 	<h1>{{name}}</h1>
 
-	<table class="song-list">
-		{{#songs}}
-		<tr>
-			<th>{{number}}
-			<td><a href="song/{{id}}">{{title}}</a>
-		</tr>
-		{{/songs}}
-		{{^songs}}
-		<tr>
-			<td colspan="2">No songs...
-		</tr>
-		{{/songs}}
-	</table>
+	{{#songs}}
+	<ul>
+		{{#list}}
+		<li><span class="n">{{number}}</span> <a href="song/{{id}}">{{title}}</a>
+		{{/list}}
+	</ul>
+	{{/songs}}
+	{{^songs}}
+	<p>No songs...
+	{{/songs}}
 
 </article>
 {{/book}}

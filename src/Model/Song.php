@@ -2,37 +2,20 @@
 
 class Model_Song extends Model
 {
-	public function __get($var)
+	private function __construct($load_foreign = TRUE)
 	{
-		switch($var)
-		{
-			case 'books':
-				if( ! parent::__isset('books'))
-					$this->books = Model_Book::find_with_song($this->id);
-				return parent::__get('books');
+		if( ! $load_foreign)
+			return;
 
-			case 'examples':
-				if( ! parent::__isset('examples'))
-					$this->examples = Model_Example::find_for_song($this->id);
-				return parent::__get('examples');
+		$books = Model_Book::find_with_song($this->id);
+		if($books !== FALSE)
+			$this->books = array('list' => $books);
 
-			default:
-				return parent::__get($var);
-		}
+		$examples = Model_Example::find_for_song($this->id);
+		if($examples !== FALSE)
+			$this->examples = array('list' => $examples);
 	}
 
-	public function __isset($var)
-	{
-		switch($var)
-		{
-			case 'books':
-			case 'examples':
-				return TRUE;
-
-			default:
-				return parent::__isset($var);
-		}
-	}
 
 	public static function get($id)
 	{
@@ -46,12 +29,13 @@ class Model_Song extends Model
 
 	public static function find_all()
 	{
+
 		return DB::query('SELECT id, title 
 							FROM song 
 							WHERE text IS NOT NULL
 							ORDER BY title')
 			->execute()
-			->fetchAll(__CLASS__);
+			->fetchAll(__CLASS__, array(FALSE));
 	}
 
 	public static function find_in_book($book_id)
@@ -63,7 +47,7 @@ class Model_Song extends Model
 							ORDER BY song_book.number')
 			->bindValue(':id', $book_id, PDO::PARAM_INT)
 			->execute()
-			->fetchAll('Model_Song');
+			->fetchAll(__CLASS__, array(FALSE));
 	}
 
 	public static function search($term)
@@ -78,6 +62,6 @@ class Model_Song extends Model
 			->bindValue(1, '%'.$term.'%')
 			->bindValue(2, $term.'%')
 			->execute()
-			->fetchAll(__CLASS__);
+			->fetchAll(__CLASS__, array(FALSE));
 	}
 }
