@@ -133,14 +133,13 @@ button
 	}
 }
 
-
 #header
 {
 	padding: 17px;
 
 	background: lighten(@background-color, 10%);
 	border-bottom: 1px solid lighten(@background-color, 30%);
-	.drop-shadow(0, 0, 15px, #000);
+	.drop-shadow(0, 0, 15px, black);
 
 	font-size: 90%;
 	line-height: 1.2em;
@@ -174,6 +173,7 @@ button
 			color: lighten(@background-color, 90%);
 			text-decoration: none;
 			background-color: lighten(@background-color, 20%);
+			.drop-shadow(0, 0, 5px, lighten(@background-color, 5%));
 		}
 	}
 	h1
