@@ -15,7 +15,6 @@ abstract class View extends DynObj
 				'partials_loader' => new Mustache_MyLoader(DOCROOT.'views'.DIRECTORY_SEPARATOR.'partials'),
 			)
 		);
-
 		call_user_func_array(array($this, 'init'), func_get_args());
 	}
 
@@ -33,20 +32,24 @@ abstract class View extends DynObj
 		if($template === NULL)
 			$template = implode(DIRECTORY_SEPARATOR, array_splice(explode('_', get_class($this)), 1));
 
+
 		// Render with layout
+		Timer::start(__METHOD__, $template);
 		if($layout)
 		{
 			$this->_engine->setHelpers(include DOCROOT.'config.php');
 			$this->_engine->setPartials(array(
 				'content' => $this->_engine->render($template, $this),
 				));
-			return $this->_engine->render($this->_layout, $this);
+			$r = $this->_engine->render($this->_layout, $this);
 		}
 		// Plain render
 		else
 		{
-			return $this->_engine->render($template, $this);
+			$r = $this->_engine->render($template, $this);
 		}
+		Timer::stop();
+		return $r;
 	}
 
 

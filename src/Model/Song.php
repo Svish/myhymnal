@@ -27,17 +27,21 @@ class Model_Song extends Model
 
 	public static function get($id)
 	{
-		return DB::query('SELECT * 
+		Timer::start(__METHOD__, func_get_args());
+		$song = DB::query('SELECT * 
 							FROM song 
 							WHERE id=:id')
 			->bindParam(':id', $id, PDO::PARAM_INT)
 			->execute()
 			->fetch(__CLASS__);
+		Timer::stop();
+		return $song;
 	}
 
 	public static function get_next($title)
 	{
-		return DB::query('SELECT id, title 
+		Timer::start(__METHOD__, func_get_args());
+		$song = DB::query('SELECT id, title 
 							FROM song
 							WHERE title>:title
 							ORDER BY title
@@ -45,10 +49,13 @@ class Model_Song extends Model
 			->bindParam(':title', $title)
 			->execute()
 			->fetch(__CLASS__, array(FALSE));
+		Timer::stop();
+		return $song;
 	}
 	public static function get_prev($title)
 	{
-		return DB::query('SELECT id, title 
+		Timer::start(__METHOD__, func_get_args());
+		$song = DB::query('SELECT id, title 
 							FROM song
 							WHERE title<:title
 							ORDER BY title DESC
@@ -56,22 +63,27 @@ class Model_Song extends Model
 			->bindParam(':title', $title)
 			->execute()
 			->fetch(__CLASS__, array(FALSE));
+		Timer::stop();
+		return $song;
 	}
 
 	public static function find_all()
 	{
-
-		return DB::query('SELECT id, title 
+		Timer::start(__METHOD__);
+		$songs = DB::query('SELECT id, title 
 							FROM song 
 							WHERE text IS NOT NULL
 							ORDER BY title')
 			->execute()
 			->fetchAll(__CLASS__, array(FALSE));
+		Timer::stop();
+		return $songs;
 	}
 
 	public static function find_in_book($book_id)
 	{
-		return DB::query('SELECT song.id, song.title, song_book.number
+		Timer::start(__METHOD__, func_get_args());
+		$songs = DB::query('SELECT song.id, song.title, song_book.number
 							FROM song_book
 							INNER JOIN song ON song_book.song_id = song.id
 							WHERE song_book.book_id = :id
@@ -79,11 +91,14 @@ class Model_Song extends Model
 			->bindValue(':id', $book_id, PDO::PARAM_INT)
 			->execute()
 			->fetchAll(__CLASS__, array(FALSE));
+		Timer::stop();
+		return $songs;
 	}
 
 	public static function search($term)
 	{
-		return DB::query('SELECT id, title 
+		Timer::start(__METHOD__, func_get_args());
+		$songs = DB::query('SELECT id, title 
 							FROM song 
 							WHERE text IS NOT NULL
 							  AND title LIKE ? 
@@ -94,5 +109,7 @@ class Model_Song extends Model
 			->bindValue(2, $term.'%')
 			->execute()
 			->fetchAll(__CLASS__, array(FALSE));
+		Timer::stop();
+		return $songs;
 	}
 }

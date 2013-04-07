@@ -9,6 +9,8 @@ class Model_Example extends Model
 	{
 		$d = HTTP::get('http://ws.spotify.com/lookup/1/.json?uri=spotify:track:'.$this->spotify_track_id);
 		$this->set((array)json_decode($d));
+
+		// TODO: Store what we want in DB so we can order by artist name
 	}
 
 	public function __get($var)
@@ -41,11 +43,14 @@ class Model_Example extends Model
 
 	public static function find_for_song($song_id)
 	{
-		return DB::query('SELECT spotify_track_id
+		Timer::start(__METHOD__, func_get_args());
+		$r = DB::query('SELECT spotify_track_id
 							FROM example
 							WHERE song_id = :id')
 			->bindValue(':id', $song_id, PDO::PARAM_INT)
 			->execute()
 			->fetchAll('Model_Example');
+		Timer::stop();
+		return $r;
 	}
 }

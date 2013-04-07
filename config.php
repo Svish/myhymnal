@@ -9,5 +9,6 @@ return array
 		'base_abs' => 'http://'.$_SERVER['HTTP_HOST'].WEBROOT,
 		'isProduction' => $_SERVER['SITE_ENV'] == 'prod',
 		'clickyId' => 100581712,
+		'sid' => substr(SID, 4),
 	),
 );

@@ -4,9 +4,9 @@ class Less
 {
 	public static function compile($inputFile, $outputFile)
 	{
-		// load the cache
-		$cacheFile = $inputFile.".cache";
+		Timer::start(__METHOD__);
 
+		$cacheFile = $inputFile.".cache";
 		$cache = file_exists($cacheFile)
 			? unserialize(file_get_contents($cacheFile))
 			: $inputFile;
@@ -20,5 +20,7 @@ class Less
 			file_put_contents($cacheFile, serialize($newCache));
 			file_put_contents($outputFile, $newCache['compiled']);
 		}
+
+		Timer::stop();
 	}
 }
