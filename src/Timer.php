@@ -1,29 +1,45 @@
 <?php
 
+/**
+ * Simple Timer class for logging time and memory usage of methods.
+ */
 class Timer
 {
+	/**
+	 * Name of this Timer. Usually a function name.
+	 */
 	public $name;
+
+	/**
+	 * Usually the parameters of the function, 
+	 * but can also be something else extra to identify this Timer.
+	 */
+	public $parameters;
+
+	/**
+	 * Time elapsed between start and stop in seconds.
+	 */
 	public $time;
-	public $data;
+
+	/**
+	 * Delta of memory usage between start and stop.
+	 */
 	public $memory;
 
+	/**
+	 * Peak memory usage after stop.
+	 */
+	public $memory_peak;
+
+	
+	/**
+	 * Timers started while this Timer was running.
+	 */
 	public $timers = array();
 
-	public function __construct($name, array $data)
-	{
-		$this->name = $name;
-		$this->time = microtime(TRUE);
-		$this->data = $data;
-		$this->memory = memory_get_peak_usage();
-	}
-
-	public function end()
-	{
-		$this->time = microtime(TRUE) - $this->time;
-		$this->memory = memory_get_peak_usage() - $this->memory;
-		return $this;
-	}
-
+	/**
+	 * Returns a text representation of the Timer data.
+	 */
 	public function __toString()
 	{
 		ob_start();
@@ -31,18 +47,34 @@ class Timer
 		return ob_get_clean();
 	}
 
-	public function printStats($level = 0)
+	private function __construct($name, array $parameters)
+	{
+		$this->name = $name;
+		$this->time = microtime(TRUE);
+		$this->parameters = $parameters;
+		$this->memory = memory_get_usage();
+	}
+
+	private function end()
+	{
+		$this->time = microtime(TRUE) - $this->time;
+		$this->memory = memory_get_usage() - $this->memory;
+		$this->memory_peak = memory_get_peak_usage();
+		return $this;
+	}
+
+	private function printStats($level = 0)
 	{
 		echo $level == 0
 			? $this->name
 			: str_repeat(' │ ', $level-1).' ├ '.$this->name;
-		echo '('.implode(', ', $this->data).')'."\r\n";
+		echo '('.implode(', ', $this->parameters).')'."\r\n";
 
 		$level += 1;
 
 		echo str_repeat(' │ ', $level)."\r\n";
 		echo str_repeat(' │ ', $level).number_format($this->time, 3)." s\r\n";
-		echo str_repeat(' │ ', $level).Util::bytes_to_human($this->memory)."\r\n";
+		echo str_repeat(' │ ', $level).Util::bytes_to_human($this->memory).', '.Util::bytes_to_human($this->memory_peak)."\r\n";
 	
 		foreach($this->timers as $timer)
 		{
@@ -53,26 +85,47 @@ class Timer
 	}
 
 
-
-
-	private static $all = array();
+	/**
+	 * Array to keep track of what level we are on with Timers inside Timers.
+	 */
 	private static $level = array();
 
-	public static function start($name, array $data = array())
+	/**
+	 * Starts a new Timer.
+	 * 
+	 * Will be added as a sub timer to currently running Timer, if any.
+	 * Otherwise this will be the new "top" timer.
+	 *
+	 * @param $name Name of a method or block of code.
+	 * @param $parameters Parameters of the method if wanted in the log.
+	 * @return The new Timer.
+	 */
+	public static function start($name, array $parameters = array())
 	{
-		$t = new Timer($name, $data);
+		$t = new Timer($name, $parameters);
 
 		if( ! empty(self::$level))
 			array_push(end(self::$level)->timers, $t);
 
 		array_push(self::$level, $t);
+		return $t;
 	}
 
+	/**
+	 * Stops and returns the current Timer.
+	 *
+	 * @return Stopped Timer.
+	 */
 	public static function stop()
 	{
 		return array_pop(self::$level)->end();
 	}
 
+	/**
+	 * Stops still running Timers and returns the last, "top" one.
+	 *
+	 * @return First Timer created.
+	 */
 	public static function result()
 	{
 		while( ! empty(self::$level))
