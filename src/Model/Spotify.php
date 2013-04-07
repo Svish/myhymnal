@@ -7,8 +7,10 @@ class Model_Spotify extends Model
 {
 	public function __construct()
 	{
+		Timer::start(__METHOD__);
 		if(empty($this->url) || empty($this->artists))
 			$this->loadSpotifyInfo();
+		Timer::stop();
 	}
 
 	private function loadSpotifyInfo()
@@ -20,7 +22,14 @@ class Model_Spotify extends Model
 
 		$this->artists = implode(', ', Util::pluck('name', $d->track->artists));
 		$this->url = 'http://open.spotify.com/track/'.$this->spotify_id;
+		$this->save();
 
+		Timer::stop();
+	}
+
+	public function save()
+	{
+		Timer::start(__METHOD__, array($this->spotify_id));
 		DB::query('UPDATE spotify 
 					SET artists=:artists, 
 						url=:url 
@@ -29,7 +38,6 @@ class Model_Spotify extends Model
 			->bindValue(':artists', $this->artists)
 			->bindValue(':url', $this->url)
 			->execute();
-
 		Timer::stop();
 	}
 

@@ -4,10 +4,10 @@ class Controller_Search
 {
 	function get()
 	{
-
 		$term = isset($_GET['term']) ? $_GET['term'] : NULL;
-		$songs = Model_Song::search($term);
 
+		Timer::start(__METHOD__, array($term));
+		$songs = Model_Song::search($term);
 		// Redirect if only one hit
 		if(count($songs) == 1)
 		{
@@ -16,6 +16,7 @@ class Controller_Search
 		}
 
 		echo new View_Search($songs, $term);
+		Timer::stop();
 	}
 
 	function get_xhr()

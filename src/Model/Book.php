@@ -7,12 +7,14 @@ class Model_Book extends Model
 {
 	public function __construct($load_foreign = TRUE)
 	{
-		if( ! $load_foreign)
-			return;
-
-		$songs = Model_Song::find_in_book($this->id);
-		if($songs)
-			$this->songs = array('list' => $songs);
+		Timer::start(__METHOD__, array($load_foreign ? 'with foreign' : 'no foreign'));
+		if($load_foreign)
+		{
+			$songs = Model_Song::find_in_book($this->id);
+			if($songs)
+				$this->songs = array('list' => $songs);
+		}
+		Timer::stop();
 	}
 
 	public static function get($id)

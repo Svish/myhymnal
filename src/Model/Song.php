@@ -4,24 +4,26 @@ class Model_Song extends Model
 {
 	private function __construct($load_foreign = TRUE)
 	{
-		if( ! $load_foreign)
-			return;
-
-		$books = Model_Book::find_with_song($this->id);
-		if($books)
-			$this->books = array('list' => $books);
-
-		$spotify = Model_Spotify::find_for_song($this->id);
-		if($spotify)
-			$this->spotify = array('list' => $spotify);
-
-		$next = self::get_next($this->title);
-		if($next)
-			$this->next = $next;
-
-		$prev = self::get_prev($this->title);
-		if($prev)
-			$this->prev = $prev;
+		Timer::start(__METHOD__, array($load_foreign ? 'with foreign' : 'no foreign'));
+		if($load_foreign)
+		{
+			$books = Model_Book::find_with_song($this->id);
+			if($books)
+				$this->books = array('list' => $books);
+	
+			$spotify = Model_Spotify::find_for_song($this->id);
+			if($spotify)
+				$this->spotify = array('list' => $spotify);
+	
+			$next = self::get_next($this->title);
+			if($next)
+				$this->next = $next;
+	
+			$prev = self::get_prev($this->title);
+			if($prev)
+				$this->prev = $prev;
+		}
+		Timer::stop();
 	}
 
 

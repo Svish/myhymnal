@@ -12,7 +12,7 @@ abstract class View extends DynObj
 	 */
 	public function __toString()
 	{
-		Timer::start(__METHOD__);
+		Timer::start(get_class($this).'->'.__FUNCTION__);
 		try
 		{
 			return $this->render();

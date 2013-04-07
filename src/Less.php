@@ -4,7 +4,7 @@ class Less
 {
 	public static function compile($inputFile, $outputFile)
 	{
-		Timer::start(__METHOD__);
+		Timer::start(__METHOD__, array(str_replace(DOCROOT, NULL, $inputFile), str_replace(DOCROOT, NULL, $outputFile)));
 
 		$cacheFile = $inputFile.".cache";
 		$cache = file_exists($cacheFile)
