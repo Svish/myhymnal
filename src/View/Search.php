@@ -2,7 +2,7 @@
 
 class View_Search extends View
 {
-	public function init(array $songs = array(), $term)
+	public function __construct(array $songs = array(), $term)
 	{
 		$this->title = $term.' - Search';
 		$this->term = $term;

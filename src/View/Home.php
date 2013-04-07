@@ -2,7 +2,7 @@
 
 class View_Home extends View
 {
-	public function init()
+	public function __construct()
 	{
 		$this->songs = View::factory('SongIndex')->render(FALSE);
 		$this->books = View::factory('BookIndex')->render(FALSE);

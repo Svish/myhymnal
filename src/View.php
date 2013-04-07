@@ -2,30 +2,44 @@
 
 abstract class View extends DynObj
 {
+	/**
+	 * Default layout.
+	 */
 	protected $_layout = 'layout';
-	protected $_engine;
 
-	public function __construct()
+	/**
+	 * Returns the rendered View.
+	 */
+	public function __toString()
 	{
-		$this->_engine = new Mustache_Engine
-		(
-			array
-			(
-				'loader' => new Mustache_MyLoader(DOCROOT.'views'),
-				'partials_loader' => new Mustache_MyLoader(DOCROOT.'views'.DIRECTORY_SEPARATOR.'partials'),
-			)
-		);
-		call_user_func_array(array($this, 'init'), func_get_args());
+		Timer::start(__METHOD__);
+		try
+		{
+			return $this->render();
+		}
+		catch(Exception $e)
+		{
+			// TODO Throw 500;
+			var_dump($e->getMessage());
+		}
+		Timer::stop();
 	}
 
-	public function init() {}
-
+	/**
+	 * Factory method to create views.
+	 */
 	public static function factory($view)
 	{
 		$class = 'View_'.$view;
 		return new $class();
 	}
 
+	/**
+	 * Renders this view.
+	 * 
+	 * @param $layout If true, this View will be rendered as the 'content' partial of $_layout.
+	 * @param $template Name of Mustache template to use. If NULL the name of the View will be used.
+	 */
 	public function render($layout = TRUE, $template = NULL)
 	{
 		// Default template if none given
@@ -34,44 +48,44 @@ abstract class View extends DynObj
 
 
 		// Render with layout
-		Timer::start(__METHOD__, func_get_args());
+		Timer::start(get_class($this).'->'.__FUNCTION__, array($layout ? 'with layout' : 'no layout', $template));
 		if($layout)
-		{
-			$this->_engine->setHelpers(include DOCROOT.'config.php');
-			$this->_engine->setPartials(array(
-				'content' => $this->_engine->render($template, $this),
-				));
-			$r = $this->_engine->render($this->_layout, $this);
-		}
-		// Plain render
-		else
-		{
-			$r = $this->_engine->render($template, $this);
-		}
-		Timer::stop();
-		return $r;
-	}
-
-
-
-	public function __toString()
-	{
-		Timer::start(__METHOD__);
-		try
 		{
 			// Compile style sheet
 			Less::compile(
 				DOCROOT.'less'.DIRECTORY_SEPARATOR.'styles.less',
 				DOCROOT.'_'.DIRECTORY_SEPARATOR.'styles.css');
 
-			// Render
-			return $this->render();
+			// Set helpers.
+			self::engine()->setHelpers(include DOCROOT.'config.php');
+			self::engine()->setPartials(array(
+				'content' => self::engine()->render($template, $this),
+				));
+			$r = self::engine()->render($this->_layout, $this);
 		}
-		catch(Exception $e)
+		// Plain render
+		else
 		{
-			//TODO Throw 500;
-			var_dump($e->getMessage());
+			$r = self::engine()->render($template, $this);
 		}
 		Timer::stop();
+		return $r;
+	}
+
+
+	private static $_engine;
+	private static function engine()
+	{
+		if( ! self::$_engine)
+			self::$_engine = new Mustache_Engine
+			(
+				array
+				(
+					'loader' => new Mustache_MyLoader(DOCROOT.'views'),
+					'partials_loader' => new Mustache_MyLoader(DOCROOT.'views'.DIRECTORY_SEPARATOR.'partials'),
+				)
+			);
+
+		return self::$_engine;
 	}
 }
