@@ -37,7 +37,7 @@ class Query
 		return $this->s->fetchObject($class_name, $ctor_arguments);
 	}
 
-	public function fetchAll($fetch_argument = NULL, $ctor_arguments = NULL, $fetch_style = PDO::FETCH_CLASS)
+	public function fetchAll($fetch_argument = 'stdClass', $ctor_arguments = NULL, $fetch_style = PDO::FETCH_CLASS)
 	{
 		return $this->s->fetchAll($fetch_style, $fetch_argument, $ctor_arguments);
 	}

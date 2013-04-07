@@ -117,17 +117,33 @@ class Model_Song extends Model
 	public static function search($term)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$songs = DB::prepare('SELECT id, title 
-							FROM song 
-							WHERE text IS NOT NULL
-							  AND title LIKE ? 
-							ORDER BY 
-								CASE WHEN title LIKE ? THEN 1 ELSE 2 END, 
-								title')
-			->bindValue(1, '%'.$term.'%')
-			->bindValue(2, $term.'%')
-			->execute()
-			->fetchAll(__CLASS__, array(FALSE));
+		if(is_numeric($term))
+		{
+			$songs = DB::prepare('SELECT song.id "id", book.name "title"
+								FROM song
+								INNER JOIN song_book ON song_book.song_id = song.id
+								INNER JOIN book ON song_book.book_id = book.id
+								WHERE text IS NOT NULL
+								  AND song_book.number = :number
+								ORDER BY book.name')
+				->bindValue(':number', $term, PDO::PARAM_INT)
+				->execute()
+				->fetchAll();
+		}
+		else
+		{
+			$songs = DB::prepare('SELECT id, title 
+								FROM song 
+								WHERE text IS NOT NULL
+								  AND title LIKE ? 
+								ORDER BY 
+									CASE WHEN title LIKE ? THEN 1 ELSE 2 END, 
+									title')
+				->bindValue(1, '%'.$term.'%')
+				->bindValue(2, $term.'%')
+				->execute()
+				->fetchAll(__CLASS__, array(FALSE));
+		}
 		Timer::stop();
 		return $songs;
 	}

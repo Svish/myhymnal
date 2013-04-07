@@ -1,6 +1,6 @@
 Probably
 ===
-- Search for numbers
+- Show song title and book title when searching for numbers
 
 Potentially
 ===
