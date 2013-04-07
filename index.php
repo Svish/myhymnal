@@ -28,6 +28,7 @@ Toro::serve(array(
     '/songs' => 'Controller_SongIndex',
     '/song/:number(?:/([A-G][♯♭]?))?' => 'Controller_Song',
     '/search' => 'Controller_Search',
+    '/about' => 'Controller_About',
     '/debug/:alphanum' => 'Controller_Debug',
 ), isset($_GET['toro_uri']) ? $_GET['toro_uri'] : NULL);
 Cache::set(SID, Timer::result());
