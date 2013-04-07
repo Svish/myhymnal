@@ -4,36 +4,39 @@
 		<h1>{{title}}</h1>
 
 		{{{keys}}}
+
+		<div class="meta">
 		
-		<section>
-			<h1>Browse</h1>
-			<ul>
-				{{#next}}<li><a href="song/{{id}}" title="{{title}}">Next</a>{{/next}}
-				{{#prev}}<li><a href="song/{{id}}" title="{{title}}">Previous</a>{{/prev}}
-			</ul>
-		</section>
+			<section>
+				<h1>Browse</h1>
+				<ul>
+					{{#next}}<li><a href="song/{{id}}" title="{{title}}">Next</a>{{/next}}
+					{{#prev}}<li><a href="song/{{id}}" title="{{title}}">Previous</a>{{/prev}}
+				</ul>
+			</section>
 
-		{{#books}}
-		<section>
-			<h1>Exists in</h1>
-			<ul>
-				{{#list}}
-					<li>{{number}} <a href="book/{{id}}">{{name}}</a>
-				{{/list}}
-			</ul>
-		</section>
-		{{/books}}
+			{{#books}}
+			<section>
+				<h1>Exists in</h1>
+				<ul>
+					{{#list}}
+						<li>{{number}} <a href="book/{{id}}">{{name}}</a>
+					{{/list}}
+				</ul>
+			</section>
+			{{/books}}
 
-		{{#examples}}
-		<section>
-			<h1>Spotify</h1>
-			<ul>
-				{{#list}}
-					<li><a class="spotify-link" href="{{url}}" data-spotify-uri="{{track.href}}">{{artists}}</a>
-				{{/list}}
-			</ul>
-		</section>
-		{{/examples}}
+			{{#spotify}}
+			<section>
+				<h1>Spotify</h1>
+				<ul>
+					{{#list}}
+						<li><a class="spotify-link" href="{{url}}" data-spotify-uri="{{spotify_id}}">{{artists}}</a>
+					{{/list}}
+				</ul>
+			</section>
+			{{/spotify}}
+		</div>
 
 	</header>
 
