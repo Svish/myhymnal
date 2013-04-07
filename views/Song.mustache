@@ -2,13 +2,6 @@
 <article class="song">
 	<header>
 		<h1>{{title}}</h1>
-	</header>
-
-	{{{keys}}}
-
-	{{{text_html}}}
-
-	<footer>
 		<section>
 			<h1>Browse</h1>
 			<ul>
@@ -19,7 +12,7 @@
 
 		{{#books}}
 		<section>
-			<h1>Found in</h1>
+			<h1>Exists in</h1>
 			<ul>
 				{{#list}}
 					<li>{{number}} <a href="book/{{id}}">{{name}}</a>
@@ -30,7 +23,7 @@
 
 		{{#examples}}
 		<section>
-			<h1>Examples</h1>
+			<h1>Spotify</h1>
 			<ul>
 				{{#list}}
 					<li><a class="spotify-link" href="{{url}}" data-spotify-uri="{{track.href}}">{{artists}}</a>
@@ -38,7 +31,12 @@
 			</ul>
 		</section>
 		{{/examples}}
-	</footer>
+
+		{{{keys}}}
+
+	</header>
+
+	{{{text_html}}}
 
 </article>
 
