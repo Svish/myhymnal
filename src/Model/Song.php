@@ -51,7 +51,7 @@ class Model_Song extends Model
 		return DB::query('SELECT id, title 
 							FROM song
 							WHERE title<:title
-							ORDER BY title
+							ORDER BY title DESC
 							LIMIT 1')
 			->bindParam(':title', $title)
 			->execute()
