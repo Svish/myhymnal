@@ -81,19 +81,18 @@
 			text-align: center;
 			text-decoration: none;
 			outline: none;
-			.transition(background-color, 1s, ease-out);
 
 			&:link,
 			&:visited
 			{ 
-				color: #ccc;
 				background: lighten(@background-color, 10%);
+				color: lighten(@background-color, 70%);
 			}
 			&:hover,
 			&:active
 			{
 				background: lighten(@background-color, 30%);
-				color: #fff;
+				color: lighten(@background-color, 90%);
 			}
 			&.original
 			{
