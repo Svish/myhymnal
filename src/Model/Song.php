@@ -4,7 +4,7 @@ class Model_Song extends Model
 {
 	private function __construct($load_foreign = TRUE)
 	{
-		Timer::start(__METHOD__, array($load_foreign ? 'with foreign' : 'no foreign'));
+		Timer::start(__METHOD__, array($this->id, $load_foreign ? 'with foreign' : 'no foreign'));
 		if($load_foreign)
 		{
 			$books = Model_Book::find_with_song($this->id);
