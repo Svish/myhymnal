@@ -20,7 +20,9 @@ class Model_Book extends Model
 	public static function get($id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$book = DB::prepare('SELECT * FROM book WHERE id=:id')
+		$book = DB::prepare('SELECT book_id "id", book_title "title"
+								FROM book 
+								WHERE book_id=:id')
 			->bindParam(':id', $id, PDO::PARAM_INT)
 			->execute()
 			->fetch(__CLASS__);
@@ -32,11 +34,11 @@ class Model_Book extends Model
 	public static function find_all()
 	{
 		Timer::start(__METHOD__);
-		$books = DB::prepare('SELECT id, name, COUNT(book_id) AS "count"
+		$books = DB::prepare('SELECT book.book_id "id", book_title "title", COUNT(book.book_id) AS "count"
 							FROM book
-							LEFT OUTER JOIN song_book ON book.id = song_book.book_id
-							GROUP BY id
-							ORDER BY name')
+							LEFT OUTER JOIN song_book ON book.book_id = song_book.book_id
+							GROUP BY book.book_id
+							ORDER BY book.book_title')
 			->execute()
 			->fetchAll(__CLASS__, array(FALSE));
 		Timer::stop();
@@ -46,11 +48,11 @@ class Model_Book extends Model
 	public static function find_with_song($song_id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$books = DB::prepare('SELECT book.id, book.name, song_book.number
+		$books = DB::prepare('SELECT book.book_id "id", book.book_title "title", number
 							FROM song_book
-							INNER JOIN book ON song_book.book_id = book.id
-							WHERE song_book.song_id = :id
-							ORDER BY book.name')
+							INNER JOIN book ON song_book.book_id = book.book_id
+							WHERE song_id = :id
+							ORDER BY book_title')
 			->bindValue(':id', $song_id, PDO::PARAM_INT)
 			->execute()
 			->fetchAll(__CLASS__, array(FALSE));

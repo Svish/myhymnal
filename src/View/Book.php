@@ -6,7 +6,7 @@ class View_Book extends View
 	{
 		Timer::start(__METHOD__);
 		$this->book = Model_Book::get($id);
-		$this->title = $this->book->name;
+		$this->title = $this->book->title;
 		Timer::stop();
 	}
 }

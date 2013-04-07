@@ -6,45 +6,49 @@
  */
 class Query
 {
-	private $s;
+	private $pdo;
 
 	public function __construct(PDOStatement $statement)
 	{
-		$this->s = $statement;
+		$this->pdo = $statement;
 	}
-
 
 	public function bindParam($parameter, &$variable, $data_type = PDO::PARAM_STR)
 	{
-		$this->s->bindParam($parameter, $variable, $data_type);
+		$this->pdo->bindParam($parameter, $variable, $data_type);
 		return $this;
 	}
 
 	public function bindValue($parameter, $value, $data_type = PDO::PARAM_STR)
 	{
-		$this->s->bindParam($parameter, $value, $data_type);
+		$this->pdo->bindParam($parameter, $value, $data_type);
 		return $this;
 	}
 
 	public function execute($input_parameters = NULL)
 	{
-		$this->s->execute($input_parameters);
+		$this->pdo->execute($input_parameters);
 		return $this;
 	}
 
 	public function fetch($class_name, $ctor_arguments = NULL)
 	{
-		return $this->s->fetchObject($class_name, $ctor_arguments);
+		return $this->pdo->fetchObject($class_name, $ctor_arguments);
 	}
 
 	public function fetchAll($fetch_argument = 'stdClass', $ctor_arguments = NULL, $fetch_style = PDO::FETCH_CLASS)
 	{
-		return $this->s->fetchAll($fetch_style, $fetch_argument, $ctor_arguments);
+		return $this->pdo->fetchAll($fetch_style, $fetch_argument, $ctor_arguments);
+	}
+
+	public function fetchColumn($column = 0)
+	{
+		return $this->pdo->fetchColumn($column);
 	}
 
 	public function debug()
 	{
-		$this->s->debugDumpParams();
+		$this->pdo->debugDumpParams();
 		return $this;
 	}
 }

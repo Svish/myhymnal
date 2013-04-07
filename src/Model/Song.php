@@ -32,9 +32,9 @@ class Model_Song extends Model
 	public static function get($id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$song = DB::prepare('SELECT * 
+		$song = DB::prepare('SELECT song_id "id", song_title "title", song_text "text", `key`
 							FROM song 
-							WHERE id=:id')
+							WHERE song_id=:id')
 			->bindParam(':id', $id, PDO::PARAM_INT)
 			->execute()
 			->fetch(__CLASS__);
@@ -45,10 +45,10 @@ class Model_Song extends Model
 	public static function get_next($title)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$song = DB::prepare('SELECT id, title 
+		$song = DB::prepare('SELECT song_id "id", song_title "title"
 							FROM song
-							WHERE title>:title
-							ORDER BY title
+							WHERE song_title > :title
+							ORDER BY song_title
 							LIMIT 1')
 			->bindParam(':title', $title)
 			->execute()
@@ -59,10 +59,10 @@ class Model_Song extends Model
 	public static function get_prev($title)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$song = DB::prepare('SELECT id, title 
+		$song = DB::prepare('SELECT song_id "id", song_title "title"
 							FROM song
-							WHERE title<:title
-							ORDER BY title DESC
+							WHERE song_title < :title
+							ORDER BY song_title DESC
 							LIMIT 1')
 			->bindParam(':title', $title)
 			->execute()
@@ -72,12 +72,12 @@ class Model_Song extends Model
 	}
 	public static function get_rand(array $except)
 	{
-		Timer::start(__METHOD__, func_get_args());
+		Timer::start(__METHOD__, $except);
 		foreach($except as &$e)
 			$e = (int) $e;
-		$song = DB::prepare('SELECT id, title 
+		$song = DB::prepare('SELECT song_id "id", song_title "title"
 							FROM song
-							WHERE id NOT IN ('.implode(',',$except).')
+							WHERE song_id NOT IN ('.implode(',',$except).')
 							ORDER BY RAND()
 							LIMIT 1')
 			->execute()
@@ -89,10 +89,9 @@ class Model_Song extends Model
 	public static function find_all()
 	{
 		Timer::start(__METHOD__);
-		$songs = DB::prepare('SELECT id, title 
+		$songs = DB::prepare('SELECT song_id "id", song_title "title"
 							FROM song 
-							WHERE text IS NOT NULL
-							ORDER BY title')
+							ORDER BY song_title')
 			->execute()
 			->fetchAll(__CLASS__, array(FALSE));
 		Timer::stop();
@@ -102,9 +101,9 @@ class Model_Song extends Model
 	public static function find_in_book($book_id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$songs = DB::prepare('SELECT song.id, song.title, song_book.number
+		$songs = DB::prepare('SELECT song.song_id "id", song.song_title "title", number "number"
 							FROM song_book
-							INNER JOIN song ON song_book.song_id = song.id
+							INNER JOIN song ON song_book.song_id = song.song_id
 							WHERE song_book.book_id = :id
 							ORDER BY song_book.number')
 			->bindValue(':id', $book_id, PDO::PARAM_INT)
@@ -119,26 +118,24 @@ class Model_Song extends Model
 		Timer::start(__METHOD__, func_get_args());
 		if(is_numeric($term))
 		{
-			$songs = DB::prepare('SELECT song.id "id", book.name "title"
+			$songs = DB::prepare('SELECT song.song_id "id", book.book_title "title"
 								FROM song
-								INNER JOIN song_book ON song_book.song_id = song.id
-								INNER JOIN book ON song_book.book_id = book.id
-								WHERE text IS NOT NULL
-								  AND song_book.number = :number
-								ORDER BY book.name')
+								INNER JOIN song_book ON song_book.song_id = song.song_id
+								INNER JOIN book ON song_book.book_id = book.book_id
+								WHERE number = :number
+								ORDER BY book.book_title')
 				->bindValue(':number', $term, PDO::PARAM_INT)
 				->execute()
 				->fetchAll();
 		}
 		else
 		{
-			$songs = DB::prepare('SELECT id, title 
+			$songs = DB::prepare('SELECT song_id "id", song_title "title"
 								FROM song 
-								WHERE text IS NOT NULL
-								  AND title LIKE ? 
+								WHERE song_title LIKE ? 
 								ORDER BY 
-									CASE WHEN title LIKE ? THEN 1 ELSE 2 END, 
-									title')
+									CASE WHEN song_title LIKE ? THEN 1 ELSE 2 END, 
+									song_title')
 				->bindValue(1, '%'.$term.'%')
 				->bindValue(2, $term.'%')
 				->execute()

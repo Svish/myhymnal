@@ -23,7 +23,7 @@
 				<h1>Exists in</h1>
 				<ul>
 					{{#list}}
-						<li>{{number}} <a href="book/{{id}}">{{name}}</a>
+						<li>{{number}} <a href="book/{{id}}">{{title}}</a>
 					{{/list}}
 				</ul>
 			</section>
@@ -34,7 +34,7 @@
 				<h1>Spotify</h1>
 				<ul>
 					{{#list}}
-						<li><a class="spotify-link" href="{{url}}" data-spotify-uri="{{spotify_id}}">{{artists}}</a>
+						<li><a class="spotify-link" href="{{url}}" data-spotify-uri="{{id}}">{{artists}}</a>
 					{{/list}}
 				</ul>
 			</section>
