@@ -4,6 +4,8 @@ class HTTP
 {
 	public static function get($url)
 	{
+		Timer::start(__METHOD__, $url);
+
 		$request = curl_init();
 		curl_setopt_array($request, array
 		(
@@ -17,6 +19,8 @@ class HTTP
 		));
 		$response = curl_exec($request);
 		curl_close($request);
+
+		Timer::stop();
 
 		return $response;
 	}
