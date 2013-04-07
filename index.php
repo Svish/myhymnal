@@ -19,7 +19,8 @@ ToroHook::add('404', function() {
 });
 
 # Go!
-Timer::start('Request', isset($_GET['toro_uri']) ? $_GET['toro_uri'] : NULL);
+Cache::delete('sid_*', 1*60*60);
+Timer::start('Request', array(isset($_GET['toro_uri']) ? $_GET['toro_uri'] : NULL));
 Toro::serve(array(
     '/' => 'Controller_Home',
     '/books' => 'Controller_BookIndex',
@@ -29,16 +30,4 @@ Toro::serve(array(
     '/search' => 'Controller_Search',
     '/debug/:alphanum' => 'Controller_Debug',
 ), isset($_GET['toro_uri']) ? $_GET['toro_uri'] : NULL);
-
-# Store debug stats
-$stats = array(
-	'timers' => Timer::result(),
-	'memory' => array(
-		'usage' => Util::bytes_to_human(memory_get_usage()),
-		'usage_real' => Util::bytes_to_human(memory_get_usage(TRUE)),
-		'peak_usage' => Util::bytes_to_human(memory_get_peak_usage()),
-		'peak_usage_real' => Util::bytes_to_human(memory_get_peak_usage(TRUE)),
-		),
-	);
-Cache::delete('sid_*', 1*60*60);
-Cache::set(SID, $stats);
+Cache::set(SID, Timer::result());

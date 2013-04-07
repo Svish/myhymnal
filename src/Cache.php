@@ -30,6 +30,7 @@ class Cache
 	{
 		$file = self::dir().$key;
 		file_put_contents($file, serialize($data));
+		return $data;
 	}
 
 	public function delete($key = NULL, $age = NULL)

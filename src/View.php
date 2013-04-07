@@ -34,7 +34,7 @@ abstract class View extends DynObj
 
 
 		// Render with layout
-		Timer::start(__METHOD__, $template);
+		Timer::start(__METHOD__, func_get_args());
 		if($layout)
 		{
 			$this->_engine->setHelpers(include DOCROOT.'config.php');
@@ -56,6 +56,7 @@ abstract class View extends DynObj
 
 	public function __toString()
 	{
+		Timer::start(__METHOD__);
 		try
 		{
 			// Compile style sheet
@@ -71,5 +72,6 @@ abstract class View extends DynObj
 			//TODO Throw 500;
 			var_dump($e->getMessage());
 		}
+		Timer::stop();
 	}
 }

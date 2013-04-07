@@ -4,7 +4,7 @@ class HTTP
 {
 	public static function get($url)
 	{
-		Timer::start(__METHOD__, $url);
+		Timer::start(__METHOD__, func_get_args());
 
 		$request = curl_init();
 		curl_setopt_array($request, array
