@@ -74,7 +74,7 @@ class Timer
 
 		echo str_repeat(' │ ', $level)."\r\n";
 		echo str_repeat(' │ ', $level).number_format($this->time, 3)." s\r\n";
-		echo str_repeat(' │ ', $level).Util::bytes_to_human($this->memory).', '.Util::bytes_to_human($this->memory_peak)."\r\n";
+		echo str_repeat(' │ ', $level).self::bytes($this->memory).', '.self::bytes($this->memory_peak)."\r\n";
 	
 		foreach($this->timers as $timer)
 		{
@@ -131,5 +131,17 @@ class Timer
 		while( ! empty(self::$level))
 			$last = self::stop();
 		return $last;
+	}
+
+
+	private static function bytes($bytes)
+	{
+		$symbols = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB');
+
+		if($bytes == 0)
+			return sprintf('%.2f '.$symbols[0], 0);
+
+		$exp = floor(log($bytes) / log(1024));
+		return sprintf('%.2f '.$symbols[$exp], $bytes/pow(1024, floor($exp)));
 	}
 }
