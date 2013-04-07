@@ -2,27 +2,19 @@
 
 class Cache
 {
-	private static $instance;
-	public static function instance()
+	private static function dir()
 	{
-		if( ! self::$instance)
-			self::$instance = new Cache();
+		$dir = DOCROOT.'tmp'.DIRECTORY_SEPARATOR;
 
-		return self::$instance;
-	}
+		if( ! is_dir($dir))
+			mkdir($dir);
 
-	private $dir;
-	private function __construct()
-	{
-		$this->dir = DOCROOT.'tmp'.DIRECTORY_SEPARATOR;
-
-		if( ! is_dir($this->dir))
-			mkdir($this->dir);
+		return $dir;
 	}
 
 	public function get($key, $max_age = NULL)
 	{
-		$file = $this->dir.$key;
+		$file = self::dir().$key;
 
 		if( ! file_exists($file))
 			return FALSE;
@@ -36,13 +28,13 @@ class Cache
 
 	public function set($key, $data)
 	{
-		$file = $this->dir.$key;
+		$file = self::dir().$key;
 		file_put_contents($file, serialize($data));
 	}
 
 	public function delete($key = NULL, $age = NULL)
 	{
-		foreach(glob($this->dir.$key) as $file)
+		foreach(glob(self::dir().$key) as $file)
 			if($age === NULL || time() - filemtime($file) > $age)
 				unlink($file);
 	}

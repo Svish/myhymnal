@@ -40,5 +40,5 @@ $stats = array(
 		'peak_usage_real' => Util::bytes_to_human(memory_get_peak_usage(TRUE)),
 		),
 	);
-Cache::instance()->delete('sid_*', 1*60*60);
-Cache::instance()->set(SID, $stats);
+Cache::delete('sid_*', 1*60*60);
+Cache::set(SID, $stats);
