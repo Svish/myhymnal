@@ -21,7 +21,7 @@ class Model_Example extends Model
 				return 'http://open.spotify.com/track/'.$this->spotify_track_id;
 
 			case 'artists':
-				return implode(',', Arr::get('name', $this->track->artists));
+				return implode(',', Util::pluck('name', $this->track->artists));
 
 			default:
 				return parent::__get($var);

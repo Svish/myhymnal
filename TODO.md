@@ -1,6 +1,5 @@
 Probably
 ===
-- Pull utils into Util
 - Environment specific config files (DB.prod.php)
 - Cache Spotify lookups
 - Search for numbers
