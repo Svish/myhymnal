@@ -8,7 +8,7 @@ class Controller_Search
 
 		Timer::start(__METHOD__, array($term));
 		$songs = Model_Song::search($term);
-		// Redirect if only one hit
+		
 		if(count($songs) == 1)
 		{
 			header('Location: '.WEBROOT.'song/'.$songs[0]->id);
