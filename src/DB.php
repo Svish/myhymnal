@@ -27,7 +27,7 @@ class DB
 		return self::$instance;
 	}
 
-	public static function query($query)
+	public static function prepare($query)
 	{
 		return new Query(self::instance()->prepare($query));
 	}

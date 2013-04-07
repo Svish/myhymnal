@@ -7,13 +7,16 @@
 
 		<div class="meta">
 		
+			{{#browse}}
 			<section>
 				<h1>Browse</h1>
 				<ul>
 					{{#next}}<li><a href="song/{{id}}" title="{{title}}">Next</a>{{/next}}
 					{{#prev}}<li><a href="song/{{id}}" title="{{title}}">Previous</a>{{/prev}}
+					{{#rand}}<li><a href="song/{{id}}" title="{{title}}">Random</a>{{/rand}}
 				</ul>
 			</section>
+			{{/browse}}
 
 			{{#books}}
 			<section>

@@ -26,9 +26,9 @@ class Query
 		return $this;
 	}
 
-	public function execute()
+	public function execute($input_parameters = NULL)
 	{
-		$this->s->execute();
+		$this->s->execute($input_parameters);
 		return $this;
 	}
 

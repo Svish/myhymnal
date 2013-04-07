@@ -30,7 +30,7 @@ class Model_Spotify extends Model
 	public function save()
 	{
 		Timer::start(__METHOD__, array($this->spotify_id));
-		DB::query('UPDATE spotify 
+		DB::prepare('UPDATE spotify 
 					SET artists=:artists, 
 						url=:url 
 					WHERE spotify_id=:id')
@@ -44,7 +44,7 @@ class Model_Spotify extends Model
 	public static function find_for_song($song_id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$r = DB::query('SELECT spotify_id, url, artists
+		$r = DB::prepare('SELECT spotify_id, url, artists
 						FROM spotify
 						WHERE song_id = :id
 						ORDER BY artists')

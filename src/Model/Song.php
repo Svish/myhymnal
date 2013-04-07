@@ -14,23 +14,25 @@ class Model_Song extends Model
 			$spotify = Model_Spotify::find_for_song($this->id);
 			if($spotify)
 				$this->spotify = array('list' => $spotify);
-	
-			$next = self::get_next($this->title);
-			if($next)
-				$this->next = $next;
-	
-			$prev = self::get_prev($this->title);
-			if($prev)
-				$this->prev = $prev;
 		}
 		Timer::stop();
+	}
+
+	public function browse()
+	{
+		return array
+		(
+			'next' => self::get_next($this->title),
+			'prev' => self::get_prev($this->title),
+			'rand' => self::get_rand(array($this->id)),
+		);
 	}
 
 
 	public static function get($id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$song = DB::query('SELECT * 
+		$song = DB::prepare('SELECT * 
 							FROM song 
 							WHERE id=:id')
 			->bindParam(':id', $id, PDO::PARAM_INT)
@@ -43,7 +45,7 @@ class Model_Song extends Model
 	public static function get_next($title)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$song = DB::query('SELECT id, title 
+		$song = DB::prepare('SELECT id, title 
 							FROM song
 							WHERE title>:title
 							ORDER BY title
@@ -57,7 +59,7 @@ class Model_Song extends Model
 	public static function get_prev($title)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$song = DB::query('SELECT id, title 
+		$song = DB::prepare('SELECT id, title 
 							FROM song
 							WHERE title<:title
 							ORDER BY title DESC
@@ -68,11 +70,26 @@ class Model_Song extends Model
 		Timer::stop();
 		return $song;
 	}
+	public static function get_rand(array $except)
+	{
+		Timer::start(__METHOD__, func_get_args());
+		foreach($except as &$e)
+			$e = (int) $e;
+		$song = DB::prepare('SELECT id, title 
+							FROM song
+							WHERE id NOT IN ('.implode(',',$except).')
+							ORDER BY RAND()
+							LIMIT 1')
+			->execute()
+			->fetch(__CLASS__, array(FALSE));
+		Timer::stop();
+		return $song;
+	}
 
 	public static function find_all()
 	{
 		Timer::start(__METHOD__);
-		$songs = DB::query('SELECT id, title 
+		$songs = DB::prepare('SELECT id, title 
 							FROM song 
 							WHERE text IS NOT NULL
 							ORDER BY title')
@@ -85,7 +102,7 @@ class Model_Song extends Model
 	public static function find_in_book($book_id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$songs = DB::query('SELECT song.id, song.title, song_book.number
+		$songs = DB::prepare('SELECT song.id, song.title, song_book.number
 							FROM song_book
 							INNER JOIN song ON song_book.song_id = song.id
 							WHERE song_book.book_id = :id
@@ -100,7 +117,7 @@ class Model_Song extends Model
 	public static function search($term)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$songs = DB::query('SELECT id, title 
+		$songs = DB::prepare('SELECT id, title 
 							FROM song 
 							WHERE text IS NOT NULL
 							  AND title LIKE ? 
