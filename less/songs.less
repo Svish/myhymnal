@@ -87,17 +87,21 @@
 			&:visited
 			{ 
 				color: #ccc;
-				background: #444;
+				background: lighten(@background-color, 10%);
 			}
 			&:hover,
 			&:active
 			{
-				background: #777;
+				background: lighten(@background-color, 30%);
 				color: #fff;
+			}
+			&.original
+			{
+				background: lighten(@background-color, 30%);
 			}
 			&.key
 			{
-				background: #b36b00;
+				background: darken(@link-color, 20%);
 			}
 		}
 	}
