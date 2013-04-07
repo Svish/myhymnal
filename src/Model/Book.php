@@ -34,7 +34,11 @@ class Model_Book extends Model
 	public static function find_all()
 	{
 		Timer::start(__METHOD__);
-		$books = DB::prepare('SELECT book.book_id "id", book_title "title", COUNT(book.book_id) AS "count"
+		$books = DB::prepare('SELECT
+								book.book_id "id", 
+								book_title "title", 
+								book_total "total",
+								COUNT(book.book_id) AS "count"
 							FROM book
 							LEFT OUTER JOIN song_book ON book.book_id = song_book.book_id
 							GROUP BY book.book_id
