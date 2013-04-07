@@ -11,9 +11,9 @@ class Model_Song extends Model
 		if($books)
 			$this->books = array('list' => $books);
 
-		$examples = Model_Example::find_for_song($this->id);
-		if($examples)
-			$this->examples = array('list' => $examples);
+		$spotify = Model_Spotify::find_for_song($this->id);
+		if($spotify)
+			$this->spotify = array('list' => $spotify);
 
 		$next = self::get_next($this->title);
 		if($next)

@@ -41,4 +41,10 @@ class Query
 	{
 		return $this->s->fetchAll($fetch_style, $fetch_argument, $ctor_arguments);
 	}
+
+	public function debug()
+	{
+		$this->s->debugDumpParams();
+		return $this;
+	}
 }
