@@ -44,5 +44,8 @@ function debugLoaded(data)
 		.html(data)
 		.appendTo('#content')
 		.hide()
-		.slideDown();
+		.fadeIn();
+		
+	if(window.scroll && document.height)
+		window.scroll(0, document.height);
 }
