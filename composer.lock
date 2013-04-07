@@ -1,6 +1,51 @@
 {
-    "hash": "3c16293b768ae888491a88d7e1232cb7",
+    "hash": "a5143ca44b3d633c963ed5c2532194d6",
     "packages": [
+        {
+            "name": "geekality/timer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Svish/TimerPHP.git",
+                "reference": "v1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Svish/TimerPHP/zipball/v1.0",
+                "reference": "v1.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Timer.php"
+                ]
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "CC-BY"
+            ],
+            "authors": [
+                {
+                    "name": "Torleif Berger",
+                    "email": "torleif@outlook.com",
+                    "homepage": "http://www.geekality.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple class for logging time and memory usage of stuff",
+            "homepage": "https://github.com/Svish/TimerPHP",
+            "keywords": [
+                "benchmark",
+                "benchmarking",
+                "statistics",
+                "timer"
+            ],
+            "time": "2013-04-07 16:45:17"
+        },
         {
             "name": "geekality/transposer",
             "version": "dev-master",
@@ -207,7 +252,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "torophp/torophp": 20,
-        "geekality/transposer": 20
+        "geekality/transposer": 20,
+        "geekality/timer": 20
     },
     "platform": [
 
