@@ -19,7 +19,7 @@ ToroHook::add('404', function() {
 });
 
 # Go!
-Cache::delete('sid_*', 1*60*60);
+Cache::delete('sid_*', 30*60);
 Timer::start('Request', array(isset($_GET['toro_uri']) ? $_GET['toro_uri'] : NULL));
 Toro::serve(array(
     '/' => 'Controller_Home',
