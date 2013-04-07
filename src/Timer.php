@@ -36,9 +36,7 @@ class Timer
 		echo $level == 0
 			? $this->name
 			: str_repeat(' │ ', $level-1).' └ '.$this->name;
-		if($this->data)
-			echo '('.implode(', ', $this->data).')';
-		echo "\r\n";
+		echo '('.implode(', ', $this->data).')'."\r\n";
 
 		$level += 1;
 
