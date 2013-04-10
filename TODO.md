@@ -1,13 +1,13 @@
 Probably
 ===
-- Show song title and book title when searching for numbers
-- Use mustache partials for song and book lists?
 - Pretty URLs
+- Use mustache partials for song and book lists?
 - Google site map
-- Move transpose key to GET parameter and/or title. Possibly also ignore in google/clicky.
+- Rewrite Toro with Exception throwing and request handler callbacks.
 
 Potentially
 ===
+- Show song title and book title when searching for numbers
 - Presentation mode?
 - Personal collections?
 - Pull most viewed from Clicky
