@@ -3,9 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<base href="{{site.base_abs}}" />
+		<base href="{{site.base_abs}}">
 		
 		<title>{{#title}}{{.}} - {{/title}}{{site.title}}</title>
+		{{#canonical}}<link rel="canonical" href="{{canonical}}">{{/canonical}}
 		
 		<link rel="shortcut icon" href="favicon.ico">
 

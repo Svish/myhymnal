@@ -8,6 +8,7 @@ class View_Song extends View
 		
 		$this->song = Model_Song::get($id);
 		$this->title = $this->song->title;
+		$this->canonical = 'song/'.$this->song->id;
 		$this->text_html = Geekality\Transposer::parse($this->song->text, $this->song->key);
 
 		$key = array_key_exists('key', $_GET)
