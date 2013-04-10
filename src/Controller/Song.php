@@ -2,10 +2,12 @@
 
 class Controller_Song
 {
-	function get($id, $key = NULL)
+	function get($id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		echo new View_Song($id, $key);
+
+		echo new View_Song($id);
+
 		Timer::stop();
 	}
 }
