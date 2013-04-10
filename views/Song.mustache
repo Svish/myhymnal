@@ -11,9 +11,9 @@
 			<section>
 				<h1>Browse</h1>
 				<ul>
-					{{#next}}<li><a href="song/{{id}}" title="{{title}}">Next</a>{{/next}}
-					{{#prev}}<li><a href="song/{{id}}" title="{{title}}">Previous</a>{{/prev}}
-					{{#rand}}<li><a href="song/{{id}}" title="{{title}}">Random</a>{{/rand}}
+					{{#next}}<li><a href="{{permalink}}" title="{{title}}">Next</a>{{/next}}
+					{{#prev}}<li><a href="{{permalink}}" title="{{title}}">Previous</a>{{/prev}}
+					{{#rand}}<li><a href="{{permalink}}" title="{{title}}">Random</a>{{/rand}}
 				</ul>
 			</section>
 			{{/browse}}
@@ -23,7 +23,7 @@
 				<h1>Exists in</h1>
 				<ul>
 					{{#list}}
-						<li>{{number}} <a href="book/{{id}}">{{title}}</a>
+						<li>{{number}} {{>book-a}}
 					{{/list}}
 				</ul>
 			</section>

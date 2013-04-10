@@ -1,6 +1,13 @@
 {{#term}}<h1>Search: <i>{{.}}</i></h1>{{/term}}
 
-{{>songs}}
+<ul>
+{{#result}}
+	{{>song-li}}
+{{/result}}
+{{^result}}
+	<li>No matches...
+{{/result}}
+</ul>
 
 <script>
 

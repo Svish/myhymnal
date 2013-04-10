@@ -8,7 +8,7 @@ class View_Song extends View
 		
 		$this->song = Model_Song::get($id);
 		$this->title = $this->song->title;
-		$this->canonical = 'song/'.$this->song->id;
+		$this->canonical = $this->song->permalink;
 		$this->text_html = Geekality\Transposer::parse($this->song->text, $this->song->key);
 
 		$key = array_key_exists('key', $_GET)
@@ -20,10 +20,12 @@ class View_Song extends View
 			$this->text_html->transpose($key);
 			$this->title .= ' ('.$key.')';
 		}
-		else
+		elseif($this->song->key !== NULL)
+		{
 			$this->title .= ' ('.$this->song->key.')';
+		}
 
-		$this->keys = $this->text_html->get_key_selector('song/'.$this->song->id.'?key=');
+		$this->keys = $this->text_html->get_key_selector($this->song->permalink.'?key=');
 		
 		Timer::stop();
 	}

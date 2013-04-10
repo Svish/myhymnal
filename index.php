@@ -26,7 +26,7 @@ Toro::serve(array(
     '/books' => 'Controller_BookIndex',
     '/book/:number' => 'Controller_Book',
     '/songs' => 'Controller_SongIndex',
-    '/song/:number' => 'Controller_Song',
+    '/:number(?:/:alphanum)?' => 'Controller_Song',
     '/search' => 'Controller_Search',
     '/about' => 'Controller_About',
     '/debug/:alphanum' => 'Controller_Debug',
