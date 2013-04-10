@@ -1,3 +1,19 @@
 <h1>{{title}}</h1>
 
 {{>songs}}
+
+
+
+<h2>Unfinished</h2>
+
+<ul>
+	
+	{{#unfinished}}
+	<li><a href="song/{{id}}">{{title}}</a>
+	{{/unfinished}}
+
+	{{^unfinished}}
+	<li>No matches...
+	{{/unfinished}}
+
+</ul>

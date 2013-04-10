@@ -90,7 +90,21 @@ class Model_Song extends Model
 	{
 		Timer::start(__METHOD__);
 		$songs = DB::prepare('SELECT song_id "id", song_title "title"
-							FROM song 
+							FROM song
+							WHERE `key` IS NOT NULL
+							ORDER BY song_title')
+			->execute()
+			->fetchAll(__CLASS__, array(FALSE));
+		Timer::stop();
+		return $songs;
+	}
+
+	public static function find_unfinished()
+	{
+		Timer::start(__METHOD__);
+		$songs = DB::prepare('SELECT song_id "id", song_title "title"
+							FROM song
+							WHERE `key` IS NULL
 							ORDER BY song_title')
 			->execute()
 			->fetchAll(__CLASS__, array(FALSE));
