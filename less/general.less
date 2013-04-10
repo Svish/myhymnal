@@ -230,12 +230,25 @@ article:first-child
 	}
 }
 
-.book .n
+.book 
 {
-	display: inline-block;
-	text-align: right;
-	width: 30px;
-	margin-right: 1em;
+	ul
+	{
+		padding-left: 0;
+
+		li
+		{
+			list-style: none;
+
+			.n
+			{
+				display: inline-block;
+				text-align: right;
+				width: 3em;
+				margin-right: .5em;
+			}	
+		}
+	}
 }
 
 .home-block
