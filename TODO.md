@@ -1,15 +1,22 @@
 Probably
 ===
+- Write "new" Toro
+	- Throw [exceptions](http://www.php.net/manual/en/class.exception.php)
+	- Move uri retrieval outside?
+	- Send parameters to constructor
+	- Get output from method? (post/get/get_json)
 - Pretty URLs
-- Use mustache partials for song and book lists?
+	- Store permalink for songs in db
+	- Auto-generate when missing?
 - Google site map
-- Rewrite Toro with Exception throwing and request handler callbacks.
+	- http://www.sitemaps.org/protocol.html
+- RSS feed with new and updated songs
 
 Potentially
 ===
+- Pull most viewed from Clicky
+	- http://api.clicky.com/api/stats/4?site_id=100581712&sitekey=522c58c7cf1123e8&type=pages&date=previous-30-days&output=json
 - Show song title and book title when searching for numbers
 - Presentation mode?
 - Personal collections?
-- Pull most viewed from Clicky
-	- http://api.clicky.com/api/stats/4?site_id=100581712&sitekey=522c58c7cf1123e8&type=pages&date=previous-30-days&output=json
 - Spotify index with playlist of all
