@@ -5,8 +5,8 @@
 		"mustache/mustache": "2.1.*",
 		"torophp/torophp": "dev-master",
 		"leafo/lessphp": "0.3.*",
-		"geekality/transposer": "dev-master",
-		"geekality/timer": "dev-master"
+		"geekality/transposer": "1.*",
+		"geekality/timer": "1.*"
 	},
 	
 	"autoload":

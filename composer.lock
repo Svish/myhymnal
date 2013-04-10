@@ -1,18 +1,18 @@
 {
-    "hash": "a5143ca44b3d633c963ed5c2532194d6",
+    "hash": "508e32e02017ba519a2104dbc8a8f913",
     "packages": [
         {
             "name": "geekality/timer",
-            "version": "dev-master",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/TimerPHP.git",
-                "reference": "3e3a123b74b5903bd864b018764527c57130d158"
+                "reference": "v1.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/TimerPHP/zipball/3e3a123b74b5903bd864b018764527c57130d158",
-                "reference": "3e3a123b74b5903bd864b018764527c57130d158",
+                "url": "https://api.github.com/repos/Svish/TimerPHP/zipball/v1.1.1",
+                "reference": "v1.1.1",
                 "shasum": ""
             },
             "require": {
@@ -44,20 +44,20 @@
                 "statistics",
                 "timer"
             ],
-            "time": "2013-04-07 18:28:37"
+            "time": "2013-04-07 17:49:03"
         },
         {
             "name": "geekality/transposer",
-            "version": "dev-master",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/Transposer.git",
-                "reference": "fb4652518d622c42c4d385503718b96b749026b2"
+                "reference": "v1.3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/Transposer/zipball/fb4652518d622c42c4d385503718b96b749026b2",
-                "reference": "fb4652518d622c42c4d385503718b96b749026b2",
+                "url": "https://api.github.com/repos/Svish/Transposer/zipball/v1.3.0",
+                "reference": "v1.3.0",
                 "shasum": ""
             },
             "require": {
@@ -92,7 +92,7 @@
                 "music",
                 "transpose"
             ],
-            "time": "2013-04-10 19:51:53"
+            "time": "2013-04-10 20:12:03"
         },
         {
             "name": "leafo/lessphp",
@@ -254,9 +254,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "torophp/torophp": 20,
-        "geekality/transposer": 20,
-        "geekality/timer": 20
+        "torophp/torophp": 20
     },
     "platform": [
 
