@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/TimerPHP.git",
-                "reference": "v1.1.1"
+                "reference": "3e3a123b74b5903bd864b018764527c57130d158"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/TimerPHP/zipball/v1.1.1",
-                "reference": "v1.1.1",
+                "url": "https://api.github.com/repos/Svish/TimerPHP/zipball/3e3a123b74b5903bd864b018764527c57130d158",
+                "reference": "3e3a123b74b5903bd864b018764527c57130d158",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,7 @@
                 "statistics",
                 "timer"
             ],
-            "time": "2013-04-07 17:49:03"
+            "time": "2013-04-07 18:28:37"
         },
         {
             "name": "geekality/transposer",
@@ -52,12 +52,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/Transposer.git",
-                "reference": "v1.1.0"
+                "reference": "fb4652518d622c42c4d385503718b96b749026b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/Transposer/zipball/v1.1.0",
-                "reference": "v1.1.0",
+                "url": "https://api.github.com/repos/Svish/Transposer/zipball/fb4652518d622c42c4d385503718b96b749026b2",
+                "reference": "fb4652518d622c42c4d385503718b96b749026b2",
                 "shasum": ""
             },
             "require": {
@@ -92,7 +92,7 @@
                 "music",
                 "transpose"
             ],
-            "time": "2013-04-07 17:57:37"
+            "time": "2013-04-10 19:51:53"
         },
         {
             "name": "leafo/lessphp",
