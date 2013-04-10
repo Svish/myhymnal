@@ -4,6 +4,7 @@ Probably
 - Use mustache partials for song and book lists?
 - Pretty URLs
 - Google site map
+- Move transpose key to GET parameter and/or title. Possibly also ignore in google/clicky.
 
 Potentially
 ===
