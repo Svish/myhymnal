@@ -20,4 +20,22 @@ class Util
 		$exp = floor(log($bytes) / log(1024));
 		return sprintf('%.2f '.$symbols[$exp], $bytes/pow(1024, floor($exp)));
 	}
+
+	/**
+	 * Cleans strings for URI compatibility.
+	 *
+	 * @link http://cubiq.org/the-perfect-php-clean-url-generator
+	 */
+	public function toAscii($subject, array $replace = array(), $delimiter='-')
+	{
+		if( ! empty($replace))
+			$subject = str_replace($replace, ' ', $subject);
+
+		$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $subject);
+		$clean = preg_replace("%[^-/+|\w ]%", '', $clean);
+		$clean = strtolower(trim($clean, '-'));
+		$clean = preg_replace("%[/_|+ -]+%", $delimiter, $clean);
+
+		return $clean;
+	}
 }
