@@ -26,10 +26,10 @@ class Util
 	 *
 	 * @link http://cubiq.org/the-perfect-php-clean-url-generator
 	 */
-	public function toAscii($subject, array $replace = array(), $delimiter='-')
+	public function toAscii($subject, $replace = "'`´", $delimiter='-')
 	{
 		if( ! empty($replace))
-			$subject = str_replace($replace, ' ', $subject);
+			$subject = str_replace(str_split($replace), ' ', $subject);
 
 		$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $subject);
 		$clean = preg_replace("%[^-/+|\w ]%", '', $clean);
