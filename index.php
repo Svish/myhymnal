@@ -26,13 +26,20 @@ ToroHook::add('404', function()
 Cache::delete('sid_*', 30*60);
 Timer::start('Request', array(isset($_GET['toro_uri']) ? $_GET['toro_uri'] : NULL));
 Toro::serve(array(
+	
     '/' => 'Controller_Home',
-    '/:number(?:/:alphanum)?' => 'Controller_Song',
+
     '/songs' => 'Controller_SongIndex',
+    '/:number(?:/:alphanum)?' => 'Controller_Song',
+
     '/books' => 'Controller_BookIndex',
-    '/book/:number' => 'Controller_Book',
+    '/book/:number(?:/:alphanum)?' => 'Controller_Book',
+
     '/search' => 'Controller_Search',
+
     '/about' => 'Controller_About',
+
     '/debug/:alphanum' => 'Controller_Debug',
+
 ), isset($_GET['toro_uri']) ? $_GET['toro_uri'] : NULL);
 Cache::set(SID, Timer::result());

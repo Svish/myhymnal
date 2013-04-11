@@ -9,6 +9,8 @@ class Model_Book extends Model
 	{
 		Timer::start(__METHOD__, array($this->id, $load_foreign ? 'with foreign' : 'no foreign'));
 
+		$this->url = 'book/'.$this->id.'/'.$this->slug;
+
 		if($load_foreign)
 		{
 			$songs = Model_Song::find_in_book($this->id);
@@ -21,7 +23,10 @@ class Model_Book extends Model
 	public static function get($id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$book = DB::prepare('SELECT book_id "id", book_title "title"
+		$book = DB::prepare('SELECT 
+									book_id "id", 
+									book_title "title", 
+									book_slug "slug"
 								FROM book 
 								WHERE book_id=:id')
 			->bindParam(':id', $id, PDO::PARAM_INT)
@@ -37,8 +42,9 @@ class Model_Book extends Model
 		Timer::start(__METHOD__);
 		$books = DB::prepare('SELECT
 								book.book_id "id", 
-								book_title "title", 
-								book_total "total",
+								book.book_title "title", 
+								book.book_total "total",
+								book.book_slug "slug",
 								COUNT(book.book_id) AS "count"
 							FROM book
 							LEFT OUTER JOIN song_book ON book.book_id = song_book.book_id
@@ -53,7 +59,11 @@ class Model_Book extends Model
 	public static function find_with_song($song_id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$books = DB::prepare('SELECT book.book_id "id", book.book_title "title", number
+		$books = DB::prepare('SELECT 
+								book.book_id "id", 
+								book.book_title "title", 
+								book.book_slug "slug",
+								number
 							FROM song_book
 							INNER JOIN book ON song_book.book_id = book.book_id
 							WHERE song_id = :id
@@ -63,21 +73,5 @@ class Model_Book extends Model
 			->fetchAll(__CLASS__, array(FALSE));
 		Timer::stop();
 		return $books;
-	}
-
-
-	private function generate_slug()
-	{
-		Timer::start(__METHOD__, array($this->id));
-		
-		$this->slug = Util::toAscii($this->title, array("'"));
-		
-		DB::prepare('UPDATE book
-					SET book_slug=:slug
-					WHERE book_id=:id')
-			->bindValue(':id', $this->id, PDO::PARAM_INT)
-			->bindValue(':slug', $this->slug)
-			->execute();
-		Timer::stop();
 	}
 }
