@@ -1,16 +1,21 @@
 Probably
 ===
+- Fix TODOs
+- (chorus) line
 - Write "new" Toro
 	- Throw [exceptions](http://www.php.net/manual/en/class.exception.php)
 	- Move uri retrieval outside?
 	- Send parameters to constructor
 	- Get output from method? (post/get/get_json)
-- Pretty URLs
-	- Store permalink for songs in db
-	- Auto-generate when missing?
 - Google site map
 	- http://www.sitemaps.org/protocol.html
 - RSS feed with new and updated songs
+- Facebook og: metatags?
+- Generalize View
+	- Move layout 'site.' properties to object.
+	- Less hard-coded values.
+- Change deployment method?
+	- http://toroid.org/ams/git-website-howto
 
 Potentially
 ===
