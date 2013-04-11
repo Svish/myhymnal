@@ -8,6 +8,7 @@ class Model_Book extends Model
 	public function __construct($load_foreign = TRUE)
 	{
 		Timer::start(__METHOD__, array($this->id, $load_foreign ? 'with foreign' : 'no foreign'));
+
 		if($load_foreign)
 		{
 			$songs = Model_Song::find_in_book($this->id);
@@ -62,5 +63,21 @@ class Model_Book extends Model
 			->fetchAll(__CLASS__, array(FALSE));
 		Timer::stop();
 		return $books;
+	}
+
+
+	private function generate_slug()
+	{
+		Timer::start(__METHOD__, array($this->id));
+		
+		$this->slug = Util::toAscii($this->title, array("'"));
+		
+		DB::prepare('UPDATE book
+					SET book_slug=:slug
+					WHERE book_id=:id')
+			->bindValue(':id', $this->id, PDO::PARAM_INT)
+			->bindValue(':slug', $this->slug)
+			->execute();
+		Timer::stop();
 	}
 }

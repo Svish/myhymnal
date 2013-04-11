@@ -21,7 +21,7 @@ function searchFocus(event, s)
 
 function searchSelect(event, s)
 {
-	window.location = Site.base_url + 'song/' + s.item.value;
+	window.location = Site.base_url + s.item.value;
 	return false;
 }
 

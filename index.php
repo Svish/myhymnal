@@ -10,11 +10,15 @@ define('SID', uniqid('sid_'));
 # Timezone
 date_default_timezone_set('Europe/Oslo');
 
+# Locale
+setlocale(LC_ALL, 'en_US.utf-8', 'eng');
+
 # AutoLoader
 require 'vendor/autoload.php';
 
 # Hooks
-ToroHook::add('404', function() {
+ToroHook::add('404', function()
+{
     echo 'Not found';
 });
 
@@ -23,10 +27,10 @@ Cache::delete('sid_*', 30*60);
 Timer::start('Request', array(isset($_GET['toro_uri']) ? $_GET['toro_uri'] : NULL));
 Toro::serve(array(
     '/' => 'Controller_Home',
+    '/:number(?:/:alphanum)?' => 'Controller_Song',
+    '/songs' => 'Controller_SongIndex',
     '/books' => 'Controller_BookIndex',
     '/book/:number' => 'Controller_Book',
-    '/songs' => 'Controller_SongIndex',
-    '/:number(?:/:alphanum)?' => 'Controller_Song',
     '/search' => 'Controller_Search',
     '/about' => 'Controller_About',
     '/debug/:alphanum' => 'Controller_Debug',

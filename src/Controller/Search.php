@@ -11,7 +11,7 @@ class Controller_Search
 		
 		if(count($songs) == 1)
 		{
-			header('Location: '.WEBROOT.'song/'.$songs[0]->id);
+			header('Location: '.WEBROOT.$songs[0]->url);
 			exit;
 		}
 

@@ -6,8 +6,12 @@ class Model_Song extends Model
 	{
 		Timer::start(__METHOD__, array($this->id, $load_foreign ? 'with foreign' : 'no foreign'));
 		
-		// TODO: Should be in DB and combined with title
-		$this->permalink = $this->id;
+		// Create slug if we should
+		if( ! $this->slug)
+			$this->generate_slug();
+
+		// Set URL
+		$this->url = $this->id.'/'.$this->slug;
 
 		if($load_foreign)
 		{
@@ -19,6 +23,21 @@ class Model_Song extends Model
 			if($spotify)
 				$this->spotify = array('list' => $spotify);
 		}
+		Timer::stop();
+	}
+
+	private function generate_slug()
+	{
+		Timer::start(__METHOD__, array($this->id));
+		
+		$this->slug = Util::toAscii($this->title, array("'"));
+		
+		DB::prepare('UPDATE song
+					SET song_slug=:slug
+					WHERE song_id=:id')
+			->bindValue(':id', $this->id, PDO::PARAM_INT)
+			->bindValue(':slug', $this->slug)
+			->execute();
 		Timer::stop();
 	}
 
@@ -36,7 +55,12 @@ class Model_Song extends Model
 	public static function get($id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$song = DB::prepare('SELECT song_id "id", song_title "title", song_text "text", `key`
+		$song = DB::prepare('SELECT 
+								song_id "id", 
+								song_title "title", 
+								song_slug "slug",
+								song_text "text", 
+								`key`
 							FROM song 
 							WHERE song_id=:id')
 			->bindParam(':id', $id, PDO::PARAM_INT)
@@ -49,7 +73,7 @@ class Model_Song extends Model
 	public static function get_next($title)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$song = DB::prepare('SELECT song_id "id", song_title "title"
+		$song = DB::prepare('SELECT song_id "id", song_title "title", song_slug "slug"
 							FROM song
 							WHERE song_title > :title
 							ORDER BY song_title
@@ -63,7 +87,7 @@ class Model_Song extends Model
 	public static function get_prev($title)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$song = DB::prepare('SELECT song_id "id", song_title "title"
+		$song = DB::prepare('SELECT song_id "id", song_title "title", song_slug "slug"
 							FROM song
 							WHERE song_title < :title
 							ORDER BY song_title DESC
@@ -79,7 +103,7 @@ class Model_Song extends Model
 		Timer::start(__METHOD__, $except);
 		foreach($except as &$e)
 			$e = (int) $e;
-		$song = DB::prepare('SELECT song_id "id", song_title "title"
+		$song = DB::prepare('SELECT song_id "id", song_title "title", song_slug "slug"
 							FROM song
 							WHERE song_id NOT IN ('.implode(',',$except).')
 							ORDER BY RAND()
@@ -90,25 +114,19 @@ class Model_Song extends Model
 		return $song;
 	}
 
-	public static function find_all()
+	public static function find_all($finished = NULL)
 	{
-		Timer::start(__METHOD__);
-		$songs = DB::prepare('SELECT song_id "id", song_title "title"
-							FROM song
-							WHERE `key` IS NOT NULL
-							ORDER BY song_title')
-			->execute()
-			->fetchAll(__CLASS__, array(FALSE));
-		Timer::stop();
-		return $songs;
-	}
+		if($finished === TRUE)
+			$q = 'WHERE `key` IS NOT NULL';
+		elseif($finished === FALSE)
+			$q = 'WHERE `key` IS NULL';
+		else
+			$q = '';
 
-	public static function find_unfinished()
-	{
 		Timer::start(__METHOD__);
-		$songs = DB::prepare('SELECT song_id "id", song_title "title"
+		$songs = DB::prepare('SELECT song_id "id", song_title "title", song_slug "slug"
 							FROM song
-							WHERE `key` IS NULL
+							'.$q.'
 							ORDER BY song_title')
 			->execute()
 			->fetchAll(__CLASS__, array(FALSE));
@@ -119,7 +137,11 @@ class Model_Song extends Model
 	public static function find_in_book($book_id)
 	{
 		Timer::start(__METHOD__, func_get_args());
-		$songs = DB::prepare('SELECT song.song_id "id", song.song_title "title", number "number"
+		$songs = DB::prepare('SELECT 
+								song.song_id "id",
+								song_title "title",
+								song_slug "slug", 
+								number "number"
 							FROM song_book
 							INNER JOIN song ON song_book.song_id = song.song_id
 							WHERE song_book.book_id = :id
@@ -136,7 +158,7 @@ class Model_Song extends Model
 		Timer::start(__METHOD__, func_get_args());
 		if(is_numeric($term))
 		{
-			$songs = DB::prepare('SELECT song.song_id "id", book.book_title "title"
+			$songs = DB::prepare('SELECT song.song_id "id", song.song_slug "slug", book.book_title "title"
 								FROM song
 								INNER JOIN song_book ON song_book.song_id = song.song_id
 								INNER JOIN book ON song_book.book_id = book.book_id
@@ -148,7 +170,7 @@ class Model_Song extends Model
 		}
 		else
 		{
-			$songs = DB::prepare('SELECT song_id "id", song_title "title"
+			$songs = DB::prepare('SELECT song_id "id", song_title "title", song_slug "slug"
 								FROM song 
 								WHERE song_title LIKE ? 
 								ORDER BY 

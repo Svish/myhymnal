@@ -2,11 +2,19 @@
 
 class Controller_Song
 {
-	function get($id)
+	function get($id, $slug = NULL)
 	{
 		Timer::start(__METHOD__, func_get_args());
 
-		echo new View_Song($id);
+		$song = Model_Song::get($id);
+
+		if($slug === NULL || $slug !== $song->slug)
+		{
+			header('Location: '.WEBROOT.$song->url);
+			exit;
+		}
+		else
+			echo new View_Song($song);
 
 		Timer::stop();
 	}
