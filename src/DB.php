@@ -45,29 +45,38 @@ class DB
 	{
 		Timer::start(__METHOD__);
 
-		// Check current DB version
 		$current = (int) DB::query('SELECT * FROM version')
 			->execute()
 			->fetchColumn();
 
-		// For each migration script
 		$dir = DOCROOT.'schema'.DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR;
 		foreach(glob($dir.'*.sql') as $m)
 		{
-			// Get version from filename
 			$version = (int) str_replace($dir, NULL, $m);
 
-			// Execute all queries if newer
 			if($version > $current)
 			{
 				Timer::start(__METHOD__, array($version));
+				try
+				{
+					$script = preg_replace('/#.++/m', NULL, file_get_contents($m));
+					$queries = preg_split('/;$\s*+/m', $script, -1, PREG_SPLIT_NO_EMPTY);
 
-				$queries = preg_split('/;$\s*+/m', file_get_contents($m), -1, PREG_SPLIT_NO_EMPTY);
-				foreach($queries as $q)
-					DB::prepare($q)->execute();
+					foreach($queries as $q)
+						if(trim($q) != '')
+							DB::prepare($q)->execute();
 
-				DB::query('UPDATE version SET version = '.$version);
+					if(file_exists($dir.$version.'.php'))
+						require $dir.$version.'.php';
 
+					DB::query('UPDATE version SET version = '.$version);
+				}
+				catch(Exception $e)
+				{
+					var_dump($e->getMessage());
+					Timer::stop();
+					break;
+				}
 				Timer::stop();
 			}
 		}
