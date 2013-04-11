@@ -9,10 +9,12 @@ class View_Song extends View
 		$this->song = $song;
 		$this->title = $this->song->title;
 		$this->canonical = $this->song->url;
-		$this->text_html = Geekality\Transposer::parse($this->song->text, $this->song->key);
-
 		$this->description = 'Lyrics and chords for the song \''.$this->song->title.'\'. Clean and simple.';
 
+		// Song parsing
+		$this->text_html = Geekality\Transposer::parse($this->song->text, $this->song->key);
+
+		// Song transposing
 		$key = array_key_exists('key', $_GET)
 			? $_GET['key']
 			: NULL;
@@ -27,6 +29,7 @@ class View_Song extends View
 			$this->title .= ' ('.$this->song->key.')';
 		}
 
+		// Transposing keys
 		$this->keys = $this->text_html->get_key_selector($this->song->url.'?key=');
 		
 		Timer::stop();

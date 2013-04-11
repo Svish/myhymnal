@@ -6,10 +6,6 @@ class Model_Song extends Model
 	{
 		Timer::start(__METHOD__, array($this->id, $load_foreign ? 'with foreign' : 'no foreign'));
 		
-		// Create slug if we should
-		if( ! $this->slug)
-			$this->generate_slug();
-
 		// Set URL
 		$this->url = $this->id.'/'.$this->slug;
 
@@ -23,21 +19,6 @@ class Model_Song extends Model
 			if($spotify)
 				$this->spotify = array('list' => $spotify);
 		}
-		Timer::stop();
-	}
-
-	private function generate_slug()
-	{
-		Timer::start(__METHOD__, array($this->id));
-		
-		$this->slug = Util::toAscii($this->title, array("'"));
-		
-		DB::prepare('UPDATE song
-					SET song_slug=:slug
-					WHERE song_id=:id')
-			->bindValue(':id', $this->id, PDO::PARAM_INT)
-			->bindValue(':slug', $this->slug)
-			->execute();
 		Timer::stop();
 	}
 
