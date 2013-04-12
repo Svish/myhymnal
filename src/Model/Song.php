@@ -57,6 +57,7 @@ class Model_Song extends Model
 		$song = DB::prepare('SELECT song_id "id", song_title "title", song_slug "slug"
 							FROM song
 							WHERE song_title > :title
+								AND `key` IS NOT NULL
 							ORDER BY song_title
 							LIMIT 1')
 			->bindParam(':title', $title)
@@ -71,6 +72,7 @@ class Model_Song extends Model
 		$song = DB::prepare('SELECT song_id "id", song_title "title", song_slug "slug"
 							FROM song
 							WHERE song_title < :title
+								AND `key` IS NOT NULL
 							ORDER BY song_title DESC
 							LIMIT 1')
 			->bindParam(':title', $title)
@@ -87,6 +89,7 @@ class Model_Song extends Model
 		$song = DB::prepare('SELECT song_id "id", song_title "title", song_slug "slug"
 							FROM song
 							WHERE song_id NOT IN ('.implode(',',$except).')
+								AND `key` IS NOT NULL
 							ORDER BY RAND()
 							LIMIT 1')
 			->execute()
