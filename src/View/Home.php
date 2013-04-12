@@ -6,7 +6,7 @@ class View_Home extends View
 	{
 		Timer::start(__METHOD__);
 		$this->songs = View::factory('SongIndex')->render(FALSE);
-		$this->books = View::factory('BookIndex')->render(FALSE);
+		//$this->books = View::factory('BookIndex')->render(FALSE);
 		Timer::stop();
 	}
 }
