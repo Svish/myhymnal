@@ -2,6 +2,7 @@ Probably
 ===
 - Fix TODOs
 - (chorus) line
+	- Mark with class, style with CSS
 - Write "new" Toro
 	- Throw [exceptions](http://www.php.net/manual/en/class.exception.php)
 	- Move uri retrieval outside?
@@ -11,6 +12,7 @@ Probably
 	- http://www.sitemaps.org/protocol.html
 - RSS feed with new and updated songs
 - Facebook og: metatags?
+	- https://developers.facebook.com/tools/debug
 - Generalize View
 	- Move layout 'site.' properties to object.
 	- Less hard-coded values.
