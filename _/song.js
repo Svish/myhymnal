@@ -2,6 +2,10 @@ $(function()
 {
 	$('.spotify-link')
 		.click(onSpotifyClick);
+
+	$('.c', '.verse')
+		.highlight('[A-G][♯♭]?', 'k');
+
 });
 
 
