@@ -14,10 +14,8 @@ $(function()
 		.click(debugClick);
 });
 
-$.fn.highlight = function (str, className)
+$.fn.highlight = function (regex, className)
 {
-    var regex = new RegExp(str, "gi");
-
     return this.each(function ()
     {
         this.innerHTML = this.innerHTML.replace(regex, function(matched) 

@@ -4,7 +4,7 @@ $(function()
 		.click(onSpotifyClick);
 
 	$('.c', '.verse')
-		.highlight('[A-G][♯♭]?', 'k');
+		.highlight(/^[A-G][♯♭]?/g, 'k');
 
 });
 
