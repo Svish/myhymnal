@@ -1,5 +1,6 @@
 Probably
 ===
+- Error handler
 - Cache
 	- Clear and prime main stuff
 - JSMin

@@ -11,6 +11,7 @@ abstract class CachedController extends Controller
 		{
 			foreach($cache['headers'] as $h)
 				header($h);
+			header('X-Cache-Hit: true');
 			echo $cache['content'];
 			exit;
 		}
