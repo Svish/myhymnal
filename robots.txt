@@ -1,2 +1,3 @@
+Sitemap: http://myhymnal.net/sitemap.xml
 User-agent: *
 Disallow:

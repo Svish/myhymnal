@@ -14,6 +14,8 @@ return array(
 
     '/about' => 'Controller_About',
 
+    '/sitemap.xml' => 'Controller_Sitemap',
+
     '/debug/:alphanum' => 'Controller_Debug',
 
 );
