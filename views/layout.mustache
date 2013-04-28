@@ -7,22 +7,22 @@
 		<title>{{#title}}{{.}} - {{/title}}{{_.title}}</title>
 		<meta name="description" content="{{#description}}{{description}}{{/description}}{{^description}}Lyrics and chords. Clean and simple.{{/description}}">
 		
-		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="shortcut icon" href="{{_.favicon}}">
 		{{#canonical}}<link rel="canonical" href="{{_.base_abs}}{{canonical}}">{{/canonical}}
 				
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata&amp;subset=latin,latin-ext">
-		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/dark-hive/jquery-ui.min.css">
-		<link rel="stylesheet" href="_/styles.css">
-		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+		{{#_.stylesheet}}
+		<link rel="stylesheet" href="{{.}}">
+		{{/_.stylesheet}}
+
+		{{#_.script}}
+		<script src="{{.}}"></script>
+		{{/_.script}}
 		<script>
 			var Site = { base_url: '{{_.base_abs}}' };
 		</script>
-		<script src="_/global.js"></script>
-	
+
 	</head>
 	<body>
 

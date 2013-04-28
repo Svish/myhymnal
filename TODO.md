@@ -1,14 +1,10 @@
 Probably
 ===
-- Fix TODOs
 - Google site map
 	- http://www.sitemaps.org/protocol.html
 - RSS feed with new and updated songs
 - Facebook og: metatags?
 	- https://developers.facebook.com/tools/debug
-- Generalize View
-	- Move layout 'site.' properties to object.
-	- Less hard-coded values.
 - Change deployment method?
 	- http://toroid.org/ams/git-website-howto
 
