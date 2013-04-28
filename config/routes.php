@@ -6,6 +6,7 @@ return array(
 
     '/songs' => 'Controller_SongIndex',
     '/:number(?:/:alphanum)?' => 'Controller_Song',
+    '/random' => 'Controller_Song',
 
     '/books' => 'Controller_BookIndex',
     '/book/:number(?:/:alphanum)?' => 'Controller_Book',

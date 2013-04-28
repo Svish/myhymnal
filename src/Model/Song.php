@@ -28,7 +28,6 @@ class Model_Song extends Model
 		(
 			'next' => self::get_next($this->title),
 			'prev' => self::get_prev($this->title),
-			'rand' => self::get_rand(array($this->id)),
 		);
 	}
 
@@ -82,15 +81,14 @@ class Model_Song extends Model
 		Timer::stop();
 		return $song;
 	}
-	public static function get_rand(array $except)
+
+
+	public static function get_random()
 	{
-		Timer::start(__METHOD__, $except);
-		foreach($except as &$e)
-			$e = (int) $e;
-		$song = DB::prepare('SELECT song_id "id", song_title "title", song_slug "slug"
+		Timer::start(__METHOD__);
+		$song = DB::prepare('SELECT song_id "id", song_slug "slug"
 							FROM song
-							WHERE song_id NOT IN ('.implode(',',$except).')
-								AND `key` IS NOT NULL
+							WHERE `key` IS NOT NULL
 							ORDER BY RAND()
 							LIMIT 1')
 			->execute()
