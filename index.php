@@ -23,11 +23,14 @@ require 'vendor/autoload.php';
 
 Cache::delete('rid_*', 30*60);
 
-$uri = isset($_GET['toro_uri']) 
-    ? $_GET['toro_uri'] 
+$uri = isset($_GET['toro_uri'])
+    ? $_GET['toro_uri']
     : NULL;
 
 Timer::start('Request', array($uri));
+
+View::engine()->setHelpers(include CONFROOT.'mustache_globals.php');
 Website::init(include CONFROOT.'routes.php', 'Controller_Error')
     ->serve($uri);
+
 Cache::set(RID, Timer::result());

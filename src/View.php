@@ -75,9 +75,9 @@ abstract class View extends DynObj
 		if($template === NULL)
 			$template = implode(DIRECTORY_SEPARATOR, array_splice(explode('_', get_class($this)), 1));
 
-
-		// Render with layout
 		Timer::start(get_class($this).'->'.__FUNCTION__, array($layout ? 'with layout' : 'no layout', $template));
+
+		// With layout
 		if($layout)
 		{
 			// Compile style sheet
@@ -85,25 +85,25 @@ abstract class View extends DynObj
 				DOCROOT.'less'.DIRECTORY_SEPARATOR.'styles.less',
 				DOCROOT.'_'.DIRECTORY_SEPARATOR.'styles.css');
 
-			// Set helpers.
-			self::engine()->setHelpers(include CONFROOT.'mustache_globals.php');
-			self::engine()->setPartials(array(
-				'content' => self::engine()->render($template, $this),
-				));
+			// Set content partial
+			self::engine()->setPartials(array('content' => self::engine()->render($template, $this)));
+
+			// Render
 			$r = self::engine()->render($this->_layout, $this);
 		}
-		// Plain render
+		// No layout
 		else
 		{
 			$r = self::engine()->render($template, $this);
 		}
+
 		Timer::stop();
 		return $r;
 	}
 
 
 	private static $_engine;
-	private static function engine()
+	public static function engine()
 	{
 		if( ! self::$_engine)
 			self::$_engine = new Mustache_Engine
