@@ -1,11 +1,9 @@
 <?php
 
-class Controller_SongIndex
+class Controller_SongIndex extends Controller
 {
 	function get()
 	{
-		Timer::start(__METHOD__);
 		echo new View_SongIndex();
-		Timer::stop();
 	}
 }

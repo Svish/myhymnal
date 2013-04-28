@@ -1,11 +1,9 @@
 <?php
 
-class Controller_BookIndex
+class Controller_BookIndex extends Controller
 {
 	function get()
 	{
-		Timer::start(__METHOD__);
 		echo new View_BookIndex();
-		Timer::stop();
 	}
 }

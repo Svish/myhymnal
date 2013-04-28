@@ -1,11 +1,9 @@
 <?php
 
-class Controller_About
+class Controller_About extends Controller
 {
 	function get()
 	{
-		Timer::start(__METHOD__);
 		echo new View_About();
-		Timer::stop();
 	}
 }

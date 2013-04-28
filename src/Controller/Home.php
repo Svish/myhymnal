@@ -1,11 +1,9 @@
 <?php
 
-class Controller_Home
+class Controller_Home extends Controller
 {
 	function get()
 	{
-		Timer::start(__METHOD__);
 		echo new View_Home();
-		Timer::stop();
 	}
 }

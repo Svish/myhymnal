@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Debug
+class Controller_Debug extends Controller
 {
 	function get($sid)
 	{

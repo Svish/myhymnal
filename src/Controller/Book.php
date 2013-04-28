@@ -1,11 +1,9 @@
 <?php
 
-class Controller_Book
+class Controller_Book extends Controller
 {
 	function get($id, $slug = NULL)
 	{
-		Timer::start(__METHOD__, func_get_args());
-
 		$book = Model_Book::get($id);
 
 		if($book === FALSE)
@@ -18,7 +16,5 @@ class Controller_Book
 		}
 		else
 			echo new View_Book($book);
-
-		Timer::stop();
 	}
 }

@@ -1,11 +1,9 @@
 <?php
 
-class Controller_Song
+class Controller_Song extends Controller
 {
 	function get($id, $slug = NULL)
 	{
-		Timer::start(__METHOD__, func_get_args());
-
 		$song = Model_Song::get($id);
 
 		if($song === FALSE)
@@ -18,7 +16,5 @@ class Controller_Song
 		}
 		else
 			echo new View_Song($song);
-
-		Timer::stop();
 	}
 }

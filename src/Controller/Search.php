@@ -1,13 +1,22 @@
 <?php
 
-class Controller_Search
+class Controller_Search extends Controller
 {
-	function get()
-	{
-		$term = isset($_GET['term']) ? $_GET['term'] : NULL;
+	private $term;
 
-		Timer::start(__METHOD__, array($term));
-		$songs = Model_Song::search($term);
+	public function __construct()
+	{
+		$this->term = isset($_GET['term']) ? $_GET['term'] : '';
+	}
+
+	public function before(array $info)
+	{
+		parent::before(array('params' => array($this->term)) + $info);
+	}
+
+	public function get()
+	{
+		$songs = Model_Song::search($this->term);
 		
 		if(count($songs) == 1)
 		{
@@ -15,19 +24,18 @@ class Controller_Search
 			exit;
 		}
 
-		echo new View_Search($songs, $term);
-		Timer::stop();
+		echo new View_Search($songs, $this->term);
 	}
 
-	function get_xhr()
+	public function get_xhr()
 	{
-		if( ! isset($_GET['term']) || $_GET['term'] === '')
+		if($this->term === '')
 			return;
 
-		$list = Model_Song::search($_GET['term']);
+		$list = Model_Song::search($this->term);
 
 		foreach($list as &$song)
-			$song = array('label' => $song->title, 'value' => $song->id);
+			$song = array('label' => $song->title, 'value' => $song->url);
 
 		echo json_encode($list, JSON_NUMERIC_CHECK);
 	}

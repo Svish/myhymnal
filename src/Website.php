@@ -28,7 +28,8 @@ class Website
 
 	public function serve($path)
 	{
-		extract($this->parse($path), EXTR_OVERWRITE);
+		$info = $this->parse($path);
+		extract($info, EXTR_OVERWRITE);
 
 		try
 		{
@@ -50,7 +51,14 @@ class Website
 			if( ! method_exists($handler, $method))
 				$method = 'get';
 
+			if( method_exists($handler, 'before'))
+				call_user_func_array(array($handler, 'before'), array($info));
+
 			call_user_func_array(array($handler, $method), $params);
+
+
+			if( method_exists($handler, 'after'))
+				call_user_func_array(array($handler, 'before'), array($info));
 		}
 		catch(Exception $e)
 		{
