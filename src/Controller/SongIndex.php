@@ -1,6 +1,6 @@
 <?php
 
-class Controller_SongIndex extends Controller
+class Controller_SongIndex extends CachedController
 {
 	function get()
 	{

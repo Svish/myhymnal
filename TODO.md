@@ -1,5 +1,7 @@
 Probably
 ===
+- Cache
+	- Clear and prime main stuff
 - JSMin
 	- https://github.com/linkorb/jsmin-php
 - Facebook og: metatags?

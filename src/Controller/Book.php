@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Book extends Controller
+class Controller_Book extends CachedController
 {
 	function get($id, $slug = NULL)
 	{

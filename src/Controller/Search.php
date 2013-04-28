@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Search extends Controller
+class Controller_Search extends CachedController
 {
 	private $term;
 

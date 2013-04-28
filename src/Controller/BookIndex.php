@@ -1,6 +1,6 @@
 <?php
 
-class Controller_BookIndex extends Controller
+class Controller_BookIndex extends CachedController
 {
 	function get()
 	{
