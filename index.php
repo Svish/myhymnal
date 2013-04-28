@@ -29,7 +29,8 @@ $uri = isset($_GET['toro_uri'])
 
 Timer::start('Request', array($uri));
 
-View::engine()->setHelpers(include CONFROOT.'mustache_globals.php');
+View::engine()->setHelpers(include CONFROOT.'mustache_helpers.php');
+
 Website::init(include CONFROOT.'routes.php', 'Controller_Error')
     ->serve($uri);
 

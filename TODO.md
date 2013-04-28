@@ -1,8 +1,7 @@
 Probably
 ===
-- Google site map
-	- http://www.sitemaps.org/protocol.html
-- RSS feed with new and updated songs
+- JSMin
+	- https://github.com/linkorb/jsmin-php
 - Facebook og: metatags?
 	- https://developers.facebook.com/tools/debug
 - Change deployment method?

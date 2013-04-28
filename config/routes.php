@@ -16,6 +16,7 @@ return array(
     '/about' => 'Controller_About',
 
     '/sitemap.xml' => 'Controller_Sitemap',
+    '/feed\.(atom|rss)' => 'Controller_Feed',
 
     '/debug/:alphanum' => 'Controller_Debug',
 

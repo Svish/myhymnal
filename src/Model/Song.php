@@ -121,6 +121,24 @@ class Model_Song extends Model
 		return $songs;
 	}
 
+	public static function find_last_updated()
+	{
+		Timer::start(__METHOD__);
+		$songs = DB::prepare('SELECT 
+								song_id "id", 
+								song_lastmod "lastmod", 
+								song_title "title", 
+								song_slug "slug"
+							FROM song
+							WHERE `key` IS NOT NULL
+							ORDER BY song_lastmod DESC
+							LIMIT 10')
+			->execute()
+			->fetchAll(__CLASS__, array(FALSE));
+		Timer::stop();
+		return $songs;
+	}
+
 	public static function find_in_book($book_id)
 	{
 		Timer::start(__METHOD__, func_get_args());

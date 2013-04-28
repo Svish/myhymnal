@@ -9,7 +9,7 @@ class View_Song extends View
 		$this->song = $song;
 		$this->title = $this->song->title;
 		$this->canonical = $this->song->url;
-		$this->description = 'Lyrics and chords for the song \''.$this->song->title.'\'. Clean and simple.';
+		$this->description = " for the song '{$this->song->title}'";
 
 		// Song parsing
 		$this->text_html = Geekality\Transposer::parse($this->song->text, $this->song->key);

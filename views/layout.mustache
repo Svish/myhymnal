@@ -5,10 +5,12 @@
 		<base href="{{_.base_abs}}">
 		
 		<title>{{#title}}{{.}} - {{/title}}{{_.title}}</title>
-		<meta name="description" content="{{#description}}{{description}}{{/description}}{{^description}}Lyrics and chords. Clean and simple.{{/description}}">
+		<meta name="description" content="{{#_.description}}{{description}}{{/_.description}}">
 		
 		<link rel="shortcut icon" href="{{_.favicon}}">
 		{{#canonical}}<link rel="canonical" href="{{_.base_abs}}{{canonical}}">{{/canonical}}
+		<link rel="alternate" type="application/rss+xml" href="{{_.feed.rss}}" title="New and updated songs (RSS)">
+		<link rel="alternate" type="application/atom+xml" href="{{_.feed.atom}}" title="New and updated songs (Atom)">
 				
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
