@@ -87,7 +87,7 @@ abstract class View extends DynObj
 				DOCROOT.'_'.DIRECTORY_SEPARATOR.'styles.css');
 
 			// Set helpers.
-			self::engine()->setHelpers(include DOCROOT.'config.php');
+			self::engine()->setHelpers(include CONFROOT.'mustache_globals.php');
 			self::engine()->setPartials(array(
 				'content' => self::engine()->render($template, $this),
 				));

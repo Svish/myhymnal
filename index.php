@@ -2,8 +2,10 @@
 
 # Constants
 define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
+define('CONFROOT', DOCROOT.'config'.DIRECTORY_SEPARATOR);
 define('WEBROOT', $_SERVER['BASE']);
-define('SID', uniqid('sid_'));
+define('ENV', $_SERVER['SITE_ENV']);
+define('RID', uniqid('rid_'));
 
 
 # Timezone
@@ -19,13 +21,13 @@ require 'vendor/autoload.php';
 
 
 
-Cache::delete('sid_*', 30*60);
+Cache::delete('rid_*', 30*60);
 
 $uri = isset($_GET['toro_uri']) 
     ? $_GET['toro_uri'] 
     : NULL;
 
 Timer::start('Request', array($uri));
-Website::init(include DOCROOT.'routes.php', 'Controller_Error')
+Website::init(include CONFROOT.'routes.php', 'Controller_Error')
     ->serve($uri);
-Cache::set(SID, Timer::result());
+Cache::set(RID, Timer::result());

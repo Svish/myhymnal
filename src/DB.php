@@ -11,7 +11,7 @@ class DB
 	{
 		if (!self::$instance)
 		{
-			$config = include 'DB.config.php';
+			$config = include CONFROOT.'db.'.ENV.'.php';
 
 			self::$instance = new PDO
 			(

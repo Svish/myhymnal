@@ -2,13 +2,13 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<base href="{{site.base_abs}}">
+		<base href="{{_.base_abs}}">
 		
-		<title>{{#title}}{{.}} - {{/title}}{{site.title}}</title>
+		<title>{{#title}}{{.}} - {{/title}}{{_.title}}</title>
 		<meta name="description" content="{{#description}}{{description}}{{/description}}{{^description}}Lyrics and chords. Clean and simple.{{/description}}">
 		
 		<link rel="shortcut icon" href="favicon.ico">
-		{{#canonical}}<link rel="canonical" href="{{site.base_abs}}{{canonical}}">{{/canonical}}
+		{{#canonical}}<link rel="canonical" href="{{_.base_abs}}{{canonical}}">{{/canonical}}
 				
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,7 +19,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 		<script>
-			var Site = { base_url: '{{site.base_abs}}' };
+			var Site = { base_url: '{{_.base_abs}}' };
 		</script>
 		<script src="_/global.js"></script>
 	
