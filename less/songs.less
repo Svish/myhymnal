@@ -1,7 +1,7 @@
 #content .song 
 {
 	counter-reset: verse;
-	.verse
+	pre
 	{
 		display: inline-block;
 		margin-right: 2em;
@@ -9,14 +9,20 @@
 
 		&:before
 		{
-			counter-increment: verse;
-			content: counter(verse);
 			display: block;
 			color: lighten(@background-color, 15%);
 			font-size: 1.3em;
 			font-weight: bold;
 			font-style: italic;
+			content: attr(class);
 		}
+
+		&.verse:before
+		{
+			counter-increment: verse;
+			content: counter(verse);
+		}
+
 		span.c
 		{
 			color: mix(@link-color, grey, 50%);
@@ -25,14 +31,6 @@
 			.k
 			{
 			color: mix(@link-color, red, 90%);
-			}
-
-			.s
-			{
-				//vertical-align: super;
-				//position: relative;
-				//bottom: .25em;
-
 			}
 		}
 	}
@@ -78,8 +76,15 @@
 
 	.keys
 	{
+		padding: 0;
+		margin: 0;
 		opacity: .5;
 		.transition(opacity, .3s, ease-out);
+
+		li
+		{
+			display: inline-block;
+		}
 
 		&:hover
 		{

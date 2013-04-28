@@ -3,7 +3,7 @@ $(function()
 	$('.spotify-link')
 		.click(onSpotifyClick);
 
-	$('.c', '.verse')
+	$('.c', '.lyrics')
 		.highlight(/^[A-G][♯♭]?/g, 'k');
 
 });
