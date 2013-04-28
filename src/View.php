@@ -29,7 +29,10 @@ abstract class View extends DynObj
 
 	final public function __toString()
 	{
-		$mime = Mimeparse::bestMatch($this->_accept, $_SERVER['HTTP_ACCEPT']);
+		$accept = isset($_SERVER['HTTP_ACCEPT'])
+			? $_SERVER['HTTP_ACCEPT']
+			: '*/*';
+		$mime = Mimeparse::bestMatch($this->_accept, $accept);
 
 		Timer::start(get_class($this).'->'.__FUNCTION__, array($mime));
 
