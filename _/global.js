@@ -20,18 +20,10 @@ $.fn.highlight = function(regex, className)
 	{
 		this.innerHTML = this.innerHTML.replace(regex, function(matched) 
 		{
-			return "<span class=\"" + className + "\">" + matched + "</span>";
-		});
-	});
-};
-
-$.fn.highlight = function(regex)
-{
-	return this.each(function()
-	{
-		this.innerHTML = this.innerHTML.replace(regex, function(matched) 
-		{
-			return "<mark>" + matched + "</mark>";
+			if(className)
+				return "<span class=\"" + className + "\">" + matched + "</span>";
+			else
+				return "<mark>" + matched + "</mark>";
 		});
 	});
 };
