@@ -38,6 +38,7 @@ class Model_Song extends Model
 		Timer::start(__METHOD__, func_get_args());
 		$song = DB::prepare('SELECT 
 								song_id "id", 
+								song_lastmod "lastmod", 
 								song_title "title", 
 								song_slug "slug",
 								song_text "text", 
@@ -108,7 +109,11 @@ class Model_Song extends Model
 			$q = '';
 
 		Timer::start(__METHOD__);
-		$songs = DB::prepare('SELECT song_id "id", song_title "title", song_slug "slug"
+		$songs = DB::prepare('SELECT 
+								song_id "id", 
+								song_lastmod "lastmod", 
+								song_title "title", 
+								song_slug "slug"
 							FROM song
 							'.$q.'
 							ORDER BY song_title')

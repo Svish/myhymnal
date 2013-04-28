@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @see http://www.sitemaps.org/protocol.html
+ */
 class View_Sitemap extends View
 {
 	protected $_layout = FALSE;
@@ -11,7 +14,7 @@ class View_Sitemap extends View
 	public function __construct()
 	{
 		Timer::start(__METHOD__);
-		
+
 		// Indexes
 		$url = array
 		(
@@ -35,9 +38,11 @@ class View_Sitemap extends View
 		// Songs
 		foreach(Model_Song::find_all() as $song)
 		{
+			$lastmod = new DateTime($song->lastmod);
 			$url[] = array
 			(
 				'loc' => $song->url,
+				'lastmod' => $lastmod->format(DateTime::W3C),
 			);
 		}
 
