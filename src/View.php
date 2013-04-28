@@ -41,8 +41,7 @@ abstract class View extends DynObj
 		}
 		catch(Exception $e)
 		{
-			// TODO Throw 500;
-			var_dump($e->getMessage());
+			return '<strong>'.get_class($this).'</strong> '.$e->getMessage();
 		}
 		Timer::stop();
 	}
