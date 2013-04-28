@@ -1,6 +1,55 @@
 {
-    "hash": "b6aece7066ae6e4410e4f2ad03b23b98",
+    "hash": "bf5c89089ca0ce806e539597ab354501",
     "packages": [
+        {
+            "name": "bitworking/mimeparse",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ramsey/mimeparse",
+                "reference": "2.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/ramsey/mimeparse/zipball/2.0.0",
+                "reference": "2.0.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Bitworking": "src/"
+                }
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joe Gregorio",
+                    "homepage": "http://bitworking.org"
+                },
+                {
+                    "name": "Andrew \"Venom\" K."
+                },
+                {
+                    "name": "Ben Ramsey",
+                    "homepage": "http://benramsey.com"
+                }
+            ],
+            "description": "Basic functions for handling mime-types, forked from Joe Gregorio's mimeparse library <http://code.google.com/p/mimeparse/>.",
+            "homepage": "http://code.google.com/p/mimeparse/",
+            "keywords": [
+                "accept",
+                "http",
+                "mime"
+            ],
+            "time": "2012-09-18 09:55:34"
+        },
         {
             "name": "geekality/timer",
             "version": "v1.1.1",

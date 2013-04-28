@@ -2,15 +2,29 @@
 
 class View_Search extends View
 {
-	public function __construct(array $songs = array(), $term)
+	public function __construct($term)
 	{
 		Timer::start(__METHOD__);
+
+		$songs = Model_Song::search($term);
+
 		$this->title = $term.' - Search';
 		$this->term = $term;
 		$this->result = $songs;
 
-		foreach($this->result as $song)
-			$song->title = preg_replace('/'.preg_quote($this->term, '/').'/i', '[$0]', $song->title);
 		Timer::stop();
+	}
+
+	public function when_json()
+	{
+		$list = $this->result;
+
+		foreach($list as &$song)
+			$song = array(
+				'label' => $song->title, 
+				'value' => $song->url,
+				);
+
+		return $list;
 	}
 }

@@ -4,6 +4,7 @@
 	{
 		"mustache/mustache": "2.1.*",
 		"leafo/lessphp": "0.3.*",
+		"bitworking/mimeparse": "2.*",
 		"geekality/transposer": "1.*",
 		"geekality/timer": "1.*"
 	},

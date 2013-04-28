@@ -2,7 +2,7 @@
 
 abstract class DynObj
 {
-	private $data = array();
+	protected $data = array();
 
 	public function __set($name, $value)
 	{
@@ -21,11 +21,6 @@ abstract class DynObj
 			' on line ' . $trace[0]['line'],
 			E_USER_NOTICE);
 		return NULL;
-	}
-
-	protected function set(array $data)
-	{
-		$this->data = array_merge($this->data, $data);
 	}
 
 	public function __isset($name)

@@ -34,19 +34,9 @@ class Website
 		try
 		{
 			if($handler === NULL)
-				throw new Exception('Page not found: '.$path, 404);
+				throw new Exception('No route found for '.$path, 404);
 
 			$handler = new $handler();
-
-			if($xhr AND method_exists($handler, $method.'_xhr'))
-			{
-				header('content-type: application/json; charset=utf-8');
-				$method .= '_xhr';
-			}
-			else
-			{
-				header('content-type: text/html; charset=utf-8');
-			}
 
 			if( ! method_exists($handler, $method))
 				$method = 'get';
@@ -55,7 +45,6 @@ class Website
 				call_user_func_array(array($handler, 'before'), array($info));
 
 			call_user_func_array(array($handler, $method), $params);
-
 
 			if( method_exists($handler, 'after'))
 				call_user_func_array(array($handler, 'before'), array($info));
@@ -83,7 +72,6 @@ class Website
 		$info = array(
 			'path' => $path,
 			'method' => strtolower($_SERVER['REQUEST_METHOD']),
-			'xhr' => $this->is_xhr_request(),
 			'handler' => NULL,
 			'params' => array(),
 			);
@@ -107,11 +95,5 @@ class Website
 			}
 		}
 		return $info;
-	}
-
-	private static function is_xhr_request()
-	{
-		return isset($_SERVER['HTTP_X_REQUESTED_WITH'])
-			&& $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
 	}
 }

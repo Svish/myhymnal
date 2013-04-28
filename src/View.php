@@ -1,5 +1,7 @@
 <?php
 
+use Bitworking\Mimeparse;
+
 abstract class View extends DynObj
 {
 	/**
@@ -15,7 +17,27 @@ abstract class View extends DynObj
 		Timer::start(get_class($this).'->'.__FUNCTION__);
 		try
 		{
-			return $this->render();
+			$accept = array(
+				'application/json',
+				'text/javascript',
+				'text/html');
+
+			$match = Mimeparse::bestMatch($accept, $_SERVER['HTTP_ACCEPT']);
+
+			switch($match)
+			{
+				case 'text/javascript':
+				case 'application/json':
+					header('content-type: '.$match.'; charset=utf-8');
+					ob_start('ob_gzhandler');
+					return json_encode($this->when_json(), JSON_NUMERIC_CHECK);
+
+				case 'text/html':
+				default:
+					header('content-type: text/html; charset=utf-8');
+					return $this->render();
+
+			}
 		}
 		catch(Exception $e)
 		{
@@ -25,13 +47,21 @@ abstract class View extends DynObj
 		Timer::stop();
 	}
 
+	protected function when_json()
+	{
+		return $this->data;
+	}
+
 	/**
 	 * Factory method to create views.
 	 */
 	public static function factory($view)
 	{
-		$class = 'View_'.$view;
-		return new $class();
+		$params = func_get_args();
+		array_shift($params);
+
+		$class = new ReflectionClass('View_'.$view);
+		return $class->newInstanceArgs($params);
 	}
 
 	/**

@@ -14,15 +14,26 @@ $(function()
 		.click(debugClick);
 });
 
-$.fn.highlight = function (regex, className)
+$.fn.highlight = function(regex, className)
 {
-    return this.each(function ()
-    {
-        this.innerHTML = this.innerHTML.replace(regex, function(matched) 
-    	{
-    		return "<span class=\"" + className + "\">" + matched + "</span>";
-    	});
-    });
+	return this.each(function ()
+	{
+		this.innerHTML = this.innerHTML.replace(regex, function(matched) 
+		{
+			return "<span class=\"" + className + "\">" + matched + "</span>";
+		});
+	});
+};
+
+$.fn.highlight = function(regex)
+{
+	return this.each(function()
+	{
+		this.innerHTML = this.innerHTML.replace(regex, function(matched) 
+		{
+			return "<mark>" + matched + "</mark>";
+		});
+	});
 };
 
 function searchFocus(event, s)
