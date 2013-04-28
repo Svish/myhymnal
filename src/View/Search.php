@@ -1,6 +1,6 @@
 <?php
 
-class View_Search extends View
+class View_Search extends JsonEnabledView
 {
 	public function __construct($term)
 	{

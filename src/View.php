@@ -2,48 +2,59 @@
 
 use Bitworking\Mimeparse;
 
+/**
+ * Returns the rendered View.
+ */
 abstract class View extends DynObj
 {
-	/**
-	 * Default layout.
-	 */
 	protected $_layout = 'layout';
 
-	/**
-	 * Returns the rendered View.
-	 */
-	public function __toString()
+	protected $_accept = array('text/html');
+
+	private $_view_crash = FALSE;
+
+	final public function __toString()
 	{
-		Timer::start(get_class($this).'->'.__FUNCTION__);
+		$mime = Mimeparse::bestMatch($this->_accept, $_SERVER['HTTP_ACCEPT']);
+
+		Timer::start(get_class($this).'->'.__FUNCTION__, array($mime));
+
 		try
 		{
-			$accept = array(
-				'application/json',
-				'text/javascript',
-				'text/html');
-
-			$match = Mimeparse::bestMatch($accept, $_SERVER['HTTP_ACCEPT']);
-
-			switch($match)
-			{
-				case 'text/javascript':
-				case 'application/json':
-					header('content-type: '.$match.'; charset=utf-8');
-					ob_start('ob_gzhandler');
-					return json_encode($this->when_json(), JSON_NUMERIC_CHECK);
-
-				case 'text/html':
-				default:
-					header('content-type: text/html; charset=utf-8');
-					return $this->render();
-
-			}
+			return $this->toString($mime);
 		}
 		catch(Exception $e)
 		{
-			return '<strong>'.get_class($this).'</strong> '.$e->getMessage();
+			if($this->_view_crash)
+			{
+				$r = '<strong>'.get_class($this).'</strong> '.$e->getMessage();
+			}
+			else
+			{
+				$c = new Controller_Error();
+				ob_start();
+				$c->get($e);
+				$r = ob_get_clean();
+			}
 		}
+
 		Timer::stop();
+
+		return $r;
+	}
+
+	protected function toString($mime = 'text/html')
+	{
+		switch($mime)
+		{
+			case 'text/html':
+				header('content-type: text/html; charset=utf-8');
+				return $this->render();
+
+			default:
+				header('Can only provide '.implode(', ', $this->_accept), true, 406);
+				return '';
+		}
 	}
 
 	protected function when_json()
