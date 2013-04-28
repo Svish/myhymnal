@@ -42,12 +42,12 @@ class Website
 				$method = 'get';
 
 			if( method_exists($handler, 'before'))
-				call_user_func_array(array($handler, 'before'), array($info));
+				call_user_func_array(array($handler, 'before'), array(&$info));
 
 			call_user_func_array(array($handler, $method), $params);
 
 			if( method_exists($handler, 'after'))
-				call_user_func_array(array($handler, 'before'), array($info));
+				call_user_func_array(array($handler, 'after'), array(&$info));
 		}
 		catch(Exception $e)
 		{
