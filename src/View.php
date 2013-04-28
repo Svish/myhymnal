@@ -18,6 +18,11 @@ abstract class View extends DynObj
 	protected $_layout = 'layout';
 
 	/**
+	 * Template to use when rendering, or null to get it from view name.
+	 */
+	protected $_template = NULL;
+
+	/**
 	 * Flag to prevent stack overflow when a view crashes.
 	 */
 	private $_view_crash = FALSE;
@@ -92,9 +97,12 @@ abstract class View extends DynObj
 	 */
 	public function render($layout = TRUE, $template = NULL)
 	{
-		// Default template if none given
+		// Choose default template if none specified
 		if($template === NULL)
-			$template = implode(DIRECTORY_SEPARATOR, array_splice(explode('_', get_class($this)), 1));
+			if($this->_template !== NULL)
+				$template = $this->_template;
+			else
+				$template = implode(DIRECTORY_SEPARATOR, array_splice(explode('_', get_class($this)), 1));
 
 		Timer::start(get_class($this).'->'.__FUNCTION__, array($layout ? 'with layout' : 'no layout', $template));
 
