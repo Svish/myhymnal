@@ -1,5 +1,5 @@
 {
-    "hash": "508e32e02017ba519a2104dbc8a8f913",
+    "hash": "b6aece7066ae6e4410e4f2ad03b23b98",
     "packages": [
         {
             "name": "geekality/timer",
@@ -176,74 +176,6 @@
                 "templating"
             ],
             "time": "2013-01-12 07:18:03"
-        },
-        {
-            "name": "torophp/torophp",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git://github.com/Svish/ToroPHP.git",
-                "reference": "cf91902ba62319746855ec36940ac8463c43f135"
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/Toro.php"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kunal Anand",
-                    "email": "kunal.r.anand@gmail.com",
-                    "homepage": "http://kunalanand.com/",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Danillo César de O. Melo",
-                    "email": "danillos@gmail.com",
-                    "homepage": "http://www.danillocesar.com.br/",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "Martin Bean",
-                    "email": "martin@martinbean.co.uk",
-                    "homepage": "http://www.martinbean.co.uk",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Robbie Coleman",
-                    "homepage": "http://robbie.robnrob.com",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "John Kurkowski",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "Berker Peksag",
-                    "homepage": "http://berkerpeksag.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Jason Mooberry",
-                    "homepage": "http://jasonmooberry.com/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Toro is a PHP router for developing RESTful web applications and APIs.",
-            "homepage": "http://github.com/anandkunal/ToroPHP",
-            "keywords": [
-                "framework",
-                "php",
-                "router"
-            ],
-            "time": "2013-03-05 20:34:55"
         }
     ],
     "packages-dev": [
@@ -253,9 +185,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "torophp/torophp": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": [
 
     ],

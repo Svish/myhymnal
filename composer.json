@@ -3,7 +3,6 @@
 	"require":
 	{
 		"mustache/mustache": "2.1.*",
-		"torophp/torophp": "dev-master",
 		"leafo/lessphp": "0.3.*",
 		"geekality/transposer": "1.*",
 		"geekality/timer": "1.*"
@@ -12,14 +11,6 @@
 	"autoload":
 	{
 		"psr-0": {"": "src/"}
-	},
-
-	"repositories":
-	[
-		{
-			"type": "vcs",
-			"url": "git://github.com/Svish/ToroPHP.git"
-		}
-	]
+	}
 
 }

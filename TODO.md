@@ -1,13 +1,6 @@
 Probably
 ===
 - Fix TODOs
-- (chorus) line
-	- Mark with class, style with CSS
-- Write "new" Toro
-	- Throw [exceptions](http://www.php.net/manual/en/class.exception.php)
-	- Move uri retrieval outside?
-	- Send parameters to constructor
-	- Get output from method? (post/get/get_json)
 - Google site map
 	- http://www.sitemaps.org/protocol.html
 - RSS feed with new and updated songs

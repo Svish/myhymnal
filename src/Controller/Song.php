@@ -8,6 +8,9 @@ class Controller_Song
 
 		$song = Model_Song::get($id);
 
+		if($song === FALSE)
+			throw new Exception('Song not found.', 404);
+
 		if($slug === NULL || $slug !== $song->slug)
 		{
 			header('Location: '.WEBROOT.$song->url);
