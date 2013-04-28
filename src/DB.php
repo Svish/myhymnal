@@ -21,8 +21,10 @@ class DB
 				array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
 			);
 
+			$timezone = date_default_timezone_get();
 			self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+			self::$instance->exec("SET CHARACTER SET utf8");
+			self::$instance->exec("SET time_zone = '{$timezone}'");
 			self::migrate();
 		}
 
