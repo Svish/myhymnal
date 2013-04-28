@@ -15,6 +15,7 @@ abstract class JsonEnabledView extends View
 		{
 			case 'text/javascript':
 			case 'application/json':
+			
 				header('content-type: '.$mime.'; charset=utf-8');
 				ob_start('ob_gzhandler');
 				return json_encode($this->when_json(), JSON_NUMERIC_CHECK);

@@ -7,10 +7,19 @@ use Bitworking\Mimeparse;
  */
 abstract class View extends DynObj
 {
-	protected $_layout = 'layout';
-
+	/**
+	 * Acceptable mime types for this view.
+	 */
 	protected $_accept = array('text/html');
 
+	/**
+	 * Template to use as layout
+	 */
+	protected $_layout = 'layout';
+
+	/**
+	 * Flag to prevent stack overflow when a view crashes.
+	 */
 	private $_view_crash = FALSE;
 
 	final public function __toString()
@@ -42,6 +51,7 @@ abstract class View extends DynObj
 
 		return $r;
 	}
+
 
 	protected function toString($mime = 'text/html')
 	{
@@ -89,7 +99,7 @@ abstract class View extends DynObj
 		Timer::start(get_class($this).'->'.__FUNCTION__, array($layout ? 'with layout' : 'no layout', $template));
 
 		// With layout
-		if($layout)
+		if($this->_layout AND $layout)
 		{
 			// Compile style sheet
 			Less::compile(
