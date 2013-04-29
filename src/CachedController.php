@@ -3,12 +3,19 @@
 abstract class CachedController extends Controller
 {
 	private $cache;
+	private $cid;
 
 	public function before(array &$info)
 	{
 		parent::before($info);
 
-		$this->cache = Cache::get('page_'.sha1($_SERVER['REQUEST_URI']));
+		$this->cid = 'page_'.sha1($_SERVER['REQUEST_URI']);
+
+		if($info['method'] == 'get')
+			$this->cache = Cache::get($this->cid);
+		else
+			Cache::delete($this->cid);
+
 
 		if($this->cache)
 			$info['method'] = 'cached';
@@ -35,7 +42,7 @@ abstract class CachedController extends Controller
 					'headers' => headers_list(),
 					'content' => ob_get_flush(),
 				);
-			Cache::set('page_'.sha1($_SERVER['REQUEST_URI']), $cache);
+			Cache::set($this->cid, $cache);
 		}
 
 		parent::after();

@@ -2,9 +2,10 @@ Probably
 ===
 - Proper error handler that works on Dreamhost...
 - Cache
-	- http://codereview.stackexchange.com (have I missed anything?)
+	- Etag and last modified
 	- Clear and prime main stuff
 	- Ajax primer? Head request which caches request? Perhaps?
+	- http://codereview.stackexchange.com (have I missed anything?)
 - Compress JS
 	- https://developers.google.com/closure/compiler/docs/api-tutorial1
 - Facebook og: metatags?

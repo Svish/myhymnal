@@ -1,16 +1,18 @@
 <?php
 
-class Controller_Search extends CachedController
+class Controller_Search extends Controller
 {
-	private $term;
-
-	public function __construct()
+	public function before(array &$info)
 	{
-		$this->term = isset($_GET['term']) ? $_GET['term'] : '';
+		$info['params'][] = isset($_GET['term']) 
+			? $_GET['term'] 
+			: '';
+
+		parent::before($info);
 	}
 
-	public function get()
+	public function get($term)
 	{
-		echo View::factory('Search', $this->term);
+		echo View::factory('Search', $term);
 	}
 }
