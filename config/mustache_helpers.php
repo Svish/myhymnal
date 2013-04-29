@@ -37,7 +37,7 @@ return array
 			
 			'clickyId' => 100581712,
 			
-			'sid' => substr(RID, 4),
+			'rid' => RID,
 			
 			'stylesheet' => array
 			(

@@ -5,7 +5,7 @@ define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 define('CONFROOT', DOCROOT.'config'.DIRECTORY_SEPARATOR);
 define('WEBROOT', $_SERVER['BASE']);
 define('ENV', $_SERVER['SITE_ENV']);
-define('RID', uniqid('rid_'));
+define('RID', uniqid());
 
 
 # Timezone
@@ -18,20 +18,14 @@ setlocale(LC_ALL, 'en_US.utf-8', 'eng');
 require 'vendor/autoload.php';
 
 
-
-
-
-Cache::delete('rid_*', 30*60);
-
 $uri = isset($_GET['toro_uri'])
     ? $_GET['toro_uri']
     : NULL;
-
 Timer::start('Request', array($uri));
 
 View::engine()->setHelpers(include CONFROOT.'mustache_helpers.php');
-
 Website::init(include CONFROOT.'routes.php', 'Controller_Error')
     ->serve($uri);
 
-Cache::set(RID, Timer::result());
+Cache::delete('rid', NULL, 30*60);
+Cache::set('rid', RID, Timer::result());

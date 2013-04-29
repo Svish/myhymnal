@@ -2,21 +2,21 @@
 
 abstract class CachedController extends Controller
 {
-	private $cache;
+	const CS = 'pc';
+
 	private $etag;
-	private $cid;
+	private $cache;
 
 	public function before(array &$info)
 	{
 		parent::before($info);
 
 		$this->etag = sha1($_SERVER['REQUEST_URI']);
-		$this->cid = 'pc_'.$this->etag;
 
 		if($info['method'] == 'get')
-			$this->cache = Cache::get($this->cid);
+			$this->cache = Cache::get(self::CS, $this->etag);
 		else
-			Cache::delete($this->cid);
+			Cache::delete(self::CS, $this->etag);
 
 		if($this->cache)
 			$info['method'] = 'cached';
@@ -33,7 +33,6 @@ abstract class CachedController extends Controller
 			return;
 		}
 
-		header('X-Cache: hit');
 		foreach($this->cache['headers'] as $h)
 			header($h);
 		echo $this->cache['content'];
@@ -44,7 +43,7 @@ abstract class CachedController extends Controller
 		if( ! $this->cache)
 		{
 			header('Etag: '.$this->etag);
-			Cache::set($this->cid, array
+			Cache::set(self::CS, $this->etag, array
 				(
 					'headers' => headers_list(),
 					'content' => ob_get_flush(),
