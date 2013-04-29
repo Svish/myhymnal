@@ -15,6 +15,7 @@ return array(
 
     '/about' => 'Controller_About',
 
+    '/prime' => 'Controller_Primer',
     '/sitemap.xml' => 'Controller_Sitemap',
     '/feed\.(atom|rss)' => 'Controller_Feed',
 

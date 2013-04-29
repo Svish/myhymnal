@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Debug extends Controller
+class Controller_Debug
 {
 	function get($rid)
 	{
