@@ -1,10 +1,12 @@
 Probably
 ===
-- Error handler
+- Proper error handler that works on Dreamhost...
 - Cache
+	- http://codereview.stackexchange.com (have I missed anything?)
 	- Clear and prime main stuff
-- JSMin
-	- https://github.com/linkorb/jsmin-php
+	- Ajax primer? Head request which caches request? Perhaps?
+- Compress JS
+	- https://developers.google.com/closure/compiler/docs/api-tutorial1
 - Facebook og: metatags?
 	- https://developers.facebook.com/tools/debug
 - Change deployment method?

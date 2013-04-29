@@ -29,22 +29,22 @@ class Website
 	public function serve($path)
 	{
 		$info = $this->parse($path);
-		extract($info, EXTR_OVERWRITE);
 
 		try
 		{
-			if($handler === NULL)
+			if($info['handler'] === NULL)
 				throw new Exception('No route found for '.$path, 404);
 
-			$handler = new $handler();
+			$handler = new $info['handler'];
 
-			if( ! method_exists($handler, $method))
-				$method = 'get';
+			if( ! method_exists($info['handler'], $info['method']))
+				$info['method'] = 'get';
 
 			if( method_exists($handler, 'before'))
 				call_user_func_array(array($handler, 'before'), array(&$info));
 
-			call_user_func_array(array($handler, $method), $params);
+
+			call_user_func_array(array($handler, $info['method']), $info['params']);
 
 			if( method_exists($handler, 'after'))
 				call_user_func_array(array($handler, 'after'), array(&$info));
