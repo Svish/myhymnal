@@ -2,6 +2,12 @@
 
 class Util
 {
+	public static function get($key, array $subject, $default = NULL)
+	{
+		if(array_key_exists($key, $subject))
+			return $subject[$key];
+		return $default;
+	}
 	public static function pluck($property, array $subject)
 	{
 		$array = array();
