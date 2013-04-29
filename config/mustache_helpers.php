@@ -27,11 +27,11 @@ return array
 			'title' => 'My Hymnal',
 			'description' => function($more = NULL)
 				{
-					return "Lyrics and chords$more. Clean and correct.";
+					return "Lyrics and chords$more. Transposable, clean and correct.";
 				},
 
 			'base' => WEBROOT,
-			'base_abs' => 'http://'.$_SERVER['HTTP_HOST'].WEBROOT,
+			'base_abs' => WEBROOT_ABS,
 			
 			'isProduction' => ENV == 'prod',
 			

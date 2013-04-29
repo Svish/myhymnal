@@ -4,6 +4,7 @@
 define('DOCROOT', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 define('CONFROOT', DOCROOT.'config'.DIRECTORY_SEPARATOR);
 define('WEBROOT', $_SERVER['BASE']);
+define('WEBROOT_ABS', 'http://'.$_SERVER['HTTP_HOST'].WEBROOT);
 define('ENV', $_SERVER['SITE_ENV']);
 define('RID', uniqid());
 
