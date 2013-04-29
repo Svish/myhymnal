@@ -24,7 +24,8 @@ class DB
 			$timezone = date_default_timezone_get();
 			self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			self::$instance->exec("SET CHARACTER SET utf8");
-			self::$instance->exec("SET time_zone = '{$timezone}'");
+			try { self::$instance->exec("SET time_zone = '{$timezone}'"); }
+			catch(Exception $e) {}
 			self::migrate();
 		}
 
