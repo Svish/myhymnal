@@ -5,14 +5,14 @@ abstract class CachedController extends Controller
 	const CS = 'pc';
 
 	private $etag;
-	private $cache;
+	private $cache = NULL;
 
 	public function before(array &$info)
 	{
 		parent::before($info);
 
-		//if(ENV == 'dev')
-		//	return;
+		if(ENV == 'dev')
+			return;
 
 		$this->etag = sha1($_SERVER['REQUEST_URI']);
 
@@ -44,7 +44,7 @@ abstract class CachedController extends Controller
 
 	public function after(array $info)
 	{
-		if( ! $this->cache)
+		if($this->cache !== NULL AND ! $this->cache)
 		{
 			header('Etag: '.$this->etag);
 			Cache::set(self::CS, $this->etag, array
