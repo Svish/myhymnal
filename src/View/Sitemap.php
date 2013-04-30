@@ -37,7 +37,17 @@ class View_Sitemap extends XmlView
 			(
 				'loc' => $song->url,
 				'lastmod' => $lastmod->format(DateTime::W3C),
+				'priority' => '1.0',
 			);
+
+			// Transposed
+			foreach(array_keys(\Geekality\Transposer::$SCALES) as $k)
+				$url[] = array
+				(
+					'loc' => $song->url.'?key='.urlencode($k),
+					'lastmod' => $lastmod->format(DateTime::W3C),
+					'priority' => '0.8',
+				);
 		}
 
 		$this->url = $url;
