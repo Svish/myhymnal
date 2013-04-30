@@ -11,8 +11,8 @@ abstract class CachedController extends Controller
 	{
 		parent::before($info);
 
-		if(ENV == 'dev')
-			return;
+		//if(ENV == 'dev')
+		//	return;
 
 		$this->etag = sha1($_SERVER['REQUEST_URI']);
 
@@ -33,7 +33,7 @@ abstract class CachedController extends Controller
 		$etag = trim(Util::get('HTTP_IF_NONE_MATCH', $_SERVER));
 		if($this->etag == $etag)
 		{
-			header('Not modified', true, 304);
+			header(HTTP::status(304));
 			return;
 		}
 
