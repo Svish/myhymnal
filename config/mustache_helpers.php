@@ -33,7 +33,11 @@ return array
 			'base' => WEBROOT,
 			'base_abs' => WEBROOT_ABS,
 			
-			'isProduction' => ENV == 'prod',
+			'env' => array
+			(
+				'prod' => ENV == 'prod',
+				'dev' => ENV == 'dev',
+			),
 			
 			'clickyId' => 100581712,
 			
