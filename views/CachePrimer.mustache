@@ -1,0 +1,31 @@
+
+<ul class="primer-links" style="font-size: x-small">
+	{{#url}}
+	<li>{{.}}</li>
+	{{/url}}
+</ul>
+
+
+
+
+<script>
+$(function()
+{
+	$('li', '.primer-links').each(function()
+	{
+		$.ajax({
+			type: "HEAD",
+			url: this.innerHTML,
+			context: this,
+			complete: function(xhr, status)
+			{
+				this.innerHTML = status + ': ' + this.innerHTML;
+				if(status == 'success')
+					$(this)
+						.css({color: 'green'})
+						.appendTo('.primer-links');
+			},
+		});
+	});
+});
+</script>
