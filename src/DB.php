@@ -11,37 +11,44 @@ class DB
 	{
 		if (!self::$instance)
 		{
-			$config = include CONFROOT.'db.'.ENV.'.php';
+			Timer::start(__METHOD__, array('init'));
 
+			$config = include CONFROOT.'db.'.ENV.'.php';
 			self::$instance = new PDO
 			(
 				$config['dsn'],
-				$config['username'], 
-				$config['password'], 
-				array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+				$config['username'],
+				$config['password']
 			);
+			self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 			$timezone = date_default_timezone_get();
-			self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			self::$instance->exec("SET CHARACTER SET utf8");
-			try { self::$instance->exec("SET time_zone = '{$timezone}'"); }
+			try { DB::exec("SET time_zone = '{$timezone}'"); }
 			catch(Exception $e) {}
+
 			self::migrate();
+
+			Timer::stop();
 		}
 
 		return self::$instance;
 	}
 
-	public static function prepare($query)
+	public static function exec($statement)
 	{
-		return new Query(self::instance()->prepare($query));
+		return self::instance()->exec($statement);
 	}
 
-	public static function query($query, int $col = NULL)
+	public static function prepare($statement)
+	{
+		return new Query(self::instance()->prepare($statement));
+	}
+
+	public static function query($statement, int $col = NULL)
 	{
 		if($col === NULL)
-			return new Query(self::instance()->query($query));
-		return new Query(self::instance()->query($query, PDO::FETCH_COLUMN, $col));
+			return new Query(self::instance()->query($statement));
+		return new Query(self::instance()->query($statement, PDO::FETCH_COLUMN, $col));
 	}
 
 	public static function migrate()

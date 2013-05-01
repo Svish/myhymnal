@@ -2,7 +2,7 @@
 
 return array
 (
-	'dsn' => /FILLME/,
-	'username' => /FILLME/,
-	'password' => /FILLME/,
+	'dsn' => 'mysql:host=;port=;dbname=;charset=utf8',
+	'username' => '',
+	'password' => '',
 );
