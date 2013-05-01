@@ -7,10 +7,8 @@ class Model_Spotify extends Model
 {
 	public function __construct()
 	{
-		Timer::start(__METHOD__, array($this->id));
 		if(empty($this->url) || empty($this->artists))
 			$this->loadSpotifyInfo();
-		Timer::stop();
 	}
 
 	private function loadSpotifyInfo()

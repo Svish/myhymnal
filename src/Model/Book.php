@@ -7,8 +7,6 @@ class Model_Book extends Model
 {
 	public function __construct($load_foreign = TRUE)
 	{
-		Timer::start(__METHOD__, array($this->id, $load_foreign ? 'with foreign' : 'no foreign'));
-
 		$this->url = 'book/'.$this->id.'/'.$this->slug;
 
 		if($load_foreign)
@@ -17,7 +15,6 @@ class Model_Book extends Model
 			if($songs)
 				$this->songs = array('list' => $songs);
 		}
-		Timer::stop();
 	}
 
 	public static function get($id)

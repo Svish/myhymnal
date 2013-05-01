@@ -4,8 +4,6 @@ class Model_Song extends Model
 {
 	private function __construct($load_foreign = TRUE)
 	{
-		Timer::start(__METHOD__, array($this->id, $load_foreign ? 'with foreign' : 'no foreign'));
-		
 		// Set URL
 		$this->url = $this->id.'/'.$this->slug;
 
@@ -19,7 +17,6 @@ class Model_Song extends Model
 			if($spotify)
 				$this->spotify = array('list' => $spotify);
 		}
-		Timer::stop();
 	}
 
 	public function browse()
@@ -106,7 +103,7 @@ class Model_Song extends Model
 		else
 			$q = '';
 
-		Timer::start(__METHOD__);
+		Timer::start(__METHOD__, func_get_args());
 		$songs = DB::prepare('SELECT 
 								song_id "id", 
 								song_lastmod "lastmod", 
