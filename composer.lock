@@ -97,16 +97,16 @@
         },
         {
             "name": "geekality/transposer",
-            "version": "v1.4.1",
+            "version": "v1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/Transposer.git",
-                "reference": "v1.4.1"
+                "reference": "v1.4.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/Transposer/zipball/v1.4.1",
-                "reference": "v1.4.1",
+                "url": "https://api.github.com/repos/Svish/Transposer/zipball/v1.4.2",
+                "reference": "v1.4.2",
                 "shasum": ""
             },
             "require": {
@@ -141,7 +141,7 @@
                 "music",
                 "transpose"
             ],
-            "time": "2013-04-28 12:25:18"
+            "time": "2013-05-01 10:29:43"
         },
         {
             "name": "leafo/lessphp",
