@@ -19,8 +19,8 @@ setlocale(LC_ALL, 'en_US.utf-8', 'eng');
 require 'vendor/autoload.php';
 
 
-$uri = isset($_GET['toro_uri'])
-    ? $_GET['toro_uri']
+$uri = isset($_GET['path_uri'])
+    ? $_GET['path_uri']
     : NULL;
 Timer::start('Request', array($uri));
 
