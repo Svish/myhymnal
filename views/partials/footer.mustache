@@ -1,7 +1,8 @@
+
 {{#_.env.prod}}
 <script src="//static.getclicky.com/js" type="text/javascript"></script>
-<script type="text/javascript">try{ clicky.init({{_.clickyId}}); }catch(e){}</script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/{{_.clickyId}}ns.gif"></p></noscript>
+<script type="text/javascript">try{ clicky.init({{clicky.id}}); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/{{clicky.id}}ns.gif"></p></noscript>
 {{/_.env.prod}}
 
 <aside id="debug-link"><a href="debug/{{_.rid}}">Debug</a></aside>
