@@ -1,8 +1,6 @@
 Probably
 ===
 - Async Clicky load
-- Compress JS
-	- https://developers.google.com/closure/compiler/docs/api-tutorial1
 - Facebook og: metatags?
 	- https://developers.facebook.com/tools/debug
 - Change deployment method?
@@ -10,8 +8,8 @@ Probably
 
 Potentially
 ===
-- Pull most viewed from Clicky
-	- http://api.clicky.com/api/stats/4?site_id=100581712&sitekey=522c58c7cf1123e8&type=pages&date=previous-30-days&output=json
+- Compress JS
+	- https://developers.google.com/closure/compiler/docs/api-tutorial1
 - Show song title and book title when searching for numbers
 - Presentation mode?
 - Personal collections?
