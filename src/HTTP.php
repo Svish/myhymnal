@@ -99,9 +99,12 @@ class HTTP
 		return $response;
 	}
 
-	public static function get($url)
+	public static function get($url, array $params = array())
 	{
-		Timer::start(__METHOD__, func_get_args());
+		Timer::start(__METHOD__, array($url));
+
+		if( ! empty($params))
+			$url .= '?'.http_build_query($params);
 
 		$request = curl_init();
 		curl_setopt_array($request, array
