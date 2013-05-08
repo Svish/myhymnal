@@ -1,8 +1,6 @@
 Probably
 ===
 - Async Clicky load
-- Facebook og: metatags?
-	- https://developers.facebook.com/tools/debug
 - Change deployment method?
 	- http://toroid.org/ams/git-website-howto
 
@@ -14,3 +12,7 @@ Potentially
 - Presentation mode?
 - Personal collections?
 - Spotify index with playlist of all
+
+Notes
+===
+- FB check, https://developers.facebook.com/tools/debug
