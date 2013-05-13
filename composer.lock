@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7c5eaa637b7abe8c8a7a0de66ad4a783",
+    "hash": "422b7855b1507db511409c7aa9b0e63f",
     "packages": [
         {
             "name": "bitworking/mimeparse",
