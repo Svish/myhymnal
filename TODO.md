@@ -8,7 +8,6 @@ Potentially
 - Compress JS
 	- https://developers.google.com/closure/compiler/docs/api-tutorial1
 - Show song title and book title when searching for numbers
-- Spotify index with playlist of all
 
 Notes
 ===
