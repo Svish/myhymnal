@@ -11,6 +11,8 @@ return array(
     '/books' => 'Controller_BookIndex',
     '/book/:number(?:/:alphanum)?' => 'Controller_Book',
 
+    '/spotify' => 'Controller_Spotify',
+
     '/search' => 'Controller_Search',
 
     '/about' => 'Controller_About',

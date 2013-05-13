@@ -52,4 +52,21 @@ class Model_Spotify extends Model
 		Timer::stop();
 		return $r;
 	}
+
+	public static function find_all()
+	{
+		Timer::start(__METHOD__);
+		$r = DB::prepare('SELECT 
+							spotify_id "id", 
+							spotify_url "url", 
+							spotify_artists "artists",
+							song_title "title"
+						FROM spotify
+						INNER JOIN song ON song.song_id = spotify.song_id
+						ORDER BY song.song_title')
+			->execute()
+			->fetchAll(__CLASS__);
+		Timer::stop();
+		return $r;
+	}
 }
