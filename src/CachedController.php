@@ -6,18 +6,19 @@ abstract class CachedController extends Controller
 
 	private $etag;
 	private $cache = NULL;
+	protected $max_age = 3600; // 1 hour
 
 	public function before(array &$info)
 	{
 		parent::before($info);
 
-		if(ENV == 'dev')
-			return;
+		//if(ENV == 'dev')
+		//	return;
 
 		$this->etag = sha1($_SERVER['REQUEST_URI']);
 
 		if($info['method'] == 'get')
-			$this->cache = Cache::get(self::CS, $this->etag);
+			$this->cache = Cache::get(self::CS, $this->etag, $this->max_age);
 		else
 			Cache::delete(self::CS, $this->etag);
 
