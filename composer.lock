@@ -1,5 +1,9 @@
 {
-    "hash": "bf5c89089ca0ce806e539597ab354501",
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "7c5eaa637b7abe8c8a7a0de66ad4a783",
     "packages": [
         {
             "name": "bitworking/mimeparse",
@@ -142,6 +146,57 @@
                 "transpose"
             ],
             "time": "2013-05-01 10:29:43"
+        },
+        {
+            "name": "geekality/website",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Svish/php-website.git",
+                "reference": "v0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Svish/php-website/zipball/v0.1",
+                "reference": "v0.1",
+                "shasum": ""
+            },
+            "require": {
+                "bitworking/mimeparse": "2.*",
+                "leafo/lessphp": "0.3.*",
+                "mustache/mustache": "2.1.*",
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "geekality/timer": "Tracks time and memory usage."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "http://packagist.org/downloads/",
+            "license": [
+                "CC-BY"
+            ],
+            "authors": [
+                {
+                    "name": "Torleif Berger",
+                    "email": "torleif@outlook.com",
+                    "homepage": "http://www.geekality.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "My homemade MVC framework using Mustache and Less",
+            "homepage": "https://github.com/Svish/geeky-php-site",
+            "keywords": [
+                "less",
+                "mustache",
+                "mvc",
+                "website"
+            ],
+            "time": "2013-05-13 18:33:47"
         },
         {
             "name": "leafo/lessphp",
