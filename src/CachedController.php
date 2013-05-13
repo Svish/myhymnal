@@ -12,8 +12,8 @@ abstract class CachedController extends Controller
 	{
 		parent::before($info);
 
-		//if(ENV == 'dev')
-		//	return;
+		if(ENV == 'dev')
+			return;
 
 		$this->etag = sha1($_SERVER['REQUEST_URI']);
 
