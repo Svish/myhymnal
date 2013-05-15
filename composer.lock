@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "422b7855b1507db511409c7aa9b0e63f",
+    "hash": "ff1b4fed7e5d952ab47e2b95f76a36bc",
     "packages": [
         {
             "name": "bitworking/mimeparse",
@@ -56,16 +56,16 @@
         },
         {
             "name": "geekality/timer",
-            "version": "v1.1.1",
+            "version": "v1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/TimerPHP.git",
-                "reference": "v1.1.1"
+                "reference": "v1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/TimerPHP/zipball/v1.1.1",
-                "reference": "v1.1.1",
+                "url": "https://api.github.com/repos/Svish/TimerPHP/zipball/v1.2",
+                "reference": "v1.2",
                 "shasum": ""
             },
             "require": {
@@ -97,20 +97,20 @@
                 "statistics",
                 "timer"
             ],
-            "time": "2013-04-07 17:49:03"
+            "time": "2013-05-15 06:29:33"
         },
         {
             "name": "geekality/transposer",
-            "version": "v1.4.2",
+            "version": "v1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/Transposer.git",
-                "reference": "v1.4.2"
+                "reference": "v1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/Transposer/zipball/v1.4.2",
-                "reference": "v1.4.2",
+                "url": "https://api.github.com/repos/Svish/Transposer/zipball/v1.5",
+                "reference": "v1.5",
                 "shasum": ""
             },
             "require": {
@@ -145,20 +145,20 @@
                 "music",
                 "transpose"
             ],
-            "time": "2013-05-01 10:29:43"
+            "time": "2013-05-15 06:30:38"
         },
         {
             "name": "geekality/website",
-            "version": "v0.1",
+            "version": "v0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/php-website.git",
-                "reference": "v0.1"
+                "reference": "v0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/php-website/zipball/v0.1",
-                "reference": "v0.1",
+                "url": "https://api.github.com/repos/Svish/php-website/zipball/v0.2",
+                "reference": "v0.2",
                 "shasum": ""
             },
             "require": {
@@ -196,7 +196,7 @@
                 "mvc",
                 "website"
             ],
-            "time": "2013-05-13 18:33:47"
+            "time": "2013-05-15 06:25:08"
         },
         {
             "name": "leafo/lessphp",
