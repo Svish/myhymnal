@@ -1,15 +1,14 @@
 <?php
 
-class View_Error extends View
+class View_Error extends JsonEnabledView
 {
-	public function __construct(Exception $e)
+	public function __construct($e)
 	{
-		$this->error = $e;
-
-		if(array_key_exists($e->getCode(), HTTP::$codes))
+		if($e['context'] instanceof HTTP_Exception
+		&& array_key_exists($e['context']->getHttpStatus(), HTTP::$codes))
 		{
-			$this->title = HTTP::$codes[$e->getCode()];
-			$this->code = $e->getCode();
+			$this->title = HTTP::$codes[$e['context']->getHttpStatus()];
+			$this->code = $e['context']->getHttpStatus();
 		}
 		else
 		{
@@ -17,7 +16,16 @@ class View_Error extends View
 			$this->code = 500;
 		}
 
+		ob_start();
+		var_dump($e['context']);
+		$e['context'] = ob_get_clean();
+
 		header(HTTP::status($this->code));
+
+		if(ENV !== 'dev')
+			$e = array('message' => $e['message']);
+
+		$this->error = $e;
 	}
 
 	

@@ -7,7 +7,7 @@ class Controller_Book extends CachedController
 		$book = Model_Book::get($id);
 
 		if($book === FALSE)
-			throw new Exception('Book not found.', 404);
+			throw new HTTP_Exception('Book not found.', 404);
 
 		if($slug === NULL || $slug !== $book->slug)
 		{

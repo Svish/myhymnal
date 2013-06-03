@@ -1,4 +1,39 @@
 
 <h1>{{title}}</h2>
 
-<p class="error">{{error.getMessage}}
+{{#error}}
+
+<p class="error">{{message}}
+
+
+{{#_.env.dev}}
+<h2>Debug</h2>
+<table>
+	<tr>
+		<th>Number
+		<td>{{number}}
+	</tr>
+	<tr>
+		<th>Status code
+		<td>{{code}}
+	</tr>
+	<tr>
+		<th>Message
+		<td>{{message}}
+	</tr>
+	<tr>
+		<th>File
+		<td>{{file}}
+	</tr>
+	<tr>
+		<th>Line
+		<td>{{line}}
+	</tr>
+	<tr>
+		<th>Context
+		<td><pre>{{{context}}}</pre>
+	</tr>
+</table>
+{{/_.env.dev}}
+
+{{/error}}

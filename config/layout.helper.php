@@ -9,8 +9,8 @@ return array
 				return "Lyrics and chords$more. Transposable, clean and correct.";
 			},
 
-		'base' => WEBROOT,
-		'base_abs' => WEBROOT_ABS,
+		'base' => BASE_URI,
+		'base_abs' => WEBROOT,
 		
 		'env' => array
 		(

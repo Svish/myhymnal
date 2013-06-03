@@ -16,7 +16,7 @@ class Controller_Song extends CachedController
 		$song = Model_Song::get($id);
 
 		if($song === FALSE)
-			throw new Exception('Song not found.', 404);
+			throw new HTTP_Exception('Song not found.', 404);
 
 		// Redirect if missing slug in URL
 		if($slug === NULL || $slug !== $song->slug)

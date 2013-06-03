@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "ff1b4fed7e5d952ab47e2b95f76a36bc",
+    "hash": "48fb88c3ba4254c5283e3b2575d218a4",
     "packages": [
         {
             "name": "bitworking/mimeparse",
@@ -149,16 +149,16 @@
         },
         {
             "name": "geekality/website",
-            "version": "v0.2",
+            "version": "v0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/php-website.git",
-                "reference": "v0.2"
+                "reference": "v0.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/php-website/zipball/v0.2",
-                "reference": "v0.2",
+                "url": "https://api.github.com/repos/Svish/php-website/zipball/v0.5",
+                "reference": "v0.5",
                 "shasum": ""
             },
             "require": {
@@ -189,14 +189,14 @@
                 }
             ],
             "description": "My homemade MVC framework using Mustache and Less",
-            "homepage": "https://github.com/Svish/geeky-php-site",
+            "homepage": "https://github.com/Svish/php-website",
             "keywords": [
                 "less",
                 "mustache",
                 "mvc",
                 "website"
             ],
-            "time": "2013-05-15 06:25:08"
+            "time": "2013-06-03 22:42:03"
         },
         {
             "name": "leafo/lessphp",
