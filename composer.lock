@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "48fb88c3ba4254c5283e3b2575d218a4",
+    "hash": "84e3fc02606cf1700792d2c256666669",
     "packages": [
         {
             "name": "bitworking/mimeparse",
@@ -149,16 +149,16 @@
         },
         {
             "name": "geekality/website",
-            "version": "v0.5",
+            "version": "v0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/php-website.git",
-                "reference": "v0.5"
+                "reference": "v0.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/php-website/zipball/v0.5",
-                "reference": "v0.5",
+                "url": "https://api.github.com/repos/Svish/php-website/zipball/v0.6",
+                "reference": "v0.6",
                 "shasum": ""
             },
             "require": {
@@ -196,7 +196,7 @@
                 "mvc",
                 "website"
             ],
-            "time": "2013-06-03 22:42:03"
+            "time": "2013-06-03 23:31:23"
         },
         {
             "name": "leafo/lessphp",

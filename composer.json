@@ -1,7 +1,7 @@
 {
 	"require":
 	{
-		"geekality/website": "0.5",
+		"geekality/website": "0.6",
 		"geekality/transposer": "1.*",
 		"geekality/timer": "1.*"
 	},
