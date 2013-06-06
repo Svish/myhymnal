@@ -30,6 +30,8 @@ function onSpotifyClick()
 		.children('button')
 		.click(removeSpotifyPlayer);
 
+	return false;
+
 	// Fade in on iframe load
 	html
 		.css({opacity: 0})
