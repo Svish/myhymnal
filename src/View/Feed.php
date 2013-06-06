@@ -31,7 +31,7 @@ class View_Feed extends XmlView
 		Timer::stop();
 	}
 
-	protected function toString($mime)
+	protected function toString($mime = 'text/html')
 	{
 		switch($mime)
 		{
