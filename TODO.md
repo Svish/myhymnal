@@ -1,5 +1,7 @@
 Probably
 ===
+- Pull Website router class into own composer package
+
 - Change deployment method?
 	- http://toroid.org/ams/git-website-howto
 

@@ -1,7 +1,7 @@
 {
 	"require":
 	{
-		"geekality/website": "0.7",
+		"geekality/webframework": "1.*",
 		"geekality/transposer": "1.*",
 		"geekality/timer": "1.*"
 	},
@@ -9,6 +9,13 @@
 	"autoload":
 	{
 		"psr-0": {"": "src/"}
-	}
+	},
+
+	"repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:Svish/php-webframework.git"
+        }
+    ]
 
 }

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "84e3fc02606cf1700792d2c256666669",
+    "hash": "a8500f084d4af3f1afab4b55d072cfbe",
     "packages": [
         {
             "name": "bitworking/mimeparse",
@@ -148,17 +148,17 @@
             "time": "2013-05-15 06:30:38"
         },
         {
-            "name": "geekality/website",
-            "version": "v0.6",
+            "name": "geekality/webframework",
+            "version": "v1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Svish/php-website.git",
-                "reference": "v0.6"
+                "url": "https://github.com/Svish/php-webframework.git",
+                "reference": "v1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/php-website/zipball/v0.6",
-                "reference": "v0.6",
+                "url": "https://api.github.com/repos/Svish/php-webframework/zipball/v1.0",
+                "reference": "v1.0",
                 "shasum": ""
             },
             "require": {
@@ -176,7 +176,6 @@
                     "": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "CC-BY"
             ],
@@ -189,14 +188,19 @@
                 }
             ],
             "description": "My homemade MVC framework using Mustache and Less",
-            "homepage": "https://github.com/Svish/php-website",
+            "homepage": "https://github.com/Svish/php-webframework",
             "keywords": [
+                "framework",
                 "less",
                 "mustache",
                 "mvc",
                 "website"
             ],
-            "time": "2013-06-03 23:31:23"
+            "support": {
+                "issues": "https://github.com/Svish/php-webframework/issues",
+                "source": "https://github.com/Svish/php-webframework/tree/v1.0"
+            },
+            "time": "2013-06-06 15:09:22"
         },
         {
             "name": "leafo/lessphp",
