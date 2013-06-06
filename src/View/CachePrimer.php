@@ -10,7 +10,6 @@ class View_CachePrimer extends JsonEnabledView
 		$sitemap = WEBROOT.'sitemap.xml';
 		$sitemap = HTTP::get($sitemap);
 
-		var_dump($sitemap);
 		// Parse
 		$doc = new DOMDocument();
 		$doc->loadXML($sitemap);

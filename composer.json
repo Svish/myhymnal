@@ -12,10 +12,10 @@
 	},
 
 	"repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@github.com:Svish/php-webframework.git"
-        }
-    ]
+		{
+			"type": "vcs",
+			"url":  "git@github.com:Svish/php-webframework.git"
+		}
+	]
 
 }
