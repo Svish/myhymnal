@@ -6,7 +6,7 @@ class View_TopPages extends View
 	{
 		Timer::start(__METHOD__);
 
-		$this->title = 'Top pages';
+		$this->title = 'Most viewed';
 		$this->pages = Cache::get('clicky', 'top', 24*60*60);
 
 		if( ! $this->pages)
