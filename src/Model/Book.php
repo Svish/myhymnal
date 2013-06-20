@@ -11,7 +11,7 @@ class Model_Book extends Model
 
 		if($load_foreign)
 		{
-			$songs = Model_Song::find_in_book($this->id);
+			$songs = Model_Song::list_in_book($this->id);
 			if($songs)
 				$this->songs = array('list' => $songs);
 		}

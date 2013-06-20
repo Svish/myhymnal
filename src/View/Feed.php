@@ -16,7 +16,7 @@ class View_Feed extends XmlView
 		$item = array();
 
 		// Songs
-		foreach(Model_Song::find_last_updated() as $song)
+		foreach(Model_Song::list_last_updated() as $song)
 		{
 			$item[] = array
 			(

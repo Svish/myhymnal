@@ -30,7 +30,8 @@ class View_Sitemap extends XmlView
 		);
 
 		// Songs
-		foreach(Model_Song::find_all() as $song)
+		$songs = array_merge(Model_Song::list_all(), Model_Song::list_unfinished());
+		foreach($songs as $song)
 		{
 			$lastmod = new DateTime($song->lastmod);
 			$url[] = array

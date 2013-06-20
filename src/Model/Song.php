@@ -94,15 +94,8 @@ class Model_Song extends Model
 		return $song;
 	}
 
-	public static function find_all($finished = NULL)
+	public static function list_all()
 	{
-		if($finished === TRUE)
-			$q = 'WHERE `key` IS NOT NULL';
-		elseif($finished === FALSE)
-			$q = 'WHERE `key` IS NULL';
-		else
-			$q = '';
-
 		Timer::start(__METHOD__, func_get_args());
 		$songs = DB::prepare('SELECT 
 								song_id "id", 
@@ -110,7 +103,7 @@ class Model_Song extends Model
 								song_title "title", 
 								song_slug "slug"
 							FROM song
-							'.$q.'
+							WHERE `key` IS NOT NULL
 							ORDER BY song_title')
 			->execute()
 			->fetchAll(__CLASS__, array(FALSE));
@@ -118,7 +111,24 @@ class Model_Song extends Model
 		return $songs;
 	}
 
-	public static function find_last_updated()
+	public static function list_unfinished()
+	{
+		Timer::start(__METHOD__, func_get_args());
+		$songs = DB::prepare('SELECT 
+								song_id "id", 
+								song_lastmod "lastmod", 
+								song_title "title", 
+								song_slug "slug"
+							FROM song
+							WHERE `key` IS NULL
+							ORDER BY song_title')
+			->execute()
+			->fetchAll(__CLASS__, array(FALSE));
+		Timer::stop();
+		return $songs;
+	}
+
+	public static function list_last_updated()
 	{
 		Timer::start(__METHOD__);
 		$songs = DB::prepare('SELECT 
@@ -128,15 +138,14 @@ class Model_Song extends Model
 								song_slug "slug"
 							FROM song
 							WHERE `key` IS NOT NULL
-							ORDER BY song_lastmod DESC
-							LIMIT 10')
+							ORDER BY song_lastmod DESC')
 			->execute()
 			->fetchAll(__CLASS__, array(FALSE));
 		Timer::stop();
 		return $songs;
 	}
 
-	public static function find_in_book($book_id)
+	public static function list_in_book($book_id)
 	{
 		Timer::start(__METHOD__, func_get_args());
 		$songs = DB::prepare('SELECT 

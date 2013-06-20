@@ -1,17 +1,9 @@
 <h1>{{title}}</h1>
 
-<ul>
-{{#songs}}
-	{{>song-li}}
-{{/songs}}
-{{^songs}}
-	<li>No songs...
-{{/songs}}
-</ul>
+{{>songs}}
 
 
-
-<h2>Unfinished</h2>
+<h2>Incomplete</h2>
 
 <ul>
 {{#unfinished}}
