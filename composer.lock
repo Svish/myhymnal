@@ -101,16 +101,16 @@
         },
         {
             "name": "geekality/transposer",
-            "version": "v1.5",
+            "version": "v1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/Transposer.git",
-                "reference": "v1.5"
+                "reference": "v1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/Transposer/zipball/v1.5",
-                "reference": "v1.5",
+                "url": "https://api.github.com/repos/Svish/Transposer/zipball/v1.6",
+                "reference": "v1.6",
                 "shasum": ""
             },
             "require": {
@@ -145,7 +145,7 @@
                 "music",
                 "transpose"
             ],
-            "time": "2013-05-15 06:30:38"
+            "time": "2013-06-20 15:56:26"
         },
         {
             "name": "geekality/webframework",
