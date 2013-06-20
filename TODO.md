@@ -5,6 +5,9 @@ Probably
 - Change deployment method?
 	- http://toroid.org/ams/git-website-howto
 
+
+- Check http://adventisthymns.com?
+
 Potentially
 ===
 - Compress JS
