@@ -149,16 +149,16 @@
         },
         {
             "name": "geekality/webframework",
-            "version": "v1.0",
+            "version": "v1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Svish/php-webframework.git",
-                "reference": "v1.0"
+                "reference": "v1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Svish/php-webframework/zipball/v1.0",
-                "reference": "v1.0",
+                "url": "https://api.github.com/repos/Svish/php-webframework/zipball/v1.1",
+                "reference": "v1.1",
                 "shasum": ""
             },
             "require": {
@@ -198,9 +198,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Svish/php-webframework/issues",
-                "source": "https://github.com/Svish/php-webframework/tree/v1.0"
+                "source": "https://github.com/Svish/php-webframework/tree/v1.1"
             },
-            "time": "2013-06-06 15:09:22"
+            "time": "2013-06-20 15:00:29"
         },
         {
             "name": "leafo/lessphp",

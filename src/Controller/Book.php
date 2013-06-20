@@ -10,11 +10,8 @@ class Controller_Book extends CachedController
 			throw new HTTP_Exception('Book not found.', 404);
 
 		if($slug === NULL || $slug !== $book->slug)
-		{
-			header('Location: '.WEBROOT.$book->url);
-			exit;
-		}
-		else
-			echo new View_Book($book);
+			HTTP::redirect(301, $book->url);
+		
+		echo new View_Book($book);
 	}
 }

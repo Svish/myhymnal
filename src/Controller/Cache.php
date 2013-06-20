@@ -9,7 +9,7 @@ class Controller_Cache extends Controller
 			case 'clear':
 				header('content-type: text/plain');
 				Cache::delete();
-				echo 'done'.PHP_EOL;
+				HTTP::redirect(302);
 				return;
 
 			case 'prime':

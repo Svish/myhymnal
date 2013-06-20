@@ -6,11 +6,7 @@ class Controller_Song extends CachedController
 	{
 		// Random song
 		if($id === NULL)
-		{
-			$song = Model_Song::get_random();
-			header('Location: '.WEBROOT.$song->url, true, 307);
-			exit;
-		}
+			HTTP::redirect(307, Model_Song::get_random()->url);
 
 		// Specific song
 		$song = Model_Song::get($id);
@@ -20,10 +16,7 @@ class Controller_Song extends CachedController
 
 		// Redirect if missing slug in URL
 		if($slug === NULL || $slug !== $song->slug)
-		{
-			header('Location: '.WEBROOT.$song->url, true, 301);
-			exit;
-		}
+			HTTP::redirect(301, $song->url);
 		
 		echo new View_Song($song);
 	}
