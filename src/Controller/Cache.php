@@ -7,7 +7,6 @@ class Controller_Cache extends Controller
 		switch($task)
 		{
 			case 'clear':
-				header('content-type: text/plain');
 				Cache::delete();
 				HTTP::redirect(302);
 				return;
