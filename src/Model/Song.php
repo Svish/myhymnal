@@ -101,7 +101,8 @@ class Model_Song extends Model
 								song_id "id", 
 								song_lastmod "lastmod", 
 								song_title "title", 
-								song_slug "slug"
+								song_slug "slug",
+								`key`
 							FROM song
 							WHERE `key` IS NOT NULL
 							ORDER BY song_title')
@@ -118,7 +119,8 @@ class Model_Song extends Model
 								song_id "id", 
 								song_lastmod "lastmod", 
 								song_title "title", 
-								song_slug "slug"
+								song_slug "slug",
+								`key`
 							FROM song
 							WHERE `key` IS NULL
 							ORDER BY song_title')
@@ -135,7 +137,8 @@ class Model_Song extends Model
 								song_id "id", 
 								song_lastmod "lastmod", 
 								song_title "title", 
-								song_slug "slug"
+								song_slug "slug",
+								`key`
 							FROM song
 							WHERE `key` IS NOT NULL
 							ORDER BY song_lastmod DESC')
@@ -152,7 +155,8 @@ class Model_Song extends Model
 								song.song_id "id",
 								song_title "title",
 								song_slug "slug", 
-								number "number"
+								number "number",
+								`key`
 							FROM song_book
 							INNER JOIN song ON song_book.song_id = song.song_id
 							WHERE song_book.book_id = :id
