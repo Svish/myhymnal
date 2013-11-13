@@ -1,6 +1,6 @@
 <?php
 
-class Controller_About extends CachedController
+class Controller_About extends Controller
 {
 	function get()
 	{

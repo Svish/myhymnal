@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Song extends CachedController
+class Controller_Song extends Controller
 {
 	function get($id = NULL, $slug = NULL)
 	{

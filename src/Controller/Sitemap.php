@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Sitemap extends CachedController
+class Controller_Sitemap extends Controller
 {
 	function get()
 	{

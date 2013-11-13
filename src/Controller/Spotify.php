@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Spotify extends CachedController
+class Controller_Spotify extends Controller
 {
 	function get()
 	{

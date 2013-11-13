@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Feed extends CachedController
+class Controller_Feed extends Controller
 {
 	function get($type)
 	{
