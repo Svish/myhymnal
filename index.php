@@ -15,6 +15,9 @@ date_default_timezone_set('Europe/Oslo');
 # Locale
 setlocale(LC_ALL, 'en_US.utf-8', 'eng');
 
+# Encoding
+mb_internal_encoding("UTF-8");
+
 # AutoLoader
 require 'vendor/autoload.php';
 
