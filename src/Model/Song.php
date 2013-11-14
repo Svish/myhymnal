@@ -140,8 +140,8 @@ class Model_Song extends Model
 								song_slug "slug",
 								`key`
 							FROM song
-							WHERE `key` IS NOT NULL
-							ORDER BY song_lastmod DESC')
+							ORDER BY song_lastmod DESC
+							LIMIT 15')
 			->execute()
 			->fetchAll(__CLASS__, array(FALSE));
 		Timer::stop();
