@@ -3,7 +3,6 @@ Potentials
 
 - He who began a good work in you
 
-
 Alle mine dager
 ---
 
