@@ -45,7 +45,7 @@ class Model_Spotify extends Model
 		$r = DB::prepare('SELECT spotify_id "id", spotify_url "url", spotify_artists "artists"
 						FROM spotify
 						WHERE song_id = :id
-						ORDER BY artists')
+						ORDER BY spotify_artists')
 			->bindValue(':id', $song_id, PDO::PARAM_INT)
 			->execute()
 			->fetchAll(__CLASS__);
@@ -63,7 +63,7 @@ class Model_Spotify extends Model
 							song_title "title"
 						FROM spotify
 						INNER JOIN song ON song.song_id = spotify.song_id
-						ORDER BY song.song_title')
+						ORDER BY song.song_title, spotify.spotify_artists')
 			->execute()
 			->fetchAll(__CLASS__);
 		Timer::stop();
