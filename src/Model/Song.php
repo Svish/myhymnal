@@ -181,13 +181,13 @@ class Model_Song extends Model
 								ORDER BY book.book_title')
 				->bindValue(':number', $term, PDO::PARAM_INT)
 				->execute()
-				->fetchAll();
+				->fetchAll(__CLASS__, array(FALSE));
 		}
 		else
 		{
 			$songs = DB::prepare('SELECT song_id "id", song_title "title", song_slug "slug"
 								FROM song 
-								WHERE song_title LIKE ? 
+								WHERE REPLACE(song_title, \',\',\'\') LIKE REPLACE(?, \',\',\'\')
 								ORDER BY 
 									CASE WHEN song_title LIKE ? THEN 1 ELSE 2 END, 
 									song_title')
